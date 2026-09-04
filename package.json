@@ -1,0 +1,21 @@
+{
+  "name": "kalananti-codejunior-web",
+  "private": true,
+  "type": "module",
+  "description": "Internal Kalananti - CodeJunior browser build",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "python3 -m http.server 4173"
+  },
+  "dependencies": {
+    "intl": "1.2.5",
+    "intl-messageformat": "2.2.0",
+    "jszip": "3.1.5",
+    "snapsvg": "0.5.1",
+    "sql.js": "^1.13.0",
+    "stream": "^0.0.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9"
+  }
+}

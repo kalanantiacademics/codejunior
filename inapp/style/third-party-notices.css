@@ -1,0 +1,59 @@
+@import url('../../css/font.css');
+
+html {
+  -webkit-user-select: text;
+}
+
+#inappThirdPartyNotices {
+  color: #595959;
+  font-family: Roboto;
+  padding: ${css_vh(2)} 6.05vw ${css_vh(2)};
+  margin: ${css_vh(2.6)} auto;
+  width: ${css_vw(87.89)};
+  height: auto;
+  margin-bottom: ${css_vh(10.4)};
+}
+
+#inappThirdPartyNotices h1 {
+  font-size: ${css_vh(5.3)};
+  margin-bottom: ${css_vh(1.8)};
+  color: #f5a322;
+}
+
+#inappThirdPartyNotices h2 {
+  font-size: ${css_vh(3.78)};
+  color: #2898cd;
+  line-height: 1.25;
+  margin-bottom: ${css_vh(1.1)};
+}
+
+#inappThirdPartyNotices .notice-section {
+  display: block;
+  margin-bottom: ${css_vh(2.2)};
+}
+
+#inappThirdPartyNotices p {
+  font-size: ${css_vh(2.55)};
+  line-height: 1.45;
+  margin: 0 0 ${css_vh(1.1)};
+}
+
+#inappThirdPartyNotices .license-text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: ${css_vh(1.6)} ${css_vw(1.6)};
+  margin: ${css_vh(1.4)} 0 0;
+  border: 1px solid #d6d0b7;
+  border-radius: 8px;
+  background: #f7f5ea;
+  color: #4f4f4f;
+  font-family: monospace;
+  font-size: ${css_vh(1.65)};
+  line-height: 1.45;
+  white-space: pre-wrap;
+  user-select: text;
+}
+
+#inappThirdPartyNotices .notice-footer {
+  padding-bottom: ${css_vh(2)};
+}
