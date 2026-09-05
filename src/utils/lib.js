@@ -6,7 +6,7 @@ export const DEGTOR = Math.PI / 180;
 //export const WINDOW_INNER_HEIGHT = window.innerHeight;
 //export const WINDOW_INNER_WIDTH = window.innerWidth;
 export const scaleMultiplier = 1.0;  //WINDOW_INNER_HEIGHT / 768.0;
-const WEB_ASSET_VERSION = 'kalananti-motion-v2-20260905';
+const WEB_ASSET_VERSION = 'kalananti-center-layout-20260906';
 
 export const isiOS = (typeof AndroidInterface == 'undefined');
 export const isAndroid = (typeof AndroidInterface != 'undefined');
@@ -680,17 +680,25 @@ export function applyResponsiveLayout () {
         return;
     }
 
-    var scale = Math.min(1, window.innerWidth / DESIGN_WIDTH, window.innerHeight / DESIGN_HEIGHT);
+    var winW = window.innerWidth || document.documentElement.clientWidth || 1020;
+    var winH = window.innerHeight || document.documentElement.clientHeight || 768;
+
+    var scale = Math.min(winW / DESIGN_WIDTH, winH / DESIGN_HEIGHT);
     var scaledWidth = DESIGN_WIDTH * scale;
-    var horizontalOffset = Math.max(0, (window.innerWidth - scaledWidth) / 2);
+    var scaledHeight = DESIGN_HEIGHT * scale;
+    var horizontalOffset = Math.max(0, (winW - scaledWidth) / 2);
+    var verticalOffset = Math.max(0, (winH - scaledHeight) / 2);
 
     document.documentElement.style.overflow = 'hidden';
+    document.documentElement.style.width = '100%';
+    document.documentElement.style.height = '100%';
     document.body.style.minWidth = '0px';
     document.body.style.minHeight = '0px';
     document.body.style.width = '100vw';
     document.body.style.height = '100vh';
     document.body.style.margin = '0px';
     document.body.style.padding = '0px';
+    document.body.style.overflow = 'hidden';
 
     ['frame', 'libframe', 'paintframe'].forEach(function (id) {
         var el = document.getElementById(id);
@@ -702,19 +710,22 @@ export function applyResponsiveLayout () {
         el.style.height = DESIGN_HEIGHT + 'px';
         el.style.left = '0px';
         el.style.top = '0px';
-        el.style.transformOrigin = 'top left';
-        el.style.transform = 'translate(' + horizontalOffset + 'px, 0px) scale(' + scale + ')';
+        el.style.transformOrigin = '0 0';
+        el.style.transform = 'translate(' + horizontalOffset + 'px, ' + verticalOffset + 'px) scale(' + scale + ')';
         el.dataset.responsiveScale = scale;
     });
 }
 
 export function installResponsiveLayout () {
-    if (window.__scratchJrResponsiveLayoutInstalled) {
-        applyResponsiveLayout();
-        return;
+    if (!window.__scratchJrResponsiveLayoutInstalled) {
+        window.__scratchJrResponsiveLayoutInstalled = true;
+        window.addEventListener('resize', applyResponsiveLayout);
+        window.addEventListener('orientationchange', applyResponsiveLayout);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyResponsiveLayout);
+        }
+        window.addEventListener('load', applyResponsiveLayout);
     }
-    window.__scratchJrResponsiveLayoutInstalled = true;
-    window.addEventListener('resize', applyResponsiveLayout);
     applyResponsiveLayout();
 }
 

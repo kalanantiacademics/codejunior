@@ -1,3 +1,5 @@
+import {installResponsiveLayout} from './lib';
+
 /**
  * Motion & Animation Controller for Kalananti - CodeJunior
  * Provides seamless page exits, spring bounce micro-interactions,
@@ -50,6 +52,7 @@ export default class Motion {
      * Initializes page entrance animation and auto-enhances interactive buttons.
      */
     static initPage () {
+        installResponsiveLayout();
         const frame = document.getElementById('frame');
         if (frame) {
             frame.classList.add('page-mount-anim');

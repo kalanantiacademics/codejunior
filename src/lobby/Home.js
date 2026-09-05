@@ -176,7 +176,7 @@ export default class Home {
     static openNewProjectMenu () {
         if (gn('newprojectmenu')) return;
 
-        var backdrop = newHTML('div', 'newproject-backdrop', frame);
+        var backdrop = newHTML('div', 'newproject-backdrop', document.body);
         backdrop.setAttribute('id', 'newprojectmenu');
         backdrop.onmousedown = function (e) {
             e.preventDefault();
