@@ -17990,7 +17990,7 @@ var global = window;
   var isTablet = window.orientation != "undefined";
   var DEGTOR = Math.PI / 180;
   var scaleMultiplier = 1;
-  var WEB_ASSET_VERSION = "kalananti-loading-logo-v2-20260905";
+  var WEB_ASSET_VERSION = "kalananti-loading-icon-v2-20260905";
   var isiOS = typeof AndroidInterface == "undefined";
   var isAndroid = typeof AndroidInterface != "undefined";
   function libInit() {
@@ -41222,10 +41222,11 @@ var global = window;
   function inappThirdPartyNotices() {
   }
   function inappInterfaceGuide() {
+    var guideRoot = gn("inappInterfaceGuide");
     var interfaceKeyHeaderNode = gn("interface-key-header");
     var interfaceKeyDescriptionNode = gn("interface-key-description");
-    interfaceKeyHeaderNode.textContent = Localization.localize("INTERFACE_GUIDE_SAVE", { N: 1 });
-    interfaceKeyDescriptionNode.textContent = Localization.localize("INTERFACE_GUIDE_SAVE_DESCRIPTION");
+    interfaceKeyHeaderNode.textContent = "Choose a numbered marker";
+    interfaceKeyDescriptionNode.textContent = "Click any number in the image above to learn what that part of the editor does.";
     var interfaceKeys = [
       "SAVE",
       "STAGE",
@@ -41252,26 +41253,29 @@ var global = window;
         Localization.localize("INTERFACE_GUIDE_" + key + "_DESCRIPTION")
       ]);
     }
-    var currentButton = document.getElementById("interface-button-save");
     var switchHelp = function(e) {
-      var target3 = e.target;
-      if (target3.className == "interface-button-text") {
-        var descriptionId = parseInt(target3.innerText - 1);
+      var button = e.target.closest ? e.target.closest(".interface-button") : null;
+      if (button && guideRoot.contains(button)) {
+        var target3 = button.querySelector(".interface-button-text");
+        var descriptionId = parseInt(target3.textContent, 10) - 1;
+        if (!interfaceDescriptions[descriptionId]) return;
         interfaceKeyHeaderNode.textContent = interfaceDescriptions[descriptionId][0];
         interfaceKeyDescriptionNode.textContent = interfaceDescriptions[descriptionId][1];
-        currentButton.className = "interface-button";
-        currentButton = target3.parentNode;
-        currentButton.className = currentButton.className + " interface-button-selected";
+        guideRoot.querySelectorAll(".interface-button-selected").forEach(function(selectedButton) {
+          selectedButton.classList.remove("interface-button-selected");
+        });
+        button.classList.add("interface-button-selected");
         window.parent.ScratchAudio.sndFXWithVolume("keydown.wav", 0.3);
       }
     };
-    document.addEventListener("mousedown", switchHelp, false);
+    guideRoot.onmousedown = switchHelp;
   }
   function inappPaintEditorGuide() {
+    var guideRoot = gn("inappPaintEditorGuide");
     var paintKeyHeaderNode = gn("paint-key-header");
     var paintKeyDescriptionNode = gn("paint-key-description");
-    paintKeyHeaderNode.textContent = Localization.localize("PAINT_GUIDE_UNDO", { N: 1 });
-    paintKeyDescriptionNode.textContent = Localization.localize("PAINT_GUIDE_UNDO_DESCRIPTION");
+    paintKeyHeaderNode.textContent = "Choose a numbered marker";
+    paintKeyDescriptionNode.textContent = "Click any number in the image above to learn what that tool does.";
     var paintKeys = [
       "UNDO",
       "REDO",
@@ -41295,20 +41299,22 @@ var global = window;
         Localization.localize("PAINT_GUIDE_" + key + "_DESCRIPTION")
       ]);
     }
-    var currentButton = document.getElementById("paint-button-undo");
     var switchHelp = function(e) {
-      var target3 = e.target;
-      if (target3.className == "paint-button-text") {
-        var descriptionId = parseInt(target3.innerText - 1);
+      var button = e.target.closest ? e.target.closest(".paint-button") : null;
+      if (button && guideRoot.contains(button)) {
+        var target3 = button.querySelector(".paint-button-text");
+        var descriptionId = parseInt(target3.textContent, 10) - 1;
+        if (!paintDescriptions[descriptionId]) return;
         paintKeyHeaderNode.textContent = paintDescriptions[descriptionId][0];
         paintKeyDescriptionNode.textContent = paintDescriptions[descriptionId][1];
-        currentButton.className = "paint-button";
-        currentButton = target3.parentNode;
-        currentButton.className = currentButton.className + " paint-button-selected";
+        guideRoot.querySelectorAll(".paint-button-selected").forEach(function(selectedButton) {
+          selectedButton.classList.remove("paint-button-selected");
+        });
+        button.classList.add("paint-button-selected");
         window.parent.ScratchAudio.sndFXWithVolume("keydown.wav", 0.3);
       }
     };
-    document.addEventListener("mousedown", switchHelp, false);
+    guideRoot.onmousedown = switchHelp;
   }
   function inappBlocksGuide() {
     gn("yellow-block-category-header").textContent = Localization.localize("BLOCKS_TRIGGERING_BLOCKS");

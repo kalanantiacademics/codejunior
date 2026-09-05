@@ -30,7 +30,7 @@ div.frame {
     height: clamp(180px, 42vw, 360px);
     z-index: 10;
     transform: translate(-50%, -50%);
-    background: url('../assets/branding/kalananti-loading-icon.png');
+    background: url('../assets/branding/kalananti-loading-icon-v2.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;

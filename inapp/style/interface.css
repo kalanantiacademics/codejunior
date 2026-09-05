@@ -29,6 +29,37 @@ html {
 	font-size: ${css_vh(2.3)};
 }
 
+#inappInterfaceGuide .guide-click-hint,
+#inappPaintEditorGuide .guide-click-hint {
+    position: relative;
+    z-index: 2;
+    width: 800px;
+    max-width: calc(100vw - 48px);
+    box-sizing: border-box;
+    margin: 0 auto ${css_vh(1.5)};
+    padding: 12px 20px;
+    border: 1px solid #b9dff0;
+    border-radius: 14px;
+    background: #eef9ff;
+    color: #4b6570;
+    text-align: center;
+    font-size: ${css_vh(2.05)};
+    line-height: 1.35;
+    box-shadow: 0 3px 10px rgba(40, 152, 205, .12);
+}
+
+#inappInterfaceGuide .guide-click-hint strong,
+#inappPaintEditorGuide .guide-click-hint strong {
+    display: block;
+    color: #197aa6;
+    font-size: ${css_vh(2.35)};
+}
+
+#inappInterfaceGuide .guide-click-hint span,
+#inappPaintEditorGuide .guide-click-hint span {
+    display: block;
+}
+
 /* Guide Elements */
 
 
@@ -453,25 +484,32 @@ html {
 }
 
 #inappInterfaceGuide  #interface-key {
-	/*width: ${css_vh(36.35)};
-	height: ${css_vh(72.53)};
-	float: left;
-	margin-left: ${css_vh(9.05)};
-	*/
-	
 	position: absolute;
     top: 374px;
     width: 800px;
-	
-	background-image: url("../images/keybackground.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
+    max-width: calc(100vw - 48px);
+    min-height: 132px;
+    box-sizing: border-box;
+    padding: 16px 24px 20px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #d8d8d8;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+    text-align: left;
+}
+
+#inappInterfaceGuide .guide-info-label {
+    margin-bottom: 6px;
+    color: #8a8a8a;
+    font-size: ${css_vh(1.65)};
+    font-weight: bold;
+    letter-spacing: .08em;
 }
 
 #inappInterfaceGuide  #interface-key-header {
 	font-size: ${css_vh(3)};
-	padding-top: ${css_vh(1.64)};
-	padding-left: ${css_vh(1.64)};
+    padding: 0;
 	color: #2898CD;
 }
 
@@ -479,10 +517,10 @@ html {
     color: #808080;
     line-height: ${css_vh(3.62)};
     padding-top: ${css_vh(0.82)};
-    padding-right: ${css_vh(2.47)};
+    padding-right: 0;
     font-size: ${css_vh(2.3)};
-    margin-right: ${css_vh(0.82)};
-    margin-left: ${css_vh(3.29)};
+    margin-right: 0;
+    margin-left: 0;
 }
 
 #inappInterfaceGuide  #video-wrapper {

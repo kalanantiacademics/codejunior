@@ -28,6 +28,30 @@ html {
 	padding-bottom: 200px;
 }
 
+#inappBlocksGuide .guide-page-intro {
+    margin: ${css_vh(3)} auto ${css_vh(1)};
+    padding: 14px 20px;
+    width: min(800px, calc(100vw - 48px));
+    box-sizing: border-box;
+    border: 1px solid #b9dff0;
+    border-radius: 14px;
+    background: #eef9ff;
+    color: #4b6570;
+    text-align: center;
+    font-size: ${css_vh(2.1)};
+    line-height: 1.35;
+}
+
+#inappBlocksGuide .guide-page-intro strong,
+#inappBlocksGuide .guide-page-intro span {
+    display: block;
+}
+
+#inappBlocksGuide .guide-page-intro strong {
+    color: #197aa6;
+    font-size: ${css_vh(2.5)};
+}
+
 #inappBlocksGuide .block-description-table {
 	margin-left: ${css_vh(15.95)};
 }
