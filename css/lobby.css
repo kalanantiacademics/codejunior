@@ -350,6 +350,34 @@ div.htmlcontents.settings > div.localizationselect {
     margin: ${css_vh(2)} auto;
 }
 
+.htmlcontents.settings h1.localizationtitle {
+    clear: both;
+    margin: ${css_vh(4)} auto ${css_vh(1.5)};
+    padding: 0 ${css_vw(3)};
+}
+
+.htmlcontents.settings h1.localizationtitle:first-child {
+    margin-top: 0;
+}
+
+div.htmlcontents.settings > div.localizationselect.backupaction {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: none;
+    width: min(${css_vw(34)}, 420px);
+    min-width: 290px;
+    height: auto;
+    min-height: 72px;
+    margin: ${css_vh(2)} auto ${css_vh(4)};
+    padding: 14px 24px;
+    font-size: clamp(22px, ${css_vh(3.2)}, 30px);
+    font-weight: 500;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+}
+
 /* footer */
 
 #footer {
@@ -560,6 +588,19 @@ div.htmlcontents.settings > div.localizationselect {
     padding: 0px;
     height: ${css_vh(79.18)};
     top: ${css_vh(10.42)};
+}
+
+.htmlsubpagecontents.guide-scroll {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-top: ${css_vh(10.42)};
+    padding-bottom: ${css_vh(18)};
+}
+
+.htmlsubpagecontents.guide-scroll > .inappSubpage {
+    height: max(80vw, 980px);
+    min-height: 980px;
 }
 
 

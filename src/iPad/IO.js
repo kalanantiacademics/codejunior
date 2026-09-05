@@ -15,6 +15,14 @@ const webOnlyLibraryAssets = {
     'KalanantiCharacter.png': true
 };
 
+// Avoid exporting the web library filename verbatim. A native ScratchJr
+// build or an older Kalananti profile may already have an asset with this
+// name cached, causing an imported project to reuse the old 896 × 1724 source
+// instead of the resized project asset.
+const packagedWebOnlyAssetNames = {
+    'KalanantiCharacter.png': 'KalanantiCharacter-kalananti.png'
+};
+
 function bytesToBase64 (bytes) {
     var binary = '';
     var chunkSize = 0x8000;
@@ -340,6 +348,7 @@ export default class IO {
                 'backgrounds': [],
                 'sounds': []
             };
+            var packagedAssetSources = {};
             var jsonData = IO.parseProjectData(JSON.parse(projectFromDB)[0]);
 
             // Collect project assets for inclusion in zip file
@@ -350,6 +359,14 @@ export default class IO {
             if (typeof jsonData.thumbnail == 'string') {
                 jsonData.thumbnail = JSON.parse(jsonData.thumbnail);
             }
+
+            var packageAssetName = function (md5) {
+                var packagedName = packagedWebOnlyAssetNames[md5] || md5;
+                if (packagedName != md5) {
+                    packagedAssetSources[packagedName] = md5;
+                }
+                return packagedName;
+            };
 
             // Method to determine if a particular asset needs to be collected
             // If it does, save the reference in projectMetadata for collection
@@ -397,6 +414,7 @@ export default class IO {
                     }
 
                     // Sprite image
+                    sprite.md5 = packageAssetName(sprite.md5);
                     collectAsset('characters', sprite.md5);
 
                     // Sprite's recorded sounds
@@ -418,6 +436,7 @@ export default class IO {
 
             // Generic function for adding media to the zip file
             var addMediaToZip = function (folder, md5) {
+                var sourceMd5 = packagedAssetSources[md5] || md5;
                 var addB64ToZip = function (b64data) {
                     zipFile.file('project/' + folder + '/' + md5, b64data, {
                         base64: true,
@@ -427,17 +446,17 @@ export default class IO {
                 };
                 // Determine if the md5 is a MediaLib file or a user one, and download it appropriately
                 // See also, Sprite.getAsset
-                if (webOnlyLibraryAssets[md5] && window.sjrWebAdapter) {
+                if (webOnlyLibraryAssets[sourceMd5] && window.sjrWebAdapter) {
                     // The browser adapter must fetch binary library media as an
                     // ArrayBuffer. Fetching a PNG as text and passing it to
                     // btoa() corrupts bytes or throws on non-Latin characters.
-                    fetch(new URL(MediaLib.path + md5, window.location.href))
+                    fetch(new URL(MediaLib.path + sourceMd5, window.location.href))
                         .then(function (response) {
                             if (!response.ok) throw new Error('HTTP ' + response.status);
                             return response.arrayBuffer();
                         })
                         .then(function (buffer) {
-                            var dimensions = MediaLib.keys[md5];
+                            var dimensions = MediaLib.keys[sourceMd5];
                             if (dimensions && dimensions.width && dimensions.height) {
                                 return resizeRasterForProject(buffer, Number(dimensions.width), Number(dimensions.height));
                             }
@@ -447,17 +466,17 @@ export default class IO {
                             addB64ToZip(base64);
                         })
                         .catch(function (error) {
-                            console.error('Could not package library asset', md5, error);
+                            console.error('Could not package library asset', sourceMd5, error);
                             zipAssetsActual++;
                         });
-                } else if (md5 in MediaLib.keys) {
+                } else if (sourceMd5 in MediaLib.keys) {
                     // Library character
-                    IO.requestFromServer(MediaLib.path + md5, function (raw) {
+                    IO.requestFromServer(MediaLib.path + sourceMd5, function (raw) {
                         addB64ToZip(btoa(raw));
                     });
                 } else {
                     // User file
-                    iOS.getmedia(md5, addB64ToZip);
+                    iOS.getmedia(sourceMd5, addB64ToZip);
                 }
             };
 

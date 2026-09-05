@@ -218,7 +218,7 @@ export default class Lobby {
             officialTitle.textContent = 'OFFICIAL SCRATCHJR PROJECT';
             var officialDescription = newHTML('p', 'backupdescription', div);
             officialDescription.textContent = 'Import a project exported by the official ScratchJr app or another compatible editor.';
-            var officialButton = newHTML('div', 'localizationselect', div);
+            var officialButton = newHTML('div', 'localizationselect backupaction', div);
             officialButton.textContent = 'IMPORT OFFICIAL (.SJR)';
             var officialInput = newHTML('input', undefined, div);
             officialInput.type = 'file';
@@ -251,7 +251,7 @@ export default class Lobby {
             backupTitle.textContent = 'PROJECT DATABASE BACKUP';
             var backupDescription = newHTML('p', 'backupdescription', div);
             backupDescription.textContent = 'Import a previously downloaded SQLite backup to restore projects on this browser.';
-            var importButton = newHTML('div', 'localizationselect', div);
+            var importButton = newHTML('div', 'localizationselect backupaction', div);
             importButton.textContent = 'IMPORT SQLITE BACKUP';
             var importInput = newHTML('input', undefined, div);
             importInput.type = 'file';
@@ -298,18 +298,12 @@ export default class Lobby {
             Lobby.loadLink(div, url, 'contentwrap scroll', 'htmlsubpagecontents scrolled');
             break;
         case 'interface':
-            document.onmousemove = function (e) {
-                e.preventDefault();
-            };
             url = host + 'interface.html';
-            Lobby.loadLink(div, url, 'contentwrap noscroll', 'htmlsubpagecontents fixed');
+            Lobby.loadLink(div, url, 'contentwrap scroll', 'htmlsubpagecontents guide-scroll');
             break;
         case 'paint':
-            document.onmousemove = function (e) {
-                e.preventDefault();
-            };
             url = host + 'paint.html';
-            Lobby.loadLink(div, url, 'contentwrap noscroll', 'htmlsubpagecontents fixed');
+            Lobby.loadLink(div, url, 'contentwrap scroll', 'htmlsubpagecontents guide-scroll');
             break;
         case 'blocks':
             url = host + 'blocks.html';

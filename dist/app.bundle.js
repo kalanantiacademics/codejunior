@@ -17990,7 +17990,7 @@ var global = window;
   var isTablet = window.orientation != "undefined";
   var DEGTOR = Math.PI / 180;
   var scaleMultiplier = 1;
-  var WEB_ASSET_VERSION = "kalananti-sjr-interchange-v2-20260904";
+  var WEB_ASSET_VERSION = "kalananti-loading-logo-20260905";
   var isiOS = typeof AndroidInterface == "undefined";
   var isAndroid = typeof AndroidInterface != "undefined";
   function libInit() {
@@ -39655,7 +39655,7 @@ var global = window;
         officialTitle.textContent = "OFFICIAL SCRATCHJR PROJECT";
         var officialDescription = newHTML("p", "backupdescription", div);
         officialDescription.textContent = "Import a project exported by the official ScratchJr app or another compatible editor.";
-        var officialButton = newHTML("div", "localizationselect", div);
+        var officialButton = newHTML("div", "localizationselect backupaction", div);
         officialButton.textContent = "IMPORT OFFICIAL (.SJR)";
         var officialInput = newHTML("input", void 0, div);
         officialInput.type = "file";
@@ -39687,7 +39687,7 @@ var global = window;
         backupTitle.textContent = "PROJECT DATABASE BACKUP";
         var backupDescription = newHTML("p", "backupdescription", div);
         backupDescription.textContent = "Import a previously downloaded SQLite backup to restore projects on this browser.";
-        var importButton = newHTML("div", "localizationselect", div);
+        var importButton = newHTML("div", "localizationselect backupaction", div);
         importButton.textContent = "IMPORT SQLITE BACKUP";
         var importInput = newHTML("input", void 0, div);
         importInput.type = "file";
@@ -39733,18 +39733,12 @@ var global = window;
           _Lobby.loadLink(div, url, "contentwrap scroll", "htmlsubpagecontents scrolled");
           break;
         case "interface":
-          document.onmousemove = function(e) {
-            e.preventDefault();
-          };
           url = host + "interface.html";
-          _Lobby.loadLink(div, url, "contentwrap noscroll", "htmlsubpagecontents fixed");
+          _Lobby.loadLink(div, url, "contentwrap scroll", "htmlsubpagecontents guide-scroll");
           break;
         case "paint":
-          document.onmousemove = function(e) {
-            e.preventDefault();
-          };
           url = host + "paint.html";
-          _Lobby.loadLink(div, url, "contentwrap noscroll", "htmlsubpagecontents fixed");
+          _Lobby.loadLink(div, url, "contentwrap scroll", "htmlsubpagecontents guide-scroll");
           break;
         case "blocks":
           url = host + "blocks.html";
@@ -40194,6 +40188,9 @@ var global = window;
   var webOnlyLibraryAssets = {
     "KalanantiCharacter.png": true
   };
+  var packagedWebOnlyAssetNames = {
+    "KalanantiCharacter.png": "KalanantiCharacter-kalananti.png"
+  };
   function bytesToBase64(bytes) {
     var binary = "";
     var chunkSize = 32768;
@@ -40495,6 +40492,7 @@ var global = window;
           "backgrounds": [],
           "sounds": []
         };
+        var packagedAssetSources = {};
         var jsonData = _IO.parseProjectData(JSON.parse(projectFromDB)[0]);
         if (typeof jsonData.json == "string") {
           jsonData.json = JSON.parse(jsonData.json);
@@ -40502,6 +40500,13 @@ var global = window;
         if (typeof jsonData.thumbnail == "string") {
           jsonData.thumbnail = JSON.parse(jsonData.thumbnail);
         }
+        var packageAssetName = function(md5) {
+          var packagedName = packagedWebOnlyAssetNames[md5] || md5;
+          if (packagedName != md5) {
+            packagedAssetSources[packagedName] = md5;
+          }
+          return packagedName;
+        };
         var collectAsset = function(assetType, md5) {
           if (md5 && typeof md5 !== "undefined") {
             if (md5.indexOf("samples/") < 0) {
@@ -40531,6 +40536,7 @@ var global = window;
             if (sprite.type != "sprite") {
               continue;
             }
+            sprite.md5 = packageAssetName(sprite.md5);
             collectAsset("characters", sprite.md5);
             for (var snd = 0; snd < sprite.sounds.length; snd++) {
               collectAsset("sounds", sprite.sounds[snd]);
@@ -40544,6 +40550,7 @@ var global = window;
         zipAssetsExpected = 0;
         zipAssetsActual = 0;
         var addMediaToZip = function(folder, md5) {
+          var sourceMd5 = packagedAssetSources[md5] || md5;
           var addB64ToZip = function(b64data) {
             zipFile.file("project/" + folder + "/" + md5, b64data, {
               base64: true,
@@ -40551,12 +40558,12 @@ var global = window;
             });
             zipAssetsActual++;
           };
-          if (webOnlyLibraryAssets[md5] && window.sjrWebAdapter) {
-            fetch(new URL(MediaLib.path + md5, window.location.href)).then(function(response) {
+          if (webOnlyLibraryAssets[sourceMd5] && window.sjrWebAdapter) {
+            fetch(new URL(MediaLib.path + sourceMd5, window.location.href)).then(function(response) {
               if (!response.ok) throw new Error("HTTP " + response.status);
               return response.arrayBuffer();
             }).then(function(buffer3) {
-              var dimensions = MediaLib.keys[md5];
+              var dimensions = MediaLib.keys[sourceMd5];
               if (dimensions && dimensions.width && dimensions.height) {
                 return resizeRasterForProject(buffer3, Number(dimensions.width), Number(dimensions.height));
               }
@@ -40564,15 +40571,15 @@ var global = window;
             }).then(function(base64) {
               addB64ToZip(base64);
             }).catch(function(error3) {
-              console.error("Could not package library asset", md5, error3);
+              console.error("Could not package library asset", sourceMd5, error3);
               zipAssetsActual++;
             });
-          } else if (md5 in MediaLib.keys) {
-            _IO.requestFromServer(MediaLib.path + md5, function(raw) {
+          } else if (sourceMd5 in MediaLib.keys) {
+            _IO.requestFromServer(MediaLib.path + sourceMd5, function(raw) {
               addB64ToZip(btoa(raw));
             });
           } else {
-            iOS.getmedia(md5, addB64ToZip);
+            iOS.getmedia(sourceMd5, addB64ToZip);
           }
         };
         for (var j2 = 0; j2 < projectMetadata.thumbnails.length; j2++) {
