@@ -41459,6 +41459,7 @@ var global = window;
     loadSettings(root2, () => {
       Localization.includeLocales(root2, () => {
         MediaLib.loadMediaLib(root2, () => {
+          document.documentElement.classList.add("styles-ready");
           entryFunction();
         });
       });

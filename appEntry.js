@@ -115,6 +115,9 @@ function loadPage(page) {
 		Localization.includeLocales(root, () => {
 			// Load Media Lib from JSON
 			MediaLib.loadMediaLib(root, () => {
+				// All page styles are now available; reveal the frame only after
+				// the critical first-paint CSS has been installed.
+				document.documentElement.classList.add('styles-ready');
 				entryFunction();
 			});
 		});

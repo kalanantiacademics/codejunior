@@ -8,6 +8,11 @@
 <html>
 
 <head>
+<style>
+    /* Prevent a first-paint flash of the legacy, unstyled frame while the
+       browser preprocesses and injects the startup stylesheets. */
+    html:not(.styles-ready):not(.file-origin) #frame { visibility: hidden; }
+</style>
 <title>Kalananti - CodeJunior</title>
 <link rel="icon" type="image/png" href="assets/branding/kalananti-loading-icon-v3.png">
 <link rel="apple-touch-icon" href="assets/branding/kalananti-loading-icon-v3.png">
@@ -20,6 +25,7 @@
         document.write('<style>html,body{margin:0;background:#35A8E0;font-family:Arial,sans-serif;color:#fff} .frame{display:none!important}.file-origin-warning{box-sizing:border-box;max-width:680px;margin:12vh auto;padding:40px;border-radius:20px;background:rgba(0,0,0,.18);text-align:center;line-height:1.5}.file-origin-warning h1{margin:0 0 12px;font-size:32px}.file-origin-warning code{display:inline-block;margin-top:18px;padding:10px 14px;border-radius:8px;background:rgba(0,0,0,.25);font-size:15px}</style>');
         document.write('<div class="file-origin-warning"><h1>Kalananti - CodeJunior</h1><p>Aplikasi tidak bisa dijalankan langsung dari file <code>file://</code> karena browser memblokir storage dan pemuatan asset.</p><p>Jalankan web build melalui server lokal atau buka URL deployment GitHub Pages.</p><code>cd web &amp;&amp; python3 -m http.server 4173</code></div>');
         window.__scratchJrFileOrigin = true;
+        document.documentElement.classList.add('file-origin');
     }
 </script>
 <script src='dist/webClient.js?v=kalananti-startup-audit-20260905'></script>
