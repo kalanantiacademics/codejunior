@@ -68,7 +68,7 @@
               ]
             ]
           ],
-          "md5": "Red.svg",
+          "md5": "samples/quickintro-right.png",
           "name": "key_quickintro_toc",
           "ycoor": 253,
           "homex": 355,
@@ -159,7 +159,7 @@
               ]
             ]
           ],
-          "md5": "Cat.svg",
+          "md5": "samples/quickintro-left.png",
           "name": "key_character_cat",
           "ycoor": 246,
           "homex": 115,

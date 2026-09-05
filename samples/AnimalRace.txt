@@ -22,7 +22,7 @@
             "Cat 1": {
                 "shown": true,
                 "type": "sprite",
-                "md5": "Cat.svg",
+                "md5": "KalanantiCharacter.png",
                 "id": "Cat 1",
                 "flip": true,
                 "name": "key_character_cat",

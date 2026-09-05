@@ -22,7 +22,7 @@
             "Cat 1": {
                 "shown": true,
                 "type": "sprite",
-                "md5": "Cat.svg",
+                "md5": "KalanantiCharacter.png",
                 "id": "Cat 1",
                 "flip": false,
                 "name": "key_character_cat",
@@ -82,7 +82,7 @@
             "Cat 2": {
                 "shown": true,
                 "type": "sprite",
-                "md5": "Cat.svg",
+                "md5": "KalanantiCharacter.png",
                 "id": "Cat 2",
                 "flip": false,
                 "name": "key_character_cat",
@@ -143,7 +143,7 @@
             "Cat 3": {
                 "shown": true,
                 "type": "sprite",
-                "md5": "Cat.svg",
+                "md5": "KalanantiCharacter.png",
                 "id": "Cat 3",
                 "flip": false,
                 "name": "key_character_cat",
@@ -203,7 +203,7 @@
             "Cat 4": {
                 "shown": true,
                 "type": "sprite",
-                "md5": "Cat.svg",
+                "md5": "KalanantiCharacter.png",
                 "id": "Cat 4",
                 "flip": false,
                 "name": "key_character_cat",
