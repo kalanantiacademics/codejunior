@@ -7,6 +7,7 @@ import ScratchAudio from '../utils/ScratchAudio';
 import iOS from '../iPad/iOS';
 import Localization from '../utils/Localization';
 import Cookie from '../utils/Cookie';
+import Motion from '../utils/Motion';
 
 import Home from './Home';
 import Samples from './Samples';
@@ -46,46 +47,55 @@ export default class Lobby {
         }
 
         gn('hometab').onmousedown = function () {
+            Motion.bounce(gn('hometab'));
             if (gn('hometab').className != 'home on') {
                 Lobby.setPage('home');
             }
         };
         gn('helptab').onmousedown = function () {
+            Motion.bounce(gn('helptab'));
             if (gn('helptab').className != 'help on') {
                 Lobby.setPage('help');
             }
         };
         gn('booktab').onmousedown = function () {
+            Motion.bounce(gn('booktab'));
             if (gn('booktab').className != 'book on') {
                 Lobby.setPage('book');
             }
         };
         gn('geartab').onmousedown = function () {
+            Motion.bounce(gn('geartab'));
             if (gn('geartab').className != 'gear on') {
                 Lobby.setPage('gear');
             }
         };
         gn('abouttab').onmousedown = function () {
+            Motion.bounce(gn('abouttab'));
             if (gn('abouttab').className != 'tab on') {
                 Lobby.setSubMenu('about');
             }
         };
         gn('interfacetab').onmousedown = function () {
+            Motion.bounce(gn('interfacetab'));
             if (gn('interfacetab').className != 'tab on') {
                 Lobby.setSubMenu('interface');
             }
         };
         gn('painttab').onmousedown = function () {
+            Motion.bounce(gn('painttab'));
             if (gn('painttab').className != 'tab on') {
                 Lobby.setSubMenu('paint');
             }
         };
         gn('blockstab').onmousedown = function () {
+            Motion.bounce(gn('blockstab'));
             if (gn('blockstab').className != 'tab2 on') {
                 Lobby.setSubMenu('blocks');
             }
         };
         gn('noticestab').onmousedown = function () {
+            Motion.bounce(gn('noticestab'));
             if (gn('noticestab').className != 'tab on') {
                 Lobby.setSubMenu('notices');
             }
@@ -413,7 +423,7 @@ export default class Lobby {
 
     static goHome () {
         if (currentPage === 'home') {
-            window.location.href = 'index.html?back=true';
+            Motion.navigate('index.html?back=true');
         } else {
             Lobby.setPage('home');
         }

@@ -4,8 +4,10 @@ import iOS from '../iPad/iOS';
 import UI from '../editor/ui/UI';
 import Localization from '../utils/Localization';
 import AppUsage from '../utils/AppUsage';
+import Motion from '../utils/Motion';
 
 export function indexMain () { // eslint-disable-line import/prefer-default-export
+    Motion.initPage();
     gn('gettings').onmousedown = indexGettingstarted;
     gn('startcode').onmousedown = indexGohome;
     ScratchAudio.init();
@@ -145,11 +147,12 @@ function setClassOfElementById(id, className) { // eslint-disable-line no-unused
 }
 
 function indexGohome () {
+    ScratchAudio.sndFX('tap.wav');
     iOS.setfile('homescroll.sjr', 0, function () {
         doNext();
     });
     function doNext () {
-        window.location.href = 'home.html';
+        Motion.navigate('home.html');
     }
 }
 
@@ -157,12 +160,12 @@ function indexGoSettings () {
     // Switch to the settings selection page
     // Triggered by tapping the gear icon in the top right
     ScratchAudio.sndFX('tap.wav');
-    window.location.href = 'home.html?place=gear';
+    Motion.navigate('home.html?place=gear');
 }
 
 function indexGettingstarted () {
     ScratchAudio.sndFX('tap.wav');
-    window.location.href = 'gettingstarted.html?place=home';
+    Motion.navigate('gettingstarted.html?place=home');
 }
 
 function indexSetUsage (e) {
@@ -191,7 +194,7 @@ function indexSetUsage (e) {
 // For PBS KIDS edition only
 function indexInfo () {
     ScratchAudio.sndFX('tap.wav');
-    window.location.href = 'home.html?place=book';
+    Motion.navigate('home.html?place=book');
 }
 
 function indexMoreApps () {

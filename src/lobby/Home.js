@@ -10,6 +10,7 @@ import Localization from '../utils/Localization';
 import ScratchAudio from '../utils/ScratchAudio';
 import Vector from '../geom/Vector';
 import {gn, newHTML, isTablet} from '../utils/lib';
+import Motion from '../utils/Motion';
 
 let frame;
 let scrollvalue;
@@ -132,6 +133,7 @@ export default class Home {
         switch (Home.getAction(e)) {
         case 'project':
             ScratchAudio.sndFX('keydown.wav');
+            Motion.bounce(Home.actionTarget);
             if (md5 && (md5 == 'newproject')) {
                 Home.openNewProjectMenu();
             } else if (md5) {
@@ -157,7 +159,7 @@ export default class Home {
         }
         function doNext () {
             iOS.analyticsEvent('lobby', 'existing_project_edited');
-            window.location.href = 'editor.html?pmd5=' + md5 + '&mode=edit';
+            Motion.navigate('editor.html?pmd5=' + md5 + '&mode=edit');
         }
     }
 
@@ -245,7 +247,7 @@ export default class Home {
             doNext(md5);
         });
         function doNext (md5) {
-            window.location.href = 'editor.html?pmd5=' + md5 + '&mode=edit';
+            Motion.navigate('editor.html?pmd5=' + md5 + '&mode=edit');
         }
     }
 

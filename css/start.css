@@ -216,13 +216,20 @@ div.frame {
 }
 
 .rays.spinme{
-    -webkit-animation:spin 8s infinite linear;
+    -webkit-animation:spin 32s infinite linear;
+    animation:spin 32s infinite linear;
     -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
 }
 
 @-webkit-keyframes spin {
     from { -webkit-transform: rotate(0deg); }
-    to { -webkit-transform: rotate(36deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* Analytics Info Page Elements */

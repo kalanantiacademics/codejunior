@@ -1,8 +1,10 @@
 import {gn, isiOS, getUrlVars} from '../utils/lib';
+import Motion from '../utils/Motion';
 
 let place;
 
 export function gettingStartedMain () { // eslint-disable-line import/prefer-default-export
+    Motion.initPage();
     gn('closeHelp').onclick = gettingStartedCloseMe;
     gn('closeHelp').onmousedown = gettingStartedCloseMe;
     var videoObj = gn('myVideo');
@@ -29,5 +31,5 @@ export function gettingStartedMain () { // eslint-disable-line import/prefer-def
 
 
 function gettingStartedCloseMe () {
-    window.location.href = 'home.html?place=' + place;
+    Motion.navigate('home.html?place=' + place);
 }

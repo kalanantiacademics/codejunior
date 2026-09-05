@@ -46,6 +46,7 @@ function loadPage(page) {
 		preprocessAndLoadCss('css', 'css/base.css');
 		preprocessAndLoadCss('css', 'css/start.css');
 		preprocessAndLoadCss('css', 'css/thumbs.css');
+		preprocessAndLoadCss('css', 'css/motion.css');
 		/* For parental gate. These CSS properties should be refactored */
 		preprocessAndLoadCss('css', 'css/editor.css');
 		entryFunction = () => iOS.waitForInterface(indexMain);
@@ -56,6 +57,7 @@ function loadPage(page) {
 		preprocessAndLoadCss('css', 'css/base.css');
 		preprocessAndLoadCss('css', 'css/lobby.css');
 		preprocessAndLoadCss('css', 'css/thumbs.css');
+		preprocessAndLoadCss('css', 'css/motion.css');
 		entryFunction = () => iOS.waitForInterface(homeMain);
 		break;
 	case 'editor':
@@ -68,6 +70,7 @@ function loadPage(page) {
 		preprocessAndLoadCss('css', 'css/editormodal.css');
 		preprocessAndLoadCss('css', 'css/librarymodal.css');
 		preprocessAndLoadCss('css', 'css/paintlook.css');
+		preprocessAndLoadCss('css', 'css/motion.css');
 		entryFunction = () => iOS.waitForInterface(editorMain);
 		break;
 	case 'gettingStarted':
@@ -75,6 +78,7 @@ function loadPage(page) {
 		preprocessAndLoadCss('css', 'css/font.css');
 		preprocessAndLoadCss('css', 'css/base.css');
 		preprocessAndLoadCss('css', 'css/gs.css');
+		preprocessAndLoadCss('css', 'css/motion.css');
 		entryFunction = () => iOS.waitForInterface(gettingStartedMain);
 		break;
 	case 'inappAbout':

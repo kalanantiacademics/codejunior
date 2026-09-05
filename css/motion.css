@@ -1,0 +1,365 @@
+/* ==========================================================================
+   Kalananti - CodeJunior Motion & Animation Design System
+   Hardware-accelerated 60fps micro-animations, playful bounce physics,
+   floating assets, and smooth page transitions.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Keyframe Definitions
+   -------------------------------------------------------------------------- */
+
+/* Playful elastic pop-in entrance */
+@keyframes popInBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.35) translateY(24px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.08) translateY(-4px);
+    }
+    82% {
+        transform: scale(0.97) translateY(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Staggered drop-in from top */
+@keyframes dropInBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.9);
+    }
+    65% {
+        opacity: 1;
+        transform: translateY(6px) scale(1.03);
+    }
+    85% {
+        transform: translateY(-2px) scale(0.99);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Slide up with spring */
+@keyframes slideUpSpring {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(-6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Infinite smooth radiant spin for sunburst rays */
+@keyframes raysSpinInfinite {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Logo gentle buoyant floating */
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* Distinct organic floating cycles for characters so they move independently */
+@keyframes floatBobPurple {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-8px) rotate(-1.5deg);
+    }
+    66% {
+        transform: translateY(4px) rotate(1deg);
+    }
+}
+
+@keyframes floatBobRed {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    40% {
+        transform: translateY(-10px) rotate(1.8deg);
+    }
+    75% {
+        transform: translateY(3px) rotate(-1deg);
+    }
+}
+
+@keyframes floatBobBlue {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    45% {
+        transform: translateY(-7px) rotate(-1.2deg);
+    }
+    80% {
+        transform: translateY(5px) rotate(1.2deg);
+    }
+}
+
+/* Subtle breathing float for action buttons */
+@keyframes subtleBob {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Subtle attention-grabbing pulse */
+@keyframes pulseHint {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.04);
+    }
+}
+
+/* Page entrance fade-in */
+@keyframes pageFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Page exit fade-out */
+@keyframes pageFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   2. Element-Specific Motion Styling
+   -------------------------------------------------------------------------- */
+
+/* Sunburst rays: smooth 360-degree rotation */
+.rays.spinme {
+    animation: raysSpinInfinite 32s infinite linear !important;
+    transform-origin: 50% 50% !important;
+    will-change: transform;
+}
+
+/* Logo animation */
+.jrlogo {
+    animation: dropInBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               logoFloat 4s ease-in-out infinite 0.7s;
+    will-change: transform;
+}
+
+/* Splash Characters: pop-in with staggered delay + organic floating */
+.purple.show {
+    animation: popInBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both,
+               floatBobPurple 4.2s ease-in-out infinite 0.75s !important;
+    will-change: transform;
+}
+
+.red.show {
+    animation: popInBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.22s both,
+               floatBobRed 4.8s ease-in-out infinite 0.87s !important;
+    will-change: transform;
+}
+
+.blue.show {
+    animation: popInBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s both,
+               floatBobBlue 4.5s ease-in-out infinite 1s !important;
+    will-change: transform;
+}
+
+/* Credits banner at bottom */
+.credits.show {
+    animation: slideUpSpring 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.creditsText.show {
+    animation: slideUpSpring 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+/* Start / Navigation Action Buttons */
+.startcode.show {
+    animation: popInBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both,
+               subtleBob 3.6s ease-in-out infinite 0.7s;
+    cursor: pointer;
+    will-change: transform;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.18s ease;
+}
+
+.gettings.show {
+    animation: popInBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.22s both,
+               subtleBob 3.6s ease-in-out infinite 0.9s;
+    cursor: pointer;
+    will-change: transform;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.18s ease;
+}
+
+.gear.show {
+    animation: popInBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gear.show:hover {
+    transform: rotate(45deg) scale(1.12);
+}
+
+/* Usage Survey Cards */
+.usageSchool.show {
+    animation: popInBounce 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s both;
+}
+.usageHome.show {
+    animation: popInBounce 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.18s both;
+}
+.usageOther.show {
+    animation: popInBounce 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.28s both;
+}
+.usageNoanswer.show {
+    animation: popInBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.38s both;
+}
+
+/* --------------------------------------------------------------------------
+   3. Universal Tactile Button Clicks (Squash & Stretch Physics)
+   -------------------------------------------------------------------------- */
+
+.interactive-tap,
+.startcode,
+.gettings,
+.gear,
+.usageSchool,
+.usageHome,
+.usageOther,
+.usageNoanswer,
+.topbar-nav li,
+.reference li,
+.aproject,
+.samplethumb,
+.newproject-choice,
+.newproject-cancel,
+.localizationselect,
+#footer ul.footer-nav li {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.2s ease,
+                filter 0.2s ease;
+}
+
+/* Hover lift on interactive cards and buttons */
+.startcode:hover,
+.gettings:hover,
+.usageSchool:hover,
+.usageHome:hover,
+.usageOther:hover {
+    transform: translateY(-4px) scale(1.05);
+    filter: brightness(1.05);
+}
+
+.topbar-nav li:hover,
+.reference li:hover,
+#footer ul.footer-nav li:hover {
+    transform: translateY(-2px) scale(1.04);
+}
+
+.aproject:hover {
+    transform: translateY(-6px) scale(1.03);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18));
+}
+
+.samplethumb:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+/* Active / Mousedown: Tactile Squash Physics */
+.startcode:active,
+.gettings:active,
+.gear:active,
+.usageSchool:active,
+.usageHome:active,
+.usageOther:active,
+.usageNoanswer:active,
+.topbar-nav li:active,
+.reference li:active,
+.aproject:active,
+.samplethumb:active,
+.newproject-choice:active,
+.newproject-cancel:active,
+.localizationselect:active,
+#footer ul.footer-nav li:active,
+.btn-press-active {
+    transform: scale(0.91) translateY(3px) !important;
+    transition: transform 0.07s ease-out !important;
+    filter: brightness(0.95);
+}
+
+/* --------------------------------------------------------------------------
+   4. Page Transitions & Mount Animations
+   -------------------------------------------------------------------------- */
+
+/* Page container mount animation */
+.page-mount-anim {
+    animation: pageFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Page exit state triggered before navigation */
+.page-exit-anim {
+    animation: pageFadeOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+    pointer-events: none;
+}
+
+/* New Project Dialog Spring Entrance */
+.newproject-backdrop {
+    animation: pageFadeIn 0.25s ease-out both;
+}
+
+.newproject-dialog {
+    animation: popInBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Project thumbnails staggered entrance */
+.projectthumb {
+    animation: popInBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Add slight delay based on nth-child for cascade effect */
+.projectthumb:nth-child(1) { animation-delay: 0.05s; }
+.projectthumb:nth-child(2) { animation-delay: 0.10s; }
+.projectthumb:nth-child(3) { animation-delay: 0.15s; }
+.projectthumb:nth-child(4) { animation-delay: 0.20s; }
+.projectthumb:nth-child(5) { animation-delay: 0.25s; }
+.projectthumb:nth-child(6) { animation-delay: 0.30s; }
+.projectthumb:nth-child(7) { animation-delay: 0.35s; }
+.projectthumb:nth-child(8) { animation-delay: 0.40s; }

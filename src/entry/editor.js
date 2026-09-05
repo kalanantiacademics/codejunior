@@ -2,8 +2,10 @@ import ScratchJr from '../editor/ScratchJr';
 import iOS from '../iPad/iOS';
 import Camera from '../painteditor/Camera';
 import Record from '../editor/ui/Record';
+import Motion from '../utils/Motion';
 
 export function editorMain () { // eslint-disable-line import/prefer-default-export
+    Motion.initPage();
     iOS.getsettings(doNext);
     function doNext (str) {
         var list = str.split(',');

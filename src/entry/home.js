@@ -2,8 +2,11 @@ import {gn} from '../utils/lib';
 import Localization from '../utils/Localization';
 import iOS from '../iPad/iOS';
 import Lobby from '../lobby/Lobby';
+import Motion from '../utils/Motion';
+import ScratchAudio from '../utils/ScratchAudio';
 
 export function homeMain () {  // eslint-disable-line import/prefer-default-export
+    Motion.initPage();
     gn('logotab').onmousedown = homeGoBack;
     homeStrings();
     iOS.getsettings(doNext);
@@ -15,7 +18,8 @@ export function homeMain () {  // eslint-disable-line import/prefer-default-expo
 }
 
 function homeGoBack () {
-    window.location.href = 'index.html?back=yes';
+    ScratchAudio.sndFX('tap.wav');
+    Motion.navigate('index.html?back=yes');
 }
 
 function homeStrings () {

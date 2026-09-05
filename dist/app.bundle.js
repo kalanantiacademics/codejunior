@@ -17990,7 +17990,7 @@ var global = window;
   var isTablet = window.orientation != "undefined";
   var DEGTOR = Math.PI / 180;
   var scaleMultiplier = 1;
-  var WEB_ASSET_VERSION = "kalananti-startup-audit-20260905";
+  var WEB_ASSET_VERSION = "kalananti-motion-animations-20260905";
   var isiOS = typeof AndroidInterface == "undefined";
   var isAndroid = typeof AndroidInterface != "undefined";
   function libInit() {
@@ -18782,6 +18782,58 @@ var global = window;
     }
   };
   window.ScratchAudio = ScratchAudio;
+
+  // src/utils/Motion.js
+  var Motion = class {
+    /**
+     * Smoothly transitions out the current view before navigating to target URL.
+     * @param {string} url - Target URL to navigate to.
+     * @param {number} delay - Exit animation duration in milliseconds (default 180ms).
+     */
+    static navigate(url, delay = 180) {
+      const frame4 = document.getElementById("frame") || document.body;
+      if (frame4) {
+        frame4.classList.add("page-exit-anim");
+      }
+      setTimeout(() => {
+        window.location.href = url;
+      }, delay);
+    }
+    /**
+     * Plays a playful spring squash-and-stretch animation on an element.
+     * @param {HTMLElement} el - Element to animate.
+     * @param {Function} [callback] - Optional callback upon completion.
+     */
+    static bounce(el, callback) {
+      if (!el) return;
+      if (typeof el.animate === "function") {
+        const anim = el.animate([
+          { transform: "scale(0.9) translateY(3px)", offset: 0 },
+          { transform: "scale(1.08) translateY(-3px)", offset: 0.55 },
+          { transform: "scale(0.97) translateY(1px)", offset: 0.8 },
+          { transform: "scale(1) translateY(0)", offset: 1 }
+        ], {
+          duration: 320,
+          easing: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+          fill: "none"
+        });
+        if (callback) {
+          anim.onfinish = callback;
+        }
+      } else if (callback) {
+        callback();
+      }
+    }
+    /**
+     * Initializes page entrance animation and auto-enhances interactive buttons.
+     */
+    static initPage() {
+      const frame4 = document.getElementById("frame");
+      if (frame4) {
+        frame4.classList.add("page-mount-anim");
+      }
+    }
+  };
 
   // src/editor/blocks/BlockSpecs.js
   var loadCount = 0;
@@ -37995,7 +38047,7 @@ var global = window;
       }
     }
     static switchPage() {
-      window.location.href = _ScratchJr.getGotoLink();
+      Motion.navigate(_ScratchJr.getGotoLink());
     }
     static getGotoLink() {
       if (editmode == "storyStarter") {
@@ -39172,6 +39224,7 @@ var global = window;
       switch (_Home.getAction(e)) {
         case "project":
           ScratchAudio.sndFX("keydown.wav");
+          Motion.bounce(_Home.actionTarget);
           if (md5 && md5 == "newproject") {
             _Home.openNewProjectMenu();
           } else if (md5) {
@@ -39197,7 +39250,7 @@ var global = window;
       }
       function doNext() {
         iOS.analyticsEvent("lobby", "existing_project_edited");
-        window.location.href = "editor.html?pmd5=" + md5 + "&mode=edit";
+        Motion.navigate("editor.html?pmd5=" + md5 + "&mode=edit");
       }
     }
     static createNewProject() {
@@ -39282,7 +39335,7 @@ var global = window;
         doNext(md5);
       });
       function doNext(md52) {
-        window.location.href = "editor.html?pmd5=" + md52 + "&mode=edit";
+        Motion.navigate("editor.html?pmd5=" + md52 + "&mode=edit");
       }
     }
     // Project names are given by reading the DOM elements of existing projects...
@@ -39461,7 +39514,7 @@ var global = window;
       e.preventDefault();
       e.stopPropagation();
       ScratchAudio.sndFX("tap.wav");
-      window.location.href = "gettingstarted.html?place=help";
+      Motion.navigate("gettingstarted.html?place=help");
     }
     ////////////////////////////
     // Learn Samples
@@ -39497,9 +39550,10 @@ var global = window;
       e.preventDefault();
       e.stopPropagation();
       ScratchAudio.sndFX("tap.wav");
+      Motion.bounce(mt);
       iOS.analyticsEvent("samples", "sample_opened", mt.textContent);
       var md5 = mt.md5;
-      window.location.href = "editor.html?pmd5=" + md5 + "&mode=" + (window.Settings.useStoryStarters ? "storyStarter" : "look");
+      Motion.navigate("editor.html?pmd5=" + md5 + "&mode=" + (window.Settings.useStoryStarters ? "storyStarter" : "look"));
     }
     static insertThumbnail(img, data) {
       var md5 = data.md5;
@@ -39565,46 +39619,55 @@ var global = window;
         gn("settings").style.visibility = "hidden";
       }
       gn("hometab").onmousedown = function() {
+        Motion.bounce(gn("hometab"));
         if (gn("hometab").className != "home on") {
           _Lobby.setPage("home");
         }
       };
       gn("helptab").onmousedown = function() {
+        Motion.bounce(gn("helptab"));
         if (gn("helptab").className != "help on") {
           _Lobby.setPage("help");
         }
       };
       gn("booktab").onmousedown = function() {
+        Motion.bounce(gn("booktab"));
         if (gn("booktab").className != "book on") {
           _Lobby.setPage("book");
         }
       };
       gn("geartab").onmousedown = function() {
+        Motion.bounce(gn("geartab"));
         if (gn("geartab").className != "gear on") {
           _Lobby.setPage("gear");
         }
       };
       gn("abouttab").onmousedown = function() {
+        Motion.bounce(gn("abouttab"));
         if (gn("abouttab").className != "tab on") {
           _Lobby.setSubMenu("about");
         }
       };
       gn("interfacetab").onmousedown = function() {
+        Motion.bounce(gn("interfacetab"));
         if (gn("interfacetab").className != "tab on") {
           _Lobby.setSubMenu("interface");
         }
       };
       gn("painttab").onmousedown = function() {
+        Motion.bounce(gn("painttab"));
         if (gn("painttab").className != "tab on") {
           _Lobby.setSubMenu("paint");
         }
       };
       gn("blockstab").onmousedown = function() {
+        Motion.bounce(gn("blockstab"));
         if (gn("blockstab").className != "tab2 on") {
           _Lobby.setSubMenu("blocks");
         }
       };
       gn("noticestab").onmousedown = function() {
+        Motion.bounce(gn("noticestab"));
         if (gn("noticestab").className != "tab on") {
           _Lobby.setSubMenu("notices");
         }
@@ -39896,7 +39959,7 @@ var global = window;
     }
     static goHome() {
       if (currentPage === "home") {
-        window.location.href = "index.html?back=true";
+        Motion.navigate("index.html?back=true");
       } else {
         _Lobby.setPage("home");
       }
@@ -40984,6 +41047,7 @@ var global = window;
 
   // src/entry/index.js
   function indexMain() {
+    Motion.initPage();
     gn("gettings").onmousedown = indexGettingstarted;
     gn("startcode").onmousedown = indexGohome;
     ScratchAudio.init();
@@ -41093,20 +41157,21 @@ var global = window;
     gn("usageNoanswer").onmousedown = indexSetUsage;
   }
   function indexGohome() {
+    ScratchAudio.sndFX("tap.wav");
     iOS.setfile("homescroll.sjr", 0, function() {
       doNext();
     });
     function doNext() {
-      window.location.href = "home.html";
+      Motion.navigate("home.html");
     }
   }
   function indexGoSettings() {
     ScratchAudio.sndFX("tap.wav");
-    window.location.href = "home.html?place=gear";
+    Motion.navigate("home.html?place=gear");
   }
   function indexGettingstarted() {
     ScratchAudio.sndFX("tap.wav");
-    window.location.href = "gettingstarted.html?place=home";
+    Motion.navigate("gettingstarted.html?place=home");
   }
   function indexSetUsage(e) {
     var usageText = "";
@@ -41131,7 +41196,7 @@ var global = window;
   }
   function indexInfo() {
     ScratchAudio.sndFX("tap.wav");
-    window.location.href = "home.html?place=book";
+    Motion.navigate("home.html?place=book");
   }
   function indexMoreApps() {
     ScratchAudio.sndFX("tap.wav");
@@ -41146,6 +41211,7 @@ var global = window;
 
   // src/entry/home.js
   function homeMain() {
+    Motion.initPage();
     gn("logotab").onmousedown = homeGoBack;
     homeStrings();
     iOS.getsettings(doNext);
@@ -41156,7 +41222,8 @@ var global = window;
     }
   }
   function homeGoBack() {
-    window.location.href = "index.html?back=yes";
+    ScratchAudio.sndFX("tap.wav");
+    Motion.navigate("index.html?back=yes");
   }
   function homeStrings() {
     gn("abouttab-text").textContent = "About Kalananti - CodeJunior";
@@ -41168,6 +41235,7 @@ var global = window;
 
   // src/entry/editor.js
   function editorMain() {
+    Motion.initPage();
     iOS.getsettings(doNext);
     function doNext(str) {
       var list = str.split(",");
@@ -41186,6 +41254,7 @@ var global = window;
   // src/entry/gettingstarted.js
   var place;
   function gettingStartedMain() {
+    Motion.initPage();
     gn("closeHelp").onclick = gettingStartedCloseMe;
     gn("closeHelp").onmousedown = gettingStartedCloseMe;
     var videoObj = gn("myVideo");
@@ -41205,7 +41274,7 @@ var global = window;
     };
   }
   function gettingStartedCloseMe() {
-    window.location.href = "home.html?place=" + place;
+    Motion.navigate("home.html?place=" + place);
   }
 
   // src/entry/inapp.js
@@ -41427,6 +41496,7 @@ var global = window;
         preprocessAndLoadCss("css", "css/base.css");
         preprocessAndLoadCss("css", "css/start.css");
         preprocessAndLoadCss("css", "css/thumbs.css");
+        preprocessAndLoadCss("css", "css/motion.css");
         preprocessAndLoadCss("css", "css/editor.css");
         entryFunction = () => iOS.waitForInterface(indexMain);
         break;
@@ -41435,6 +41505,7 @@ var global = window;
         preprocessAndLoadCss("css", "css/base.css");
         preprocessAndLoadCss("css", "css/lobby.css");
         preprocessAndLoadCss("css", "css/thumbs.css");
+        preprocessAndLoadCss("css", "css/motion.css");
         entryFunction = () => iOS.waitForInterface(homeMain);
         break;
       case "editor":
@@ -41446,12 +41517,14 @@ var global = window;
         preprocessAndLoadCss("css", "css/editormodal.css");
         preprocessAndLoadCss("css", "css/librarymodal.css");
         preprocessAndLoadCss("css", "css/paintlook.css");
+        preprocessAndLoadCss("css", "css/motion.css");
         entryFunction = () => iOS.waitForInterface(editorMain);
         break;
       case "gettingStarted":
         preprocessAndLoadCss("css", "css/font.css");
         preprocessAndLoadCss("css", "css/base.css");
         preprocessAndLoadCss("css", "css/gs.css");
+        preprocessAndLoadCss("css", "css/motion.css");
         entryFunction = () => iOS.waitForInterface(gettingStartedMain);
         break;
       case "inappAbout":

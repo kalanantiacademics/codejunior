@@ -19,6 +19,7 @@ import Runtime from './engine/Runtime';
 import Localization from '../utils/Localization';
 import {libInit, gn, scaleMultiplier, newHTML,
     isAndroid, isTablet, getUrlVars, CSSTransition3D, frame} from '../utils/lib';
+import Motion from '../utils/Motion';
 
 let workingCanvas = document.createElement('canvas');
 let workingCanvas2 = document.createElement('canvas');
@@ -389,7 +390,7 @@ export default class ScratchJr {
     }
 
     static switchPage () {
-        window.location.href = ScratchJr.getGotoLink();
+        Motion.navigate(ScratchJr.getGotoLink());
     }
 
     static getGotoLink () {
