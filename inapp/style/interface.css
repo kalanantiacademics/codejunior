@@ -54,6 +54,31 @@ html {
     box-shadow: 0 3px 10px rgba(40, 152, 205, .12);
 }
 
+/*
+ * Keep the instruction card in the empty column to the right of the
+ * reference image. The marker row spans the image width, so a centered card
+ * would sit directly on top of the clickable numbers.
+ */
+#inappInterfaceGuide .guide-click-hint,
+#inappPaintEditorGuide .guide-click-hint {
+    position: absolute;
+    right: 0;
+    top: -${css_vh(5.8)};
+    width: 430px;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    #inappInterfaceGuide .guide-click-hint,
+    #inappPaintEditorGuide .guide-click-hint {
+        position: relative;
+        right: auto;
+        top: -${css_vh(5.8)};
+        width: min(430px, calc(100vw - 48px));
+        margin: 0 auto ${css_vh(1.5)};
+    }
+}
+
 #inappInterfaceGuide .guide-click-hint strong,
 #inappPaintEditorGuide .guide-click-hint strong {
     display: block;
