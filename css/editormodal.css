@@ -83,6 +83,22 @@
     top: 0px;
     width: 420px;
     height: 113px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Keep the square Kalananti loading mark fully visible inside the
+   legacy 420 × 113 loading strip instead of letting the intrinsic
+   1024px image overflow and crop at the top-right. */
+.loadicon img {
+    display: block;
+    width: 96px;
+    height: 96px;
+    max-width: 96px;
+    max-height: 96px;
+    object-fit: contain;
 }
 
 

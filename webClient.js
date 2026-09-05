@@ -466,5 +466,7 @@ async function bootstrap () {
 
 bootstrap().catch(error => {
   console.error('ScratchJr browser adapter failed to start', error);
-  document.body.insertAdjacentHTML('afterbegin', '<pre style="color:white;padding:1rem">Browser storage could not be initialized.</pre>');
+  if (!window.__scratchJrFileOrigin) {
+    document.body.insertAdjacentHTML('afterbegin', '<pre style="color:white;padding:1rem">Browser storage could not be initialized.</pre>');
+  }
 });

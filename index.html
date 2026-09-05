@@ -13,11 +13,19 @@
 <link rel="apple-touch-icon" href="assets/branding/kalananti-loading-icon-v3.png">
 <script>
     window.scratchJrPage = 'index';
+    // The browser build requires an HTTP origin for IndexedDB, synchronous
+    // asset preprocessing, and the SQL.js wasm file. Avoid rendering the
+    // unstyled legacy frame when someone double-clicks index.html.
+    if (window.location.protocol === 'file:') {
+        document.write('<style>html,body{margin:0;background:#35A8E0;font-family:Arial,sans-serif;color:#fff} .frame{display:none!important}.file-origin-warning{box-sizing:border-box;max-width:680px;margin:12vh auto;padding:40px;border-radius:20px;background:rgba(0,0,0,.18);text-align:center;line-height:1.5}.file-origin-warning h1{margin:0 0 12px;font-size:32px}.file-origin-warning code{display:inline-block;margin-top:18px;padding:10px 14px;border-radius:8px;background:rgba(0,0,0,.25);font-size:15px}</style>');
+        document.write('<div class="file-origin-warning"><h1>Kalananti - CodeJunior</h1><p>Aplikasi tidak bisa dijalankan langsung dari file <code>file://</code> karena browser memblokir storage dan pemuatan asset.</p><p>Jalankan web build melalui server lokal atau buka URL deployment GitHub Pages.</p><code>cd web &amp;&amp; python3 -m http.server 4173</code></div>');
+        window.__scratchJrFileOrigin = true;
+    }
 </script>
-<script src='dist/webClient.js?v=kalananti-loading-icon-v3-20260905'></script>
-<script type="text/javascript" src="dist/app.bundle.js?v=kalananti-loading-icon-v3-20260905"></script>
+<script src='dist/webClient.js?v=kalananti-startup-audit-20260905'></script>
+<script type="text/javascript" src="dist/app.bundle.js?v=kalananti-startup-audit-20260905"></script>
 </head>
-<body style="margin:0px; background: black;">
+<body style="margin:0px; background: #35A8E0;">
     <div class="frame" id="frame">
         <div class="topbar" id="topbar">
             <div class="topbar-button" id="topbar-info"></div>

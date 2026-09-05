@@ -25,6 +25,9 @@ window.onload = () => loadPage(window.scratchJrPage);
 
 
 function loadPage(page) {
+	if (window.__scratchJrFileOrigin) {
+		return;
+	}
 	// Function to be called after settings, locale strings, and Media Lib
 	// are asynchronously loaded. This is overwritten per HTML page below.
 	let entryFunction = () => {};

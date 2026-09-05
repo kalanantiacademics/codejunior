@@ -52,9 +52,12 @@ function indexFirstTime () {
     iOS.askpermission(); // ask for sound recording
     
    
+    // The splash is decorative; do not hold the user at startup longer than
+    // necessary. A short pause still lets the branding render without the
+    // previous multi-second delay feeling like a stalled page.
     setTimeout(function () {
         indexLoadOptions();
-    }, /*SPLASH SCREEN LOAD DELAY*/3000);
+    }, /*SPLASH SCREEN LOAD DELAY*/1200);
     
 }
 
