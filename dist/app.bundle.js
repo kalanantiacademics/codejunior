@@ -41192,7 +41192,7 @@ var global = window;
         videoObj.src = AndroidInterface.scratchjr_getgettingstartedvideopath();
       }, 1e3);
     }
-    videoObj.poster = "assets/lobby/poster.png";
+    videoObj.poster = "assets/lobby/poster-kalananti.png";
     var urlvars = getUrlVars();
     place = urlvars.place;
     document.onmousemove = function(e) {

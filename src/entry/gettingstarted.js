@@ -16,7 +16,7 @@ export function gettingStartedMain () { // eslint-disable-line import/prefer-def
             videoObj.src = AndroidInterface.scratchjr_getgettingstartedvideopath();
         }, 1000);
     }
-    videoObj.poster = 'assets/lobby/poster.png';
+    videoObj.poster = 'assets/lobby/poster-kalananti.png';
 
     var urlvars = getUrlVars();
     place = urlvars.place;
