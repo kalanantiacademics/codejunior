@@ -17990,7 +17990,7 @@ var global = window;
   var isTablet = window.orientation != "undefined";
   var DEGTOR = Math.PI / 180;
   var scaleMultiplier = 1;
-  var WEB_ASSET_VERSION = "kalananti-guide-interaction-20260905";
+  var WEB_ASSET_VERSION = "kalananti-loading-icon-v3-20260905";
   var isiOS = typeof AndroidInterface == "undefined";
   var isAndroid = typeof AndroidInterface != "undefined";
   function libInit() {
@@ -37818,7 +37818,7 @@ var global = window;
       _ScratchJr.log("starting the app");
       BlockSpecs.initBlocks();
       Project.loadIcon = document.createElement("img");
-      Project.loadIcon.src = "assets/loading.png";
+      Project.loadIcon.src = "assets/branding/kalananti-loading-icon-v3.png";
       _ScratchJr.log("blocks init", _ScratchJr.getTime(), "sec", BlockSpecs.loadCount);
       currentProject = urlvars.pmd5;
       editmode = urlvars.mode;

@@ -187,7 +187,7 @@ export default class ScratchJr {
         ScratchJr.log('starting the app');
         BlockSpecs.initBlocks();
         Project.loadIcon = document.createElement('img');
-        Project.loadIcon.src = 'assets/loading.png';
+        Project.loadIcon.src = 'assets/branding/kalananti-loading-icon-v3.png';
         ScratchJr.log('blocks init', ScratchJr.getTime(), 'sec', BlockSpecs.loadCount);
         currentProject = urlvars.pmd5;
         editmode = urlvars.mode;
