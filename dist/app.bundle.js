@@ -41189,6 +41189,7 @@ var global = window;
     gn("closeHelp").onclick = gettingStartedCloseMe;
     gn("closeHelp").onmousedown = gettingStartedCloseMe;
     var videoObj = gn("myVideo");
+    videoObj.poster = "assets/lobby/poster-kalananti.png?v=20260905-quickintro";
     if (isiOS) {
       videoObj.src = "assets/lobby/intro.mp4";
     } else {
@@ -41197,7 +41198,6 @@ var global = window;
         videoObj.src = AndroidInterface.scratchjr_getgettingstartedvideopath();
       }, 1e3);
     }
-    videoObj.poster = "assets/lobby/poster-kalananti.png";
     var urlvars = getUrlVars();
     place = urlvars.place;
     document.onmousemove = function(e) {

@@ -6,6 +6,10 @@ export function gettingStartedMain () { // eslint-disable-line import/prefer-def
     gn('closeHelp').onclick = gettingStartedCloseMe;
     gn('closeHelp').onmousedown = gettingStartedCloseMe;
     var videoObj = gn('myVideo');
+    // Set the poster before assigning the video source. This prevents the
+    // browser from briefly painting the old first video frame while metadata
+    // is loading.
+    videoObj.poster = 'assets/lobby/poster-kalananti.png?v=20260905-quickintro';
     if (isiOS) {
         // On iOS we can load from server
         videoObj.src = 'assets/lobby/intro.mp4';
@@ -16,8 +20,6 @@ export function gettingStartedMain () { // eslint-disable-line import/prefer-def
             videoObj.src = AndroidInterface.scratchjr_getgettingstartedvideopath();
         }, 1000);
     }
-    videoObj.poster = 'assets/lobby/poster-kalananti.png';
-
     var urlvars = getUrlVars();
     place = urlvars.place;
     document.onmousemove = function (e){
