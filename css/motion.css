@@ -1,7 +1,7 @@
 /* ==========================================================================
    Kalananti - CodeJunior Motion & Animation Design System
    Hardware-accelerated 60fps micro-animations, playful bounce physics,
-   floating assets, and smooth page transitions.
+   floating assets, flying logo transitions, and smooth page transitions.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -163,6 +163,65 @@
     }
 }
 
+/* Backdrop blur & fade in */
+@keyframes backdropFadeIn {
+    0% {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    100% {
+        opacity: 1;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+}
+
+/* Flying logo animations connecting Start Screen and Lobby */
+@keyframes logoFlyToTopLeft {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-300px, -135px) scale(0.62);
+        opacity: 0.95;
+    }
+}
+
+@keyframes logoSlideIntoNavbar {
+    0% {
+        transform: translate(160px, 90px) scale(1.35);
+        opacity: 0.75;
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes logoFlyBackDown {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(180px, 120px) scale(1.4);
+        opacity: 0.9;
+    }
+}
+
+@keyframes logoFlyFromTopLeft {
+    0% {
+        transform: translate(-280px, -130px) scale(0.65);
+        opacity: 0.75;
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
 /* --------------------------------------------------------------------------
    2. Element-Specific Motion Styling
    -------------------------------------------------------------------------- */
@@ -174,11 +233,42 @@
     will-change: transform;
 }
 
-/* Logo animation */
+/* Logo animation in Start screen */
 .jrlogo {
     animation: dropInBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
                logoFloat 4s ease-in-out infinite 0.7s;
     will-change: transform;
+    transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s ease;
+}
+
+.logo-fly-topleft {
+    animation: logoFlyToTopLeft 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
+.jrlogo.logo-arrive-anim {
+    animation: logoFlyFromTopLeft 0.45s cubic-bezier(0.22, 1, 0.36, 1) both,
+               logoFloat 4s ease-in-out infinite 0.45s !important;
+}
+
+/* Logo in Lobby topbar */
+#topbar ul.topbar-nav .logo .logo-icon,
+#logotab {
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease;
+}
+
+#topbar ul.topbar-nav .logo:hover .logo-icon,
+#logotab:hover {
+    transform: scale(1.05);
+    filter: brightness(1.08);
+}
+
+.logo-slide-in {
+    animation: logoSlideIntoNavbar 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.logo-fly-back {
+    animation: logoFlyBackDown 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
 }
 
 /* Splash Characters: pop-in with staggered delay + organic floating */
@@ -198,6 +288,23 @@
     animation: popInBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s both,
                floatBobBlue 4.5s ease-in-out infinite 1s !important;
     will-change: transform;
+}
+
+/* Splash Exit: smooth wave & zoom-out without stutter */
+.splash-exit {
+    opacity: 0 !important;
+    transform: scale(0.65) translateY(24px) !important;
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    pointer-events: none !important;
+}
+
+.credits.splash-exit,
+.creditsText.splash-exit {
+    opacity: 0 !important;
+    transform: translateY(100%) !important;
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Credits banner at bottom */
@@ -303,6 +410,18 @@
     transform: translateY(-5px) scale(1.03);
 }
 
+/* Inviting animation on + card in lobby */
+#newproject .aproject.empty {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s ease,
+                filter 0.25s ease;
+}
+
+#newproject:hover .aproject.empty {
+    transform: translateY(-8px) scale(1.05);
+    filter: drop-shadow(0 12px 20px rgba(53, 168, 224, 0.42));
+}
+
 /* Active / Mousedown: Tactile Squash Physics */
 .startcode:active,
 .gettings:active,
@@ -340,13 +459,29 @@
     pointer-events: none;
 }
 
-/* New Project Dialog Spring Entrance */
+/* New Project Dialog Spring Entrance & Exit */
 .newproject-backdrop {
-    animation: pageFadeIn 0.25s ease-out both;
+    animation: backdropFadeIn 0.25s cubic-bezier(0.2, 0, 0, 1) both;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: opacity 0.2s ease, backdrop-filter 0.2s ease;
 }
 
 .newproject-dialog {
-    animation: popInBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation: popInBounce 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+.newproject-backdrop.dialog-exit {
+    opacity: 0 !important;
+    backdrop-filter: blur(0px) !important;
+    -webkit-backdrop-filter: blur(0px) !important;
+    pointer-events: none !important;
+}
+
+.newproject-backdrop.dialog-exit .newproject-dialog {
+    transform: scale(0.85) translateY(18px) !important;
+    opacity: 0 !important;
 }
 
 /* Project thumbnails staggered entrance */
@@ -355,11 +490,11 @@
 }
 
 /* Add slight delay based on nth-child for cascade effect */
-.projectthumb:nth-child(1) { animation-delay: 0.05s; }
-.projectthumb:nth-child(2) { animation-delay: 0.10s; }
-.projectthumb:nth-child(3) { animation-delay: 0.15s; }
-.projectthumb:nth-child(4) { animation-delay: 0.20s; }
-.projectthumb:nth-child(5) { animation-delay: 0.25s; }
-.projectthumb:nth-child(6) { animation-delay: 0.30s; }
-.projectthumb:nth-child(7) { animation-delay: 0.35s; }
-.projectthumb:nth-child(8) { animation-delay: 0.40s; }
+.projectthumb:nth-child(1) { animation-delay: 0.04s; }
+.projectthumb:nth-child(2) { animation-delay: 0.08s; }
+.projectthumb:nth-child(3) { animation-delay: 0.12s; }
+.projectthumb:nth-child(4) { animation-delay: 0.16s; }
+.projectthumb:nth-child(5) { animation-delay: 0.20s; }
+.projectthumb:nth-child(6) { animation-delay: 0.24s; }
+.projectthumb:nth-child(7) { animation-delay: 0.28s; }
+.projectthumb:nth-child(8) { animation-delay: 0.32s; }

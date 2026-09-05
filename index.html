@@ -14,9 +14,11 @@
     html:not(.styles-ready):not(.file-origin) #frame { visibility: hidden; }
     #boot-loading { position: fixed; inset: 0; display: flex; flex-direction: column;
         align-items: center; justify-content: center; gap: 18px; background: #35A8E0;
-        color: #fff; font: 700 16px Arial, sans-serif; z-index: 99999; }
+        color: #fff; font: 700 16px Arial, sans-serif; z-index: 99999;
+        transition: opacity 0.35s ease, visibility 0.35s ease; }
     #boot-loading-mark { width: 132px; height: 132px; background: url('assets/branding/kalananti-loading-icon-v3.png') center/contain no-repeat; }
-    html.styles-ready #boot-loading, html.file-origin #boot-loading { display: none; }
+    html.styles-ready #boot-loading { opacity: 0; visibility: hidden; pointer-events: none; }
+    html.file-origin #boot-loading { display: none; }
 </style>
 <title>Kalananti - CodeJunior</title>
 <link rel="icon" type="image/png" href="assets/branding/kalananti-loading-icon-v3.png">
@@ -33,9 +35,9 @@
         document.documentElement.classList.add('file-origin');
     }
 </script>
-<link rel="stylesheet" type="text/css" href="css/motion.css?v=kalananti-motion-animations-20260905">
-<script src='dist/webClient.js?v=kalananti-motion-animations-20260905'></script>
-<script type="text/javascript" src="dist/app.bundle.js?v=kalananti-motion-animations-20260905"></script>
+<link rel="stylesheet" type="text/css" href="css/motion.css?v=kalananti-motion-v2-20260905">
+<script src='dist/webClient.js?v=kalananti-motion-v2-20260905'></script>
+<script type="text/javascript" src="dist/app.bundle.js?v=kalananti-motion-v2-20260905"></script>
 </head>
 <body style="margin:0px; background: #35A8E0;">
     <div id="boot-loading" aria-live="polite"><div id="boot-loading-mark"></div><div>Memuat Kalananti - CodeJunior…</div></div>

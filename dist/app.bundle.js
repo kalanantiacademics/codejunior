@@ -17990,7 +17990,7 @@ var global = window;
   var isTablet = window.orientation != "undefined";
   var DEGTOR = Math.PI / 180;
   var scaleMultiplier = 1;
-  var WEB_ASSET_VERSION = "kalananti-motion-animations-20260905";
+  var WEB_ASSET_VERSION = "kalananti-motion-v2-20260905";
   var isiOS = typeof AndroidInterface == "undefined";
   var isAndroid = typeof AndroidInterface != "undefined";
   function libInit() {
@@ -39282,8 +39282,11 @@ var global = window;
         e.stopPropagation();
       };
       createButton.onclick = function() {
-        _Home.closeNewProjectMenu();
-        _Home.createNewProject();
+        ScratchAudio.sndFX("tap.wav");
+        Motion.bounce(createButton);
+        _Home.closeNewProjectMenu(function() {
+          _Home.createNewProject();
+        });
       };
       var uploadButton = newHTML("button", "newproject-choice", dialog);
       uploadButton.type = "button";
@@ -39296,6 +39299,8 @@ var global = window;
       input.accept = ".sjr,application/zip";
       input.style.display = "none";
       uploadButton.onclick = function() {
+        ScratchAudio.sndFX("tap.wav");
+        Motion.bounce(uploadButton);
         input.click();
       };
       input.onchange = function() {
@@ -39324,11 +39329,22 @@ var global = window;
       cancelButton.onmousedown = function(e) {
         e.stopPropagation();
       };
-      cancelButton.onclick = _Home.closeNewProjectMenu;
+      cancelButton.onclick = function() {
+        ScratchAudio.sndFX("tap.wav");
+        _Home.closeNewProjectMenu();
+      };
     }
-    static closeNewProjectMenu() {
+    static closeNewProjectMenu(callback) {
       var menu = gn("newprojectmenu");
-      if (menu && menu.parentNode) menu.parentNode.removeChild(menu);
+      if (!menu) {
+        if (callback) callback();
+        return;
+      }
+      menu.classList.add("dialog-exit");
+      setTimeout(function() {
+        if (menu && menu.parentNode) menu.parentNode.removeChild(menu);
+        if (callback) callback();
+      }, 200);
     }
     static gotoEditor(md5) {
       iOS.setfile("homescroll.sjr", gn("wrapc").scrollTop, function() {
@@ -41053,6 +41069,10 @@ var global = window;
     ScratchAudio.init();
     var urlvars = getUrlVars();
     if (urlvars.back) {
+      var logo = gn("jrlogo");
+      if (logo) {
+        logo.classList.add("logo-arrive-anim");
+      }
       indexLoadOptions();
     } else {
       indexFirstTime();
@@ -41087,13 +41107,24 @@ var global = window;
       gn("redguy").className = "red show";
     }
     iOS.askpermission();
-    setTimeout(
-      function() {
-        indexLoadOptions();
-      },
-      /*SPLASH SCREEN LOAD DELAY*/
-      1200
-    );
+    setTimeout(function() {
+      indexDismissSplash(indexLoadOptions);
+    }, 1500);
+  }
+  function indexDismissSplash(callback) {
+    var purple = gn("purpleguy");
+    var blue = gn("blueguy");
+    var red = gn("redguy");
+    var authors = gn("authors");
+    var authorsText = gn("authorsText");
+    if (purple) purple.classList.add("splash-exit");
+    if (blue) blue.classList.add("splash-exit");
+    if (red) red.classList.add("splash-exit");
+    if (authors) authors.classList.add("splash-exit");
+    if (authorsText) authorsText.classList.add("splash-exit");
+    setTimeout(function() {
+      if (callback) callback();
+    }, 450);
   }
   function indexLoadOptions() {
     if (window.Settings.edition != "PBS" && AppUsage.askForUsage()) {
@@ -41158,11 +41189,21 @@ var global = window;
   }
   function indexGohome() {
     ScratchAudio.sndFX("tap.wav");
+    var logo = gn("jrlogo");
+    if (logo) {
+      logo.classList.add("logo-fly-topleft");
+    }
+    var house = gn("startcode");
+    if (house) Motion.bounce(house);
+    var help = gn("gettings");
+    if (help) help.style.opacity = "0";
+    var gear = gn("gear");
+    if (gear) gear.style.opacity = "0";
     iOS.setfile("homescroll.sjr", 0, function() {
       doNext();
     });
     function doNext() {
-      Motion.navigate("home.html");
+      Motion.navigate("home.html", 350);
     }
   }
   function indexGoSettings() {
@@ -41212,6 +41253,10 @@ var global = window;
   // src/entry/home.js
   function homeMain() {
     Motion.initPage();
+    var logoTab = gn("logotab");
+    if (logoTab) {
+      logoTab.classList.add("logo-slide-in");
+    }
     gn("logotab").onmousedown = homeGoBack;
     homeStrings();
     iOS.getsettings(doNext);
@@ -41223,7 +41268,11 @@ var global = window;
   }
   function homeGoBack() {
     ScratchAudio.sndFX("tap.wav");
-    Motion.navigate("index.html?back=yes");
+    var logoTab = gn("logotab");
+    if (logoTab) {
+      logoTab.classList.add("logo-fly-back");
+    }
+    Motion.navigate("index.html?back=yes", 320);
   }
   function homeStrings() {
     gn("abouttab-text").textContent = "About Kalananti - CodeJunior";

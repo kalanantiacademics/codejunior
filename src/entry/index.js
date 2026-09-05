@@ -13,6 +13,10 @@ export function indexMain () { // eslint-disable-line import/prefer-default-expo
     ScratchAudio.init();
     var urlvars = getUrlVars();
     if (urlvars.back) {
+        var logo = gn('jrlogo');
+        if (logo) {
+            logo.classList.add('logo-arrive-anim');
+        }
         indexLoadOptions();
     } else {
         indexFirstTime();
@@ -54,13 +58,27 @@ function indexFirstTime () {
     iOS.askpermission(); // ask for sound recording
     
    
-    // The splash is decorative; do not hold the user at startup longer than
-    // necessary. A short pause still lets the branding render without the
-    // previous multi-second delay feeling like a stalled page.
     setTimeout(function () {
-        indexLoadOptions();
-    }, /*SPLASH SCREEN LOAD DELAY*/1200);
-    
+        indexDismissSplash(indexLoadOptions);
+    }, 1500);
+}
+
+function indexDismissSplash (callback) {
+    var purple = gn('purpleguy');
+    var blue = gn('blueguy');
+    var red = gn('redguy');
+    var authors = gn('authors');
+    var authorsText = gn('authorsText');
+
+    if (purple) purple.classList.add('splash-exit');
+    if (blue) blue.classList.add('splash-exit');
+    if (red) red.classList.add('splash-exit');
+    if (authors) authors.classList.add('splash-exit');
+    if (authorsText) authorsText.classList.add('splash-exit');
+
+    setTimeout(function () {
+        if (callback) callback();
+    }, 450);
 }
 
 function indexLoadOptions () {
@@ -148,11 +166,22 @@ function setClassOfElementById(id, className) { // eslint-disable-line no-unused
 
 function indexGohome () {
     ScratchAudio.sndFX('tap.wav');
+    var logo = gn('jrlogo');
+    if (logo) {
+        logo.classList.add('logo-fly-topleft');
+    }
+    var house = gn('startcode');
+    if (house) Motion.bounce(house);
+    var help = gn('gettings');
+    if (help) help.style.opacity = '0';
+    var gear = gn('gear');
+    if (gear) gear.style.opacity = '0';
+
     iOS.setfile('homescroll.sjr', 0, function () {
         doNext();
     });
     function doNext () {
-        Motion.navigate('home.html');
+        Motion.navigate('home.html', 350);
     }
 }
 

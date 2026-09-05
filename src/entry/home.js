@@ -7,6 +7,10 @@ import ScratchAudio from '../utils/ScratchAudio';
 
 export function homeMain () {  // eslint-disable-line import/prefer-default-export
     Motion.initPage();
+    var logoTab = gn('logotab');
+    if (logoTab) {
+        logoTab.classList.add('logo-slide-in');
+    }
     gn('logotab').onmousedown = homeGoBack;
     homeStrings();
     iOS.getsettings(doNext);
@@ -19,7 +23,11 @@ export function homeMain () {  // eslint-disable-line import/prefer-default-expo
 
 function homeGoBack () {
     ScratchAudio.sndFX('tap.wav');
-    Motion.navigate('index.html?back=yes');
+    var logoTab = gn('logotab');
+    if (logoTab) {
+        logoTab.classList.add('logo-fly-back');
+    }
+    Motion.navigate('index.html?back=yes', 320);
 }
 
 function homeStrings () {

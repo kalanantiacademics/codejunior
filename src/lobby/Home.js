@@ -195,8 +195,11 @@ export default class Home {
         createButton.textContent = 'CREATE NEW PROJECT';
         createButton.onmousedown = function (e) { e.stopPropagation(); };
         createButton.onclick = function () {
-            Home.closeNewProjectMenu();
-            Home.createNewProject();
+            ScratchAudio.sndFX('tap.wav');
+            Motion.bounce(createButton);
+            Home.closeNewProjectMenu(function () {
+                Home.createNewProject();
+            });
         };
 
         var uploadButton = newHTML('button', 'newproject-choice', dialog);
@@ -208,7 +211,11 @@ export default class Home {
         input.type = 'file';
         input.accept = '.sjr,application/zip';
         input.style.display = 'none';
-        uploadButton.onclick = function () { input.click(); };
+        uploadButton.onclick = function () {
+            ScratchAudio.sndFX('tap.wav');
+            Motion.bounce(uploadButton);
+            input.click();
+        };
         input.onchange = function () {
             var file = input.files && input.files[0];
             if (!file) return;
@@ -234,12 +241,23 @@ export default class Home {
         cancelButton.type = 'button';
         cancelButton.textContent = 'CANCEL';
         cancelButton.onmousedown = function (e) { e.stopPropagation(); };
-        cancelButton.onclick = Home.closeNewProjectMenu;
+        cancelButton.onclick = function () {
+            ScratchAudio.sndFX('tap.wav');
+            Home.closeNewProjectMenu();
+        };
     }
 
-    static closeNewProjectMenu () {
+    static closeNewProjectMenu (callback) {
         var menu = gn('newprojectmenu');
-        if (menu && menu.parentNode) menu.parentNode.removeChild(menu);
+        if (!menu) {
+            if (callback) callback();
+            return;
+        }
+        menu.classList.add('dialog-exit');
+        setTimeout(function () {
+            if (menu && menu.parentNode) menu.parentNode.removeChild(menu);
+            if (callback) callback();
+        }, 200);
     }
 
     static gotoEditor (md5) {
