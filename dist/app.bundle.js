@@ -39632,6 +39632,8 @@ var global = window;
       _Lobby.selectButton(page);
       document.documentElement.scrollTop = 0;
       var div = gn("wrapc");
+      div.classList.add("guide-transition");
+      void div.offsetWidth;
       while (div.childElementCount > 0) {
         div.removeChild(div.childNodes[0]);
       }
@@ -39862,6 +39864,9 @@ var global = window;
         _Lobby.errorLoading("Could not load this guide.");
       } finally {
         busy = false;
+        requestAnimationFrame(function() {
+          div.classList.remove("guide-transition");
+        });
       }
     }
     static errorLoading(str) {

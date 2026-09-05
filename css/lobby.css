@@ -590,6 +590,15 @@ div.htmlcontents.settings > div.localizationselect.backupaction {
     -webkit-overflow-scrolling: none;
 }
 
+/* Fade/settle guide pages when switching between the footer tabs. */
+#wrapc.guide-transition {
+    opacity: .18;
+    transform: translateY(10px);
+}
+#wrapc {
+    transition: opacity .24s ease, transform .24s ease;
+}
+
 .contentwrap::-webkit-scrollbar {
     width: 0 !important;
 }

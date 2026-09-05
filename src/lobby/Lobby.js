@@ -115,6 +115,11 @@ export default class Lobby {
         Lobby.selectButton(page);
         document.documentElement.scrollTop = 0;
         var div = gn('wrapc');
+        // Keep the old page from flashing away before the new guide settles.
+        // The class is removed on the next frame after the new markup is in
+        // place, producing a short fade/slide instead of a hard jump.
+        div.classList.add('guide-transition');
+        void div.offsetWidth;
         while (div.childElementCount > 0) {
             div.removeChild(div.childNodes[0]);
         }
@@ -372,6 +377,9 @@ export default class Lobby {
             Lobby.errorLoading('Could not load this guide.');
         } finally {
             busy = false;
+            requestAnimationFrame(function () {
+                div.classList.remove('guide-transition');
+            });
         }
         
    }
