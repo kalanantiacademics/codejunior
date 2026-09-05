@@ -12,6 +12,11 @@
     /* Prevent a first-paint flash of the legacy, unstyled frame while the
        browser preprocesses and injects the startup stylesheets. */
     html:not(.styles-ready):not(.file-origin) #frame { visibility: hidden; }
+    #boot-loading { position: fixed; inset: 0; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 18px; background: #35A8E0;
+        color: #fff; font: 700 16px Arial, sans-serif; z-index: 99999; }
+    #boot-loading-mark { width: 132px; height: 132px; background: url('assets/branding/kalananti-loading-icon-v3.png') center/contain no-repeat; }
+    html.styles-ready #boot-loading, html.file-origin #boot-loading { display: none; }
 </style>
 <title>Kalananti - CodeJunior</title>
 <link rel="icon" type="image/png" href="assets/branding/kalananti-loading-icon-v3.png">
@@ -32,6 +37,7 @@
 <script type="text/javascript" src="dist/app.bundle.js?v=kalananti-startup-audit-20260905"></script>
 </head>
 <body style="margin:0px; background: #35A8E0;">
+    <div id="boot-loading" aria-live="polite"><div id="boot-loading-mark"></div><div>Memuat Kalananti - CodeJunior…</div></div>
     <div class="frame" id="frame">
         <div class="topbar" id="topbar">
             <div class="topbar-button" id="topbar-info"></div>
