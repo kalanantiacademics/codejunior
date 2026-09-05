@@ -133,7 +133,7 @@ export default class Home {
         case 'project':
             ScratchAudio.sndFX('keydown.wav');
             if (md5 && (md5 == 'newproject')) {
-                Home.createNewProject();
+                Home.openNewProjectMenu();
             } else if (md5) {
                 iOS.setfile('homescroll.sjr', gn('wrapc').scrollTop, function () {
                     doNext(md5);
@@ -169,6 +169,75 @@ export default class Home {
         obj.version = version;
         obj.mtime = (new Date()).getTime().toString();
         IO.createProject(obj, Home.gotoEditor);
+    }
+
+    static openNewProjectMenu () {
+        if (gn('newprojectmenu')) return;
+
+        var backdrop = newHTML('div', 'newproject-backdrop', frame);
+        backdrop.setAttribute('id', 'newprojectmenu');
+        backdrop.onmousedown = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.target === backdrop) Home.closeNewProjectMenu();
+        };
+
+        var dialog = newHTML('div', 'newproject-dialog', backdrop);
+        var title = newHTML('h2', undefined, dialog);
+        title.textContent = 'Add a project';
+        var subtitle = newHTML('p', undefined, dialog);
+        subtitle.textContent = 'Create a new project or open one from your device.';
+
+        var createButton = newHTML('button', 'newproject-choice primary', dialog);
+        createButton.type = 'button';
+        createButton.textContent = 'CREATE NEW PROJECT';
+        createButton.onmousedown = function (e) { e.stopPropagation(); };
+        createButton.onclick = function () {
+            Home.closeNewProjectMenu();
+            Home.createNewProject();
+        };
+
+        var uploadButton = newHTML('button', 'newproject-choice', dialog);
+        uploadButton.type = 'button';
+        uploadButton.textContent = 'UPLOAD FROM DEVICE (.SJR)';
+        uploadButton.onmousedown = function (e) { e.stopPropagation(); };
+
+        var input = newHTML('input', undefined, dialog);
+        input.type = 'file';
+        input.accept = '.sjr,application/zip';
+        input.style.display = 'none';
+        uploadButton.onclick = function () { input.click(); };
+        input.onchange = function () {
+            var file = input.files && input.files[0];
+            if (!file) return;
+            file.arrayBuffer().then(function (buffer) {
+                var bytes = new Uint8Array(buffer);
+                var binary = '';
+                var chunkSize = 0x8000;
+                for (var i = 0; i < bytes.length; i += chunkSize) {
+                    binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + chunkSize, bytes.length)));
+                }
+                return iOS.loadProjectFromSjr(btoa(binary));
+            }).then(function (result) {
+                if (result !== 1 && result !== true) throw new Error('The .sjr file could not be imported.');
+                window.location = '?place=home';
+            }).catch(function (error) {
+                console.error('Could not import .sjr from device', error);
+                Home.closeNewProjectMenu();
+                Lobby.errorLoading('Could not import this .sjr project.');
+            });
+        };
+
+        var cancelButton = newHTML('button', 'newproject-cancel', dialog);
+        cancelButton.type = 'button';
+        cancelButton.textContent = 'CANCEL';
+        cancelButton.onmousedown = function (e) { e.stopPropagation(); };
+        cancelButton.onclick = Home.closeNewProjectMenu;
+    }
+
+    static closeNewProjectMenu () {
+        var menu = gn('newprojectmenu');
+        if (menu && menu.parentNode) menu.parentNode.removeChild(menu);
     }
 
     static gotoEditor (md5) {
