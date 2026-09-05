@@ -27,6 +27,7 @@ export function inappInterfaceGuide () {
     var guideRoot = gn('inappInterfaceGuide');
     var interfaceKeyHeaderNode = gn('interface-key-header');
     var interfaceKeyDescriptionNode = gn('interface-key-description');
+    var interfaceKeyPanel = gn('interface-key');
 
     interfaceKeyHeaderNode.textContent = 'Choose a numbered marker';
     interfaceKeyDescriptionNode.textContent = 'Click any number in the image above to learn what that part of the editor does.';
@@ -66,8 +67,12 @@ export function inappInterfaceGuide () {
             var target = button.querySelector('.interface-button-text');
             var descriptionId = parseInt(target.textContent, 10) - 1;
             if (!interfaceDescriptions[descriptionId]) return;
+            interfaceKeyPanel.classList.remove('guide-info-refresh');
+            void interfaceKeyPanel.offsetWidth;
+            interfaceKeyPanel.classList.add('guide-info-refresh');
             interfaceKeyHeaderNode.textContent = interfaceDescriptions[descriptionId][0];
             interfaceKeyDescriptionNode.textContent = interfaceDescriptions[descriptionId][1];
+            setTimeout(function () { interfaceKeyPanel.classList.remove('guide-info-refresh'); }, 220);
             guideRoot.querySelectorAll('.interface-button-selected').forEach(function (selectedButton) {
                 selectedButton.classList.remove('interface-button-selected');
             });
@@ -82,6 +87,7 @@ export function inappPaintEditorGuide () {
     var guideRoot = gn('inappPaintEditorGuide');
     var paintKeyHeaderNode = gn('paint-key-header');
     var paintKeyDescriptionNode = gn('paint-key-description');
+    var paintKeyPanel = gn('paint-key');
 
     paintKeyHeaderNode.textContent = 'Choose a numbered marker';
     paintKeyDescriptionNode.textContent = 'Click any number in the image above to learn what that tool does.';
@@ -118,8 +124,12 @@ export function inappPaintEditorGuide () {
             var target = button.querySelector('.paint-button-text');
             var descriptionId = parseInt(target.textContent, 10) - 1;
             if (!paintDescriptions[descriptionId]) return;
+            paintKeyPanel.classList.remove('guide-info-refresh');
+            void paintKeyPanel.offsetWidth;
+            paintKeyPanel.classList.add('guide-info-refresh');
             paintKeyHeaderNode.textContent = paintDescriptions[descriptionId][0];
             paintKeyDescriptionNode.textContent = paintDescriptions[descriptionId][1];
+            setTimeout(function () { paintKeyPanel.classList.remove('guide-info-refresh'); }, 220);
             guideRoot.querySelectorAll('.paint-button-selected').forEach(function (selectedButton) {
                 selectedButton.classList.remove('paint-button-selected');
             });

@@ -122,6 +122,7 @@ html {
 	text-align: center;
 	cursor: pointer;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+    transition: border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
 #inappInterfaceGuide  .interface-button-text {
@@ -132,6 +133,8 @@ html {
 #inappInterfaceGuide  .interface-button-selected {
 	border: 1px solid #2898CD;
 	color: #2898CD;
+    box-shadow: 0 0 0 3px rgba(40, 152, 205, .14);
+    transform: scale(1.04);
 }
 
 /* Guide 1 - Interface Guide */
@@ -528,6 +531,13 @@ html {
     border-radius: 16px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
     text-align: left;
+    transition: opacity .22s ease, transform .22s ease;
+}
+
+#inappInterfaceGuide #interface-key.guide-info-refresh,
+#inappPaintEditorGuide #paint-key.guide-info-refresh {
+    opacity: .35;
+    transform: translateY(6px);
 }
 
 #inappInterfaceGuide .guide-info-label {
