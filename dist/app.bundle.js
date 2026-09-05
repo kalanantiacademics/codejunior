@@ -17990,7 +17990,7 @@ var global = window;
   var isTablet = window.orientation != "undefined";
   var DEGTOR = Math.PI / 180;
   var scaleMultiplier = 1;
-  var WEB_ASSET_VERSION = "kalananti-loading-icon-v3-20260905";
+  var WEB_ASSET_VERSION = "kalananti-startup-audit-20260905";
   var isiOS = typeof AndroidInterface == "undefined";
   var isAndroid = typeof AndroidInterface != "undefined";
   function libInit() {
@@ -41023,7 +41023,7 @@ var global = window;
         indexLoadOptions();
       },
       /*SPLASH SCREEN LOAD DELAY*/
-      3e3
+      1200
     );
   }
   function indexLoadOptions() {
@@ -41395,6 +41395,9 @@ var global = window;
   }
   window.onload = () => loadPage(window.scratchJrPage);
   function loadPage(page) {
+    if (window.__scratchJrFileOrigin) {
+      return;
+    }
     let entryFunction = () => {
     };
     let root2 = "./";

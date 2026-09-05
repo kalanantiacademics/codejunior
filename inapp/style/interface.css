@@ -32,19 +32,25 @@ html {
 #inappInterfaceGuide .guide-click-hint,
 #inappPaintEditorGuide .guide-click-hint {
     position: relative;
+    /*
+     * The numbered markers sit just above the reference image. Keep this
+     * hint compact and lift it above that marker row so it never becomes a
+     * click-blocking layer.
+     */
+    top: -${css_vh(5.8)};
     z-index: 2;
     width: 800px;
     max-width: calc(100vw - 48px);
     box-sizing: border-box;
     margin: 0 auto ${css_vh(1.5)};
-    padding: 12px 20px;
+    padding: 8px 16px;
     border: 1px solid #b9dff0;
     border-radius: 14px;
     background: #eef9ff;
     color: #4b6570;
     text-align: center;
-    font-size: ${css_vh(2.05)};
-    line-height: 1.35;
+    font-size: ${css_vh(1.75)};
+    line-height: 1.2;
     box-shadow: 0 3px 10px rgba(40, 152, 205, .12);
 }
 
@@ -52,7 +58,7 @@ html {
 #inappPaintEditorGuide .guide-click-hint strong {
     display: block;
     color: #197aa6;
-    font-size: ${css_vh(2.35)};
+    font-size: ${css_vh(2.05)};
 }
 
 #inappInterfaceGuide .guide-click-hint span,
