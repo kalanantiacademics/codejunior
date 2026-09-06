@@ -7,48 +7,65 @@ html {
 }
 
 *.tutorial {
-    position: absoulte;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height:  100%;
+    height: 100%;
     overflow: hidden;
-    background-color: #333;
+    background: radial-gradient(circle at center, #2b2d35 0%, #15161a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     -webkit-overflow-scrolling: none;
     -webkit-user-select: none;
     user-select: none;
 }
 
 *.introvideo {
-    position: absolute;
-    top: ${css_vh(10.9)};
-    width: ${css_vh(104.17)};
-    height: ${css_vh(78.125)};
-    -webkit-overflow-scrolling: none;
-    -webkit-user-select: none;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+    background: #000;
+    outline: none;
 }
 
 .introvideocontainer {
-    width: ${css_vh(104.17)};
-    height: ${css_vh(78.125)};
-    margin-left: auto;
-    margin-right: auto;
-}
-
-video::-webkit-media-controls-fullscreen-button {
-    display: none;
+    width: min(92vw, 960px);
+    height: min(80vh, 540px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 /* close help */
 
 .closehelp {
-    float: right;
-    position: relative;
+    position: absolute;
+    top: ${16 * scaleMultiplier}px;
+    right: ${20 * scaleMultiplier}px;
     display: block;
-    margin: 0px;
-    width: ${79 * scaleMultiplier}px;
-    height: ${79 * scaleMultiplier}px;
+    width: ${60 * scaleMultiplier}px;
+    height: ${60 * scaleMultiplier}px;
     z-index: 1000;
-    background: url('../assets/paint/cameraExit.svg');
+    cursor: pointer;
+    background: url('../assets/paint/cameraExit.svg') no-repeat center;
     background-size: 100%;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.closehelp:hover {
+    transform: scale(1.1);
+}
+
+.closehelp:active {
+    transform: scale(0.92);
 }
 
 /* reload help */

@@ -194,7 +194,9 @@ function indexGoSettings () {
 
 function indexGettingstarted () {
     ScratchAudio.sndFX('tap.wav');
-    Motion.navigate('gettingstarted.html?place=home');
+    var gettings = gn('gettings');
+    if (gettings) Motion.bounce(gettings);
+    Motion.navigate('gettingstarted.html?place=index', 200);
 }
 
 function indexSetUsage (e) {

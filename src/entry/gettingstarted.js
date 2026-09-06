@@ -1,3 +1,4 @@
+import ScratchAudio from '../utils/ScratchAudio';
 import {gn, isiOS, getUrlVars} from '../utils/lib';
 import Motion from '../utils/Motion';
 
@@ -5,31 +6,48 @@ let place;
 
 export function gettingStartedMain () { // eslint-disable-line import/prefer-default-export
     Motion.initPage();
-    gn('closeHelp').onclick = gettingStartedCloseMe;
-    gn('closeHelp').onmousedown = gettingStartedCloseMe;
-    var videoObj = gn('myVideo');
-    // Set the poster before assigning the video source. This prevents the
-    // browser from briefly painting the old first video frame while metadata
-    // is loading.
-    videoObj.poster = 'assets/lobby/poster-kalananti.png?v=20260905-quickintro';
-    if (isiOS) {
-        // On iOS we can load from server
-        videoObj.src = 'assets/lobby/intro.mp4';
-    } else {
-        // On Android we need to copy to a temporary directory first:
-        setTimeout(function () {
-            videoObj.type = 'video/mp4';
-            videoObj.src = AndroidInterface.scratchjr_getgettingstartedvideopath();
-        }, 1000);
-    }
+    ScratchAudio.init();
+
     var urlvars = getUrlVars();
-    place = urlvars.place;
-    document.onmousemove = function (e){
+    place = urlvars.place || 'help';
+
+    var closeBtn = gn('closeHelp');
+    if (closeBtn) {
+        closeBtn.onclick = gettingStartedCloseMe;
+        closeBtn.onmousedown = gettingStartedCloseMe;
+    }
+
+    var videoObj = gn('myVideo');
+    if (videoObj) {
+        videoObj.poster = 'assets/lobby/poster-kalananti.png?v=20260906-explainer';
+        if (isiOS) {
+            videoObj.src = 'assets/lobby/intro.mp4';
+        } else {
+            setTimeout(function () {
+                videoObj.type = 'video/mp4';
+                videoObj.src = AndroidInterface.scratchjr_getgettingstartedvideopath();
+            }, 1000);
+        }
+    }
+
+    document.onmousemove = function (e) {
         e.preventDefault();
     };
 }
 
-
-function gettingStartedCloseMe () {
-    Motion.navigate('home.html?place=' + place);
+function gettingStartedCloseMe (e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    ScratchAudio.sndFX('tap.wav');
+    var videoObj = gn('myVideo');
+    if (videoObj) {
+        videoObj.pause();
+    }
+    if (place === 'index') {
+        Motion.navigate('index.html?back=yes');
+    } else {
+        Motion.navigate('home.html?place=' + (place || 'help'));
+    }
 }

@@ -19,7 +19,11 @@ let frame;
 export default class Samples {
     static init () {
         frame = gn('htmlcontents');
-        gn('tabicon').onmousedown = Samples.playHowTo;
+        var tabicon = gn('tabicon');
+        if (tabicon) {
+            tabicon.onclick = Samples.playHowTo;
+            tabicon.onmousedown = Samples.playHowTo;
+        }
         var div = newHTML('div', 'samples off', frame);
         div.setAttribute('id', 'samples');
         Samples.display('samples');
@@ -30,10 +34,14 @@ export default class Samples {
     ////////////////////////////
 
     static playHowTo (e) {
-        e.preventDefault();
-        e.stopPropagation();
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         ScratchAudio.sndFX('tap.wav');
-        Motion.navigate('gettingstarted.html?place=help');
+        var tabicon = gn('tabicon');
+        if (tabicon) Motion.bounce(tabicon);
+        Motion.navigate('gettingstarted.html?place=help', 200);
     }
 
     ////////////////////////////

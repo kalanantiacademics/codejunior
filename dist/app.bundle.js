@@ -39529,7 +39529,11 @@ var global = window;
   var Samples = class _Samples {
     static init() {
       frame3 = gn("htmlcontents");
-      gn("tabicon").onmousedown = _Samples.playHowTo;
+      var tabicon = gn("tabicon");
+      if (tabicon) {
+        tabicon.onclick = _Samples.playHowTo;
+        tabicon.onmousedown = _Samples.playHowTo;
+      }
       var div = newHTML("div", "samples off", frame3);
       div.setAttribute("id", "samples");
       _Samples.display("samples");
@@ -39538,10 +39542,14 @@ var global = window;
     // Show Me How
     ////////////////////////////
     static playHowTo(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       ScratchAudio.sndFX("tap.wav");
-      Motion.navigate("gettingstarted.html?place=help");
+      var tabicon = gn("tabicon");
+      if (tabicon) Motion.bounce(tabicon);
+      Motion.navigate("gettingstarted.html?place=help", 200);
     }
     ////////////////////////////
     // Learn Samples
@@ -41223,7 +41231,9 @@ var global = window;
   }
   function indexGettingstarted() {
     ScratchAudio.sndFX("tap.wav");
-    Motion.navigate("gettingstarted.html?place=home");
+    var gettings = gn("gettings");
+    if (gettings) Motion.bounce(gettings);
+    Motion.navigate("gettingstarted.html?place=index", 200);
   }
   function indexSetUsage(e) {
     var usageText = "";
@@ -41315,26 +41325,45 @@ var global = window;
   var place;
   function gettingStartedMain() {
     Motion.initPage();
-    gn("closeHelp").onclick = gettingStartedCloseMe;
-    gn("closeHelp").onmousedown = gettingStartedCloseMe;
-    var videoObj = gn("myVideo");
-    videoObj.poster = "assets/lobby/poster-kalananti.png?v=20260905-quickintro";
-    if (isiOS) {
-      videoObj.src = "assets/lobby/intro.mp4";
-    } else {
-      setTimeout(function() {
-        videoObj.type = "video/mp4";
-        videoObj.src = AndroidInterface.scratchjr_getgettingstartedvideopath();
-      }, 1e3);
-    }
+    ScratchAudio.init();
     var urlvars = getUrlVars();
-    place = urlvars.place;
+    place = urlvars.place || "help";
+    var closeBtn = gn("closeHelp");
+    if (closeBtn) {
+      closeBtn.onclick = gettingStartedCloseMe;
+      closeBtn.onmousedown = gettingStartedCloseMe;
+    }
+    var videoObj = gn("myVideo");
+    if (videoObj) {
+      videoObj.poster = "assets/lobby/poster-kalananti.png?v=20260906-explainer";
+      if (isiOS) {
+        videoObj.src = "assets/lobby/intro.mp4";
+      } else {
+        setTimeout(function() {
+          videoObj.type = "video/mp4";
+          videoObj.src = AndroidInterface.scratchjr_getgettingstartedvideopath();
+        }, 1e3);
+      }
+    }
     document.onmousemove = function(e) {
       e.preventDefault();
     };
   }
-  function gettingStartedCloseMe() {
-    Motion.navigate("home.html?place=" + place);
+  function gettingStartedCloseMe(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    ScratchAudio.sndFX("tap.wav");
+    var videoObj = gn("myVideo");
+    if (videoObj) {
+      videoObj.pause();
+    }
+    if (place === "index") {
+      Motion.navigate("index.html?back=yes");
+    } else {
+      Motion.navigate("home.html?place=" + (place || "help"));
+    }
   }
 
   // src/entry/inapp.js

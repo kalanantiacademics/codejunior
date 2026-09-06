@@ -10,18 +10,19 @@
 <link rel="icon" type="image/png" href="assets/branding/kalananti-loading-icon-v3.png">
 <link rel="apple-touch-icon" href="assets/branding/kalananti-loading-icon-v3.png">
 
-<script language="javascript">
+<link rel="stylesheet" type="text/css" href="css/motion.css?v=kalananti-explainer-20260906">
+<script>
     window.scratchJrPage = 'gettingStarted';
 </script>
-<script src='../electronClient.js'></script>
-<script type="text/javascript" src="appEntry.js"></script>
+<script src='dist/webClient.js?v=kalananti-explainer-20260906'></script>
+<script type="text/javascript" src="dist/app.bundle.js?v=kalananti-explainer-20260906"></script>
 
 </head>
-<body>
+<body style="margin:0; background:#1e1e24;">
 <div class="tutorial" id="tutorialmode">
-  <div class="closehelp" id="closeHelp"></div>
+  <div class="closehelp" id="closeHelp" title="Kembali"></div>
   <div class="introvideocontainer">
-      <video class="introvideo" id="myVideo" controls></video>
+      <video class="introvideo" id="myVideo" controls playsinline preload="metadata"></video>
   </div>
 </div>
 </body>
