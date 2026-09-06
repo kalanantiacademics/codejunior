@@ -1,5 +1,6 @@
 import Localization from '../../utils/Localization';
 import IO from '../../iPad/IO';
+import CDN from '../../utils/CDN';
 
 let loadCount = 0;
 
@@ -63,7 +64,7 @@ export default class BlockSpecs {
         if (window.Settings.edition != 'PBS') {
             BlockSpecs.projectThumb = BlockSpecs.getImageFrom('assets/lobby/pmask');
         }
-        IO.requestFromServer('assets/balloon.svg', BlockSpecs.setBalloon);
+        IO.requestFromServer(CDN.resolve('assets/balloon.svg'), BlockSpecs.setBalloon);
         loadCount++;
     }
 
@@ -116,14 +117,26 @@ export default class BlockSpecs {
     }
 
     static getImageFrom (url, ext) {
+        var localPath = url + (ext ? '.' + ext : '.png');
+        var cdnUrl = CDN.resolve(localPath);
         var img = document.createElement('img');
-        img.src = url + (ext ? '.' + ext : '.png');
+        img.src = cdnUrl;
         if (!img.complete) {
             loadassets[img.src] = img;
             loadCount++;
             img.onload = function () {
                 delete loadassets[img.src];
                 loadCount--;
+            };
+            img.onerror = function () {
+                if (img.src !== localPath) {
+                    delete loadassets[img.src];
+                    img.src = localPath;
+                    loadassets[localPath] = img;
+                } else {
+                    delete loadassets[img.src];
+                    loadCount--;
+                }
             };
         }
         return img;

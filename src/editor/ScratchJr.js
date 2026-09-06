@@ -20,6 +20,7 @@ import Localization from '../utils/Localization';
 import {libInit, gn, scaleMultiplier, newHTML,
     isAndroid, isTablet, getUrlVars, CSSTransition3D, frame} from '../utils/lib';
 import Motion from '../utils/Motion';
+import CDN from '../utils/CDN';
 
 let workingCanvas = document.createElement('canvas');
 let workingCanvas2 = document.createElement('canvas');
@@ -188,7 +189,7 @@ export default class ScratchJr {
         ScratchJr.log('starting the app');
         BlockSpecs.initBlocks();
         Project.loadIcon = document.createElement('img');
-        Project.loadIcon.src = 'assets/branding/kalananti-loading-icon-v3.png';
+        Project.loadIcon.src = CDN.resolve('assets/branding/kalananti-loading-icon-v3.png');
         ScratchJr.log('blocks init', ScratchJr.getTime(), 'sec', BlockSpecs.loadCount);
         currentProject = urlvars.pmd5;
         editmode = urlvars.mode;

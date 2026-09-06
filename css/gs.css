@@ -55,7 +55,7 @@ html {
     height: ${60 * scaleMultiplier}px;
     z-index: 1000;
     cursor: pointer;
-    background: url('../assets/paint/cameraExit.svg') no-repeat center;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/240b22c0-166c-4b18-8699-465415b7a7c6.svg") no-repeat center;
     background-size: 100%;
     transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }

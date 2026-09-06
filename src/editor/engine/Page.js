@@ -124,13 +124,13 @@ export default class Page {
         if (!name) {
             return;
         }
-        var me = this;
-        var url = (MediaLib.keys[name]) ? MediaLib.path + name : (name.indexOf('/') < 0) ? iOS.path + name : name;
-        var md5 = (MediaLib.keys[name]) ? MediaLib.path + name : name;
+        var resolvedName = (MediaLib.keys && MediaLib.keys[name]) ? (MediaLib.getUrl ? MediaLib.getUrl(name) : MediaLib.path + name) : (name.indexOf('/') < 0) ? iOS.path + name : name;
+        var url = resolvedName;
+        var md5 = resolvedName;
 
         if (md5.substr(md5.length - 3) == 'png') {
             if (MediaLib.keys && MediaLib.keys[name]) {
-                this.setBackgroundImage(MediaLib.path + name, fcn);
+                this.setBackgroundImage(MediaLib.getUrl ? MediaLib.getUrl(name) : MediaLib.path + name, fcn);
             } else if (name.indexOf('/') > -1 || name.indexOf('data:') === 0) {
                 this.setBackgroundImage(name, fcn);
             } else {

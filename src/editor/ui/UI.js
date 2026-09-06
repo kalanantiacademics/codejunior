@@ -22,6 +22,7 @@ import Localization from '../../utils/Localization';
 import ScratchAudio from '../../utils/ScratchAudio';
 import {frame, gn, CSSTransition, localx, newHTML, scaleMultiplier, getIdFor, isTablet, newDiv,
     newTextInput, isAndroid, getDocumentWidth, getDocumentHeight, setProps, globalx} from '../../utils/lib';
+import CDN from '../../utils/CDN';
 
 let projectNameTextInput = null;
 let info = null;
@@ -125,7 +126,7 @@ export default class UI {
             downloadProject.id = 'infoboxDownloadProject';
             downloadProject.textContent = 'DOWNLOAD PROJECT (.SJR)';
             var downloadProjectLoader = newHTML('img', 'infoboxShareLoading', webButtons);
-            downloadProjectLoader.src = './assets/ui/loader.png';
+            downloadProjectLoader.src = CDN.resolve('assets/ui/loader.png');
             downloadProject.onmousedown = function (e) {
                 UI.infoDoShare(e, nameField, downloadProjectLoader, 0);
             };
@@ -167,7 +168,7 @@ export default class UI {
             });
 
             var shareLoadingGif = newHTML('img', 'infoboxShareLoading', shareButtons);
-            shareLoadingGif.src = './assets/ui/loader.png';
+            shareLoadingGif.src = CDN.resolve('assets/ui/loader.png');
 
             shareEmail.onmousedown = function (e) {
                 UI.parentalGate(e, function (e) {

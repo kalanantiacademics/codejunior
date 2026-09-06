@@ -76,7 +76,7 @@ div.frame {
     cursor: default;
     width: ${css_vh(28.65)};
     height: ${css_vh(10.03)};
-    background: url('../assets/branding/codejunior-long-latest.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2927ff8c-7b13-4193-af3d-22e00c8c64e8.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -92,7 +92,7 @@ div.frame {
     display: block;
     width: ${css_vh(12.63)};
     height: ${css_vh(10.03)};
-    background: url('../assets/lobby/house.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/80922dd1-6b06-4ffc-b056-627b136d7690.svg");
     background-size: 101%;
     padding: 0;
     margin: auto auto;
@@ -106,7 +106,7 @@ div.frame {
     display: block;
     width: ${css_vh(12.63)};
     height: ${css_vh(10.03)};
-    background: url('../assets/lobby/help.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/63fc0692-80c3-4629-abba-fc8de379178c.svg");
     background-size: 101%;
     padding: 0;
     margin: auto auto;
@@ -145,14 +145,14 @@ div.frame {
     display: block;
     width: ${css_vh(12.63)};
     height: ${css_vh(10.03)};
-    background: url('../assets/lobby/bookOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1c5cc594-6939-41bd-ac1c-c93a29919b27.svg");
     background-size: 101%;
     padding: 0;
     margin: auto auto;
 }
 
-#topbar ul.reference .book.off>span {background: url('../assets/lobby/bookOff.svg'); background-size: 101%;}
-#topbar ul.reference .book.on>span {background: url('../assets/lobby/bookOn.svg'); background-size: 101%; margin: 0px ${css_vh(0.8)};}
+#topbar ul.reference .book.off>span {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1c5cc594-6939-41bd-ac1c-c93a29919b27.svg"); background-size: 101%;}
+#topbar ul.reference .book.on>span {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2e24b7a3-279b-4931-a820-c6c38ed779d8.svg"); background-size: 101%; margin: 0px ${css_vh(0.8)};}
 
 #topbar ul.reference .book.off {background: none; height: auto;}
 #topbar ul.reference .book.on {
@@ -169,14 +169,14 @@ ul#settings.reference {
     display: block;
     width: ${css_vh(12.63)};
     height: ${css_vh(10.03)};
-    background: url('../assets/lobby/gearOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/e29eb263-7bf1-422e-8f2a-3b9d77a06760.svg");
     background-size: 101%;
     padding: 0;
     margin: auto auto;
 }
 
-#topbar ul.reference .gear.off>span {background: url('../assets/lobby/gearOff.svg'); background-size: 101%; margin: auto;}
-#topbar ul.reference .gear.on>span {background: url('../assets/lobby/gearOn.svg'); background-size: 101%; margin: auto;}
+#topbar ul.reference .gear.off>span {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/e29eb263-7bf1-422e-8f2a-3b9d77a06760.svg"); background-size: 101%; margin: auto;}
+#topbar ul.reference .gear.on>span {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/ac5b0f05-e8ca-4d66-9d1d-24807b119ec8.svg"); background-size: 101%; margin: auto;}
 
 #topbar ul.reference .gear.off {background: none; height: auto;}
 #topbar ul.reference .gear.on {
@@ -284,7 +284,7 @@ ul#settings.reference {
     margin: 0px auto ${css_vh(1.3)};
     width: ${css_vh(39)};
     height: ${css_vh(19.5)};
-    background: url('../assets/lobby/movielaunch-kalananti.png') no-repeat left top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2f8d04b7-664d-4cb2-ac99-a5cadaf35c14.png") no-repeat left top;
     background-size: 100%;
 }
 
@@ -327,7 +327,7 @@ div.localizationselect.selected {
 div.localizationselect.selected:after {
     display: block;
     content: ' ';
-    background-image: url('../assets/ui/languageConfirm.svg');
+    background-image: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/77bf8066-3496-413b-b971-677ff8e01834.svg");
     background-size: 45px 45px;
     height: 45px;
     width: 45px;
@@ -559,17 +559,17 @@ div.htmlcontents.settings > div.localizationselect.backupaction {
 
   
 
-#footer ul.footer-nav .tab .about-icon {background: url('../assets/lobby/aboutOff.svg'); background-size: 100.5%;}
-#footer ul.footer-nav .tab .interface-icon { background: url('../assets/lobby/interfaceOff.svg'); background-size: 100.5%;}
-#footer ul.footer-nav .tab2 .blocks-icon {background: url('../assets/lobby/blocksOff.svg'); background-size: 100.5%;}
-#footer ul.footer-nav .tab .paint-icon {background: url('../assets/lobby/paintOff.svg'); background-size: 100.5%;}
-#footer ul.footer-nav .tab .notices-icon {background: url('../assets/lobby/bookOff.svg'); background-size: 100.5%;}
+#footer ul.footer-nav .tab .about-icon {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/861fd647-dfaf-453a-bf25-7970c21710da.svg"); background-size: 100.5%;}
+#footer ul.footer-nav .tab .interface-icon { background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/360a2235-5036-4ca5-8936-5c6beb90f937.svg"); background-size: 100.5%;}
+#footer ul.footer-nav .tab2 .blocks-icon {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/6f360239-75de-4551-8e86-c859fb54c760.svg"); background-size: 100.5%;}
+#footer ul.footer-nav .tab .paint-icon {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1ab6061d-b189-4911-b65d-41b621c98437.svg"); background-size: 100.5%;}
+#footer ul.footer-nav .tab .notices-icon {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1c5cc594-6939-41bd-ac1c-c93a29919b27.svg"); background-size: 100.5%;}
 
-#footer ul.footer-nav .tab.on .about-icon {background: url('../assets/lobby/aboutOn.svg'); background-size: 100.5%;}
-#footer ul.footer-nav .tab.on .interface-icon { background: url('../assets/lobby/interfaceOn.svg'); background-size: 100.5%;}
-#footer ul.footer-nav .tab2.on .blocks-icon {background: url('../assets/lobby/blocksOn.svg'); background-size: 100.5%;}
-#footer ul.footer-nav .tab.on .paint-icon {background: url('../assets/lobby/paintOn.svg'); background-size: 100.5%;}
-#footer ul.footer-nav .tab.on .notices-icon {background: url('../assets/lobby/bookOn.svg'); background-size: 100.5%;}
+#footer ul.footer-nav .tab.on .about-icon {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/7f50aa49-97c8-48db-802c-0e157906c0ca.svg"); background-size: 100.5%;}
+#footer ul.footer-nav .tab.on .interface-icon { background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/f52c78e1-d578-4fb2-87a6-bd4c91d3837b.svg"); background-size: 100.5%;}
+#footer ul.footer-nav .tab2.on .blocks-icon {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/f470183e-2beb-4416-b8fb-74b7b7e539ec.svg"); background-size: 100.5%;}
+#footer ul.footer-nav .tab.on .paint-icon {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/6cbda441-dffc-41ba-b091-c46f884553e8.svg"); background-size: 100.5%;}
+#footer ul.footer-nav .tab.on .notices-icon {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2e24b7a3-279b-4931-a820-c6c38ed779d8.svg"); background-size: 100.5%;}
 
 
 *.contentwrap {

@@ -81,7 +81,7 @@ export default class Sprite {
         if (isRasterAsset) {
             // If it's a built-in media library key (e.g. KalanantiCharacter.png)
             if (MediaLib.keys && MediaLib.keys[md5]) {
-                whenDone(MediaLib.path + md5);
+                whenDone(MediaLib.getUrl ? MediaLib.getUrl(md5) : MediaLib.path + md5);
                 return;
             }
             // If it's a direct URL or path (e.g. starts with http or pnglibrary/ or data:)
@@ -93,6 +93,8 @@ export default class Sprite {
             iOS.getmedia(md5, function (base64) {
                 if (base64 && base64.length > 0) {
                     whenDone('data:image/png;base64,' + base64);
+                } else if (MediaLib.getUrl) {
+                    whenDone(MediaLib.getUrl('KalanantiCharacter.png'));
                 } else if (MediaLib.path) {
                     whenDone(MediaLib.path + 'KalanantiCharacter.png');
                 } else {
@@ -101,8 +103,9 @@ export default class Sprite {
             });
             return;
         }
-        var url = (MediaLib.keys[md5]) ? MediaLib.path + md5 : (md5.indexOf('/') < 0) ? (iOS.path ? iOS.path + md5 : md5) : md5;
-        md5 = (MediaLib.keys[md5]) ? MediaLib.path + md5 : md5;
+        var resolvedUrl = (MediaLib.keys && MediaLib.keys[md5]) ? (MediaLib.getUrl ? MediaLib.getUrl(md5) : MediaLib.path + md5) : (md5.indexOf('/') < 0) ? (iOS.path ? iOS.path + md5 : md5) : md5;
+        var url = resolvedUrl;
+        md5 = resolvedUrl;
         if (md5.indexOf('/') > -1) {
             IO.requestFromServer(md5, doNext);
         } else {
@@ -158,7 +161,7 @@ export default class Sprite {
             if (loadedDone) return;
             console.warn('Could not load sprite image for', sprite.md5, 'falling back to default');
             if (img.src.indexOf('KalanantiCharacter.png') < 0) {
-                img.src = (MediaLib.path || 'pnglibrary/') + 'KalanantiCharacter.png';
+                img.src = (MediaLib.getUrl ? MediaLib.getUrl('KalanantiCharacter.png') : (MediaLib.path || 'pnglibrary/') + 'KalanantiCharacter.png');
             } else {
                 onLoaded();
             }

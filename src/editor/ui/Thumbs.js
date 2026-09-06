@@ -12,6 +12,7 @@ import Events from '../../utils/Events';
 import ScratchAudio from '../../utils/ScratchAudio';
 import {frame, gn, localx, newHTML, scaleMultiplier, getIdFor,
     isTablet, newImage, localy, setProps} from '../../utils/lib';
+import CDN from '../../utils/CDN';
 
 let caret = undefined;
 
@@ -345,9 +346,9 @@ export default class Thumbs {
         var c = newHTML('div', 'empty', tb);
         var img;
         if (window.Settings.edition == 'PBS') {
-            img = newImage(c, 'assets/ui/newpage.svg');
+            img = newImage(c, CDN.resolve('assets/ui/newpage.svg'));
         } else {
-            img = newImage(c, 'assets/ui/newpage.png', {
+            img = newImage(c, CDN.resolve('assets/ui/newpage.png'), {
                 position: 'absolute'
             });
         }

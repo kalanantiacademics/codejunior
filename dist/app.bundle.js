@@ -5607,11 +5607,11 @@ var global = window;
          * Pretty print the workers chain.
          */
         toString: function() {
-          var me = "Worker " + this.name;
+          var me2 = "Worker " + this.name;
           if (this.previous) {
-            return this.previous + " -> " + me;
+            return this.previous + " -> " + me2;
           } else {
-            return me;
+            return me2;
           }
         }
       };
@@ -14631,8 +14631,8 @@ var global = window;
               return this;
             };
             matrixproto.invert = function() {
-              var me = this, x = me.a * me.d - me.b * me.c;
-              return new Matrix2(me.d / x, -me.b / x, -me.c / x, me.a / x, (me.c * me.f - me.d * me.e) / x, (me.b * me.e - me.a * me.f) / x);
+              var me2 = this, x = me2.a * me2.d - me2.b * me2.c;
+              return new Matrix2(me2.d / x, -me2.b / x, -me2.c / x, me2.a / x, (me2.c * me2.f - me2.d * me2.e) / x, (me2.b * me2.e - me2.a * me2.f) / x);
             };
             matrixproto.clone = function() {
               return new Matrix2(this.a, this.b, this.c, this.d, this.e, this.f);
@@ -18846,6 +18846,691 @@ var global = window;
     }
   };
 
+  // src/asset_cdn_map.json
+  var asset_cdn_map_default = {
+    "assets/balloon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/951afdba-e443-479b-96ec-96dee160e376.svg",
+    "assets/blockicons/Appear.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ec7f92ec-94e1-49f0-b4ac-c98e9759a549.svg",
+    "assets/blockicons/Back.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/884e9252-0a31-479a-ac0e-2277a5d79fc9.svg",
+    "assets/blockicons/Bump.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6b80b2d5-00a6-4d13-ad51-b43b0914dc9f.svg",
+    "assets/blockicons/Disappear.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1bc4a41d-01a6-4e20-9bcc-98ac746f21e1.svg",
+    "assets/blockicons/Down.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7f5310ac-5616-4ca9-bbe1-72c48b9197ef.svg",
+    "assets/blockicons/Forever.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/cbd4da83-3799-4e31-b95b-40f7740ad965.svg",
+    "assets/blockicons/Foward.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fbe019bd-2a5e-4782-a2d9-834db3e14ecb.svg",
+    "assets/blockicons/Grow.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b9386afe-ac3f-4da2-a483-8bfeedd4ce28.svg",
+    "assets/blockicons/Home.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/030b59bc-e475-45e0-b0b0-7fbf86d1cb4b.svg",
+    "assets/blockicons/Hop.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c0214217-2b85-442c-ad32-15c03e2a5d17.svg",
+    "assets/blockicons/Left.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1aa7450a-33df-43e2-948c-bfa80699db96.svg",
+    "assets/blockicons/LetterGet_Blue.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3b7838de-3d26-455e-9018-4ef373b18949.svg",
+    "assets/blockicons/LetterGet_Green.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d6b5e2a1-c5b6-45e0-9e76-ac42cb2d1c02.svg",
+    "assets/blockicons/LetterGet_Orange.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/520fc0fe-ced5-4a54-a907-06f47e23144c.svg",
+    "assets/blockicons/LetterGet_Purple.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/881f8c3a-841f-4bd9-8cd2-870b824b4f57.svg",
+    "assets/blockicons/LetterGet_Red.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/27babff8-6430-4f1d-95f4-7e41250da8d3.svg",
+    "assets/blockicons/LetterGet_Yellow.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4c829a22-33af-476b-8196-965ab056d7d9.svg",
+    "assets/blockicons/LetterSend_Blue.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b886bec4-28ea-47f9-ad45-5e18a2e553de.svg",
+    "assets/blockicons/LetterSend_Green.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/db36be1e-de50-4587-aa3d-76166a3da399.svg",
+    "assets/blockicons/LetterSend_Orange.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c39a7197-dd14-4a67-ae19-2f1eee288098.svg",
+    "assets/blockicons/LetterSend_Purple.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b7fa17de-a0a8-4fff-b914-fe09dc032c69.svg",
+    "assets/blockicons/LetterSend_Red.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3fa47fa8-6a71-4790-9eba-ef9ea33e4cff.svg",
+    "assets/blockicons/LetterSend_Yellow.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/433bf80a-8bc2-46cd-834e-b485141563f8.svg",
+    "assets/blockicons/Microphone.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/67243d42-e557-4aa1-9ef5-6977111f0ad5.svg",
+    "assets/blockicons/OnTouch.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/95e674d5-4f64-4163-a3af-301cc6c11259.svg",
+    "assets/blockicons/Repeat.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2958b058-5d4c-4949-94d3-0551daa7b054.svg",
+    "assets/blockicons/Reset.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/15b4c1fd-81ce-453a-ba1b-e00260bfc06c.svg",
+    "assets/blockicons/Right.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4940294f-280f-4124-9f1e-6b891e927cc6.svg",
+    "assets/blockicons/Say.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e9bfdec8-9494-4baa-b220-ea841a42e6c5.svg",
+    "assets/blockicons/Shrink.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2e1de3ca-d669-45a2-9d35-29539aff283d.svg",
+    "assets/blockicons/Speaker.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/be7111e2-509c-4498-8a1f-b882247fa0c5.svg",
+    "assets/blockicons/Stop.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/08ba2fcb-bd47-4a08-a07b-83a4f69b1f6d.svg",
+    "assets/blockicons/Up.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e49450fd-8a13-4bbb-9547-b411dc3027b7.svg",
+    "assets/blockicons/Wait.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ca486f11-561a-4926-9277-79378368c913.svg",
+    "assets/blockicons/greenFlag.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0f1ec960-250c-480e-8bbe-f1c195075e0a.svg",
+    "assets/blockicons/speed0.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b044d428-17fe-454f-953d-8bf9ffce071a.svg",
+    "assets/blockicons/speed1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1d272c46-b8a7-48a4-9d5e-10d76a5d39b1.svg",
+    "assets/blockicons/speed2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/12e2deda-5364-4659-95a1-cadabbe3d3cd.svg",
+    "assets/blocks/blueCmd.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c9c47770-0dfe-42e6-8563-aad0fe8838a2.svg",
+    "assets/blocks/caretcmd.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2d94c06f-4373-4956-b333-6d4b8c5c99de.svg",
+    "assets/blocks/caretend.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d04c16af-c0a8-4a9f-be43-aae14ce2d268.svg",
+    "assets/blocks/caretrepeat.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a35f7a57-f77d-44c2-98cb-1949200ef2fe.png",
+    "assets/blocks/caretstart.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/114fdab5-7688-4dec-b8d3-e110ebe4db8f.svg",
+    "assets/blocks/eh/blueCmdH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9a8948c7-5381-4b09-9f01-bc340b5f5ba9.png",
+    "assets/blocks/eh/flowH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/654aec93-0406-4796-b8c8-181249420458.png",
+    "assets/blocks/eh/looksH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/915e0979-9849-4921-b02e-13fb31a13f03.png",
+    "assets/blocks/eh/repeatH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/442abe45-9528-4e65-a8fc-144f67379777.png",
+    "assets/blocks/eh/soundsH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/418b0320-ca11-4adf-a6e0-1d37c3a9c9dc.png",
+    "assets/blocks/eh/startH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/182dd942-6684-47bc-8792-2601317a88a7.png",
+    "assets/blocks/eh/stopH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/095de622-423d-4947-8668-701a9704f283.png",
+    "assets/blocks/eh/stoplongH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0181fe06-52b9-446a-a140-763310f91045.png",
+    "assets/blocks/eh/yellowCmdH.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b49071bd-416b-4712-853f-69004920c790.png",
+    "assets/blocks/endlong.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/aa31d96d-9160-471e-beea-4cbebad583a5.svg",
+    "assets/blocks/endshort.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fbc5e03f-5a1a-4985-bd41-ed1fb6b11738.svg",
+    "assets/blocks/flow.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4ac3fb5c-12d9-443b-bd5f-e7c118ea514d.svg",
+    "assets/blocks/looks.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/dcc11e88-5434-43ea-80f6-583245af2f17.svg",
+    "assets/blocks/repeat.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5fb97cb4-ebfb-4f2a-974b-35b01e789d53.png",
+    "assets/blocks/shadowCmd.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2be97310-c34c-4df2-a6b8-6358fe96bcf2.svg",
+    "assets/blocks/shadowEndLong.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e0f6e99f-2354-4b1d-bfd3-6e5ae27e8794.svg",
+    "assets/blocks/shadowEndShort.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ea8d8e2a-b386-4c09-9d3e-71838d309609.svg",
+    "assets/blocks/shadowRepeat.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d9c5d8de-c023-46bb-bfc6-2782e85da7d7.png",
+    "assets/blocks/shadowStart.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/04f00c42-1e1c-495f-a52e-412a781c91f1.svg",
+    "assets/blocks/sounds.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9f3eedf9-e64c-4303-9ddb-4e1137da2edd.svg",
+    "assets/blocks/start.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/884eac7b-55de-42ef-a3f0-3a1bd7c5fdd6.svg",
+    "assets/blocks/yellowCmd.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/09f7de5d-3b96-4a13-935d-6eac26290f4d.svg",
+    "assets/branding/codejunior-long-latest-source.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1e6df0f5-7194-4c62-90ec-f3b60abd07b7.png",
+    "assets/branding/codejunior-long-latest.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2927ff8c-7b13-4193-af3d-22e00c8c64e8.png",
+    "assets/branding/codejunior-long-source.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9eeefacd-72d8-4406-802a-d818a59d848e.png",
+    "assets/branding/codejunior-long.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/87c29ebd-bcaa-45b9-8f71-6ff402382ebd.png",
+    "assets/branding/kalananti-character.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/517475ea-ea5a-453b-9f74-397448ae273a.png",
+    "assets/branding/kalananti-icon-source.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/231b93d7-b79a-4edb-a612-1029e167907f.png",
+    "assets/branding/kalananti-loading-icon-previous.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4d63a3f7-b7e7-4114-aae4-23c2c64dbc67.png",
+    "assets/branding/kalananti-loading-icon-source.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fbf70fb1-03b3-4b3d-94a1-a6ad09a5a066.png",
+    "assets/branding/kalananti-loading-icon-v2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b1f91151-fa7b-4e7f-8fdb-5c8d47bdc94d.png",
+    "assets/branding/kalananti-loading-icon-v3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ac169ef9-d276-4db6-a4f0-fefd78908e73.png",
+    "assets/branding/kalananti-loading-icon.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/21c918f6-6966-484d-b707-32b288828d2e.png",
+    "assets/branding/kalananti-long.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/24d7e69e-02ef-44e6-9116-27fee02d33e0.png",
+    "assets/branding/quickintro-left.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/32bbaaf3-1865-443c-8a8e-f78d2b10293f.png",
+    "assets/branding/quickintro-right.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e802b54f-fa3a-4d9b-a710-326668fbac5b.png",
+    "assets/branding/splash-blue.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7b4c5895-bb57-4537-9071-f07c569baf86.png",
+    "assets/branding/splash-purple.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/129010f1-65b7-4257-b51b-c79ba53ddcbc.png",
+    "assets/branding/splash-red.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c56a8e99-d43f-44d7-9015-f279384766ed.png",
+    "assets/categories/FlowOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/36b73ce0-728a-42b8-aada-106b3733d826.svg",
+    "assets/categories/FlowOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/34ffd1b2-7102-4fff-bcd4-80b66b0bce68.svg",
+    "assets/categories/LooksOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d5d0c5ad-7aa7-4db9-a88c-e3b0e58e3d7c.svg",
+    "assets/categories/LooksOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ebed2a65-f57d-4728-8d43-8372de77b7d9.svg",
+    "assets/categories/MotionOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/99680814-13ed-43df-85f2-0a2d97242996.svg",
+    "assets/categories/MotionOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/45a054e6-7e4d-4508-b159-fca99344044f.svg",
+    "assets/categories/SoundOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0774cc7e-4219-4749-b5d2-490b47aaed1e.svg",
+    "assets/categories/SoundOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5381a1c5-37fc-48f6-a0a7-ae3e09cee2e1.svg",
+    "assets/categories/StartOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0eab54cc-48b6-49b3-8d3e-e98beb120380.svg",
+    "assets/categories/StartOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/495f425c-e90c-40d7-a375-98dd3e7dc741.svg",
+    "assets/categories/StopOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e8e1a8a8-e913-4804-8716-8db2da5c85aa.svg",
+    "assets/categories/StopOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/81a2e6e7-118e-4dc5-889a-58deac23cd44.svg",
+    "assets/categories/categoryimage.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0dc5af04-4f91-4736-981b-edf3f83e1324.svg",
+    "assets/categories/papercut.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ba7fe73f-e2ed-4e7c-8ebc-60f0a21d20f4.png",
+    "assets/categories/papercut.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0b4137b0-7bf9-4dd4-bd11-5011e3485279.svg",
+    "assets/categories/papercut3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/37b41747-9c7e-4d0e-92aa-c4f885a1a7a6.svg",
+    "assets/icon/Icon1024.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/30062fb9-5b97-4bf6-aefa-013f6f049c41.png",
+    "assets/icon/MyIcon.iconset/icon_128x128.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/dde1f2ad-0d65-41c7-84fa-bf5f5e7a746e.png",
+    "assets/icon/MyIcon.iconset/icon_128x128@2x.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8ec200ed-2b23-4fd7-ab7e-fb3d86afbce7.png",
+    "assets/icon/MyIcon.iconset/icon_16x16.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2ffe3605-475f-4520-bc46-21d8d9c1e5ef.png",
+    "assets/icon/MyIcon.iconset/icon_16x16@2x.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/800ef7ba-58f5-4878-8e43-5aed8fdd3f9f.png",
+    "assets/icon/MyIcon.iconset/icon_256x256.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c87fae86-408d-4c43-b409-47caec7a822b.png",
+    "assets/icon/MyIcon.iconset/icon_256x256@2x.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/faf5d470-8f7e-4a0f-a28c-7716797faec6.png",
+    "assets/icon/MyIcon.iconset/icon_32x32.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/14ae9cda-9e6e-4525-a41f-82156d93b889.png",
+    "assets/icon/MyIcon.iconset/icon_32x32@2x.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/534513d0-9c22-4dfa-82ff-18c805afd74b.png",
+    "assets/icon/MyIcon.iconset/icon_512x512.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/58030d58-b5fe-4f86-85be-d0d562546a16.png",
+    "assets/icon/MyIcon.iconset/icon_512x512@2x.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b2c33a12-4866-4515-becb-4876f0df5479.png",
+    "assets/icon/icon.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7f4a8e33-9f3f-4e70-95dc-42ce13815165.png",
+    "assets/lib/mic.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bc4aa037-29e4-462f-8e2c-465621661e6b.svg",
+    "assets/lib/playoff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f388d2e3-26b9-4433-bb7a-12c5395e9924.svg",
+    "assets/lib/playon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/aa8b7005-5216-4676-b221-759fb371b0ed.svg",
+    "assets/lib/recordoff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fb9c6044-8478-49e3-a355-40fa5ccbedba.svg",
+    "assets/lib/recordon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4cb6e696-7a9a-46c1-9fbc-cd32d75f3942.svg",
+    "assets/lib/stopoff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7c4cac60-4c93-438a-88b3-5a07e08deda4.svg",
+    "assets/lib/stopon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/83e6ee6f-a64c-4e1b-b0c2-c5f8cc9931e2.svg",
+    "assets/libbkg.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7c7b4df2-5910-4519-a063-65010cc87009.png",
+    "assets/loading.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6e87820c-44cb-4c43-81f5-7c250cd9c24b.png",
+    "assets/lobby/aboutOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/861fd647-dfaf-453a-bf25-7970c21710da.svg",
+    "assets/lobby/aboutOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7f50aa49-97c8-48db-802c-0e157906c0ca.svg",
+    "assets/lobby/blocksOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6f360239-75de-4551-8e86-c859fb54c760.svg",
+    "assets/lobby/blocksOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f470183e-2beb-4416-b8fb-74b7b7e539ec.svg",
+    "assets/lobby/bookOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1c5cc594-6939-41bd-ac1c-c93a29919b27.svg",
+    "assets/lobby/bookOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2e24b7a3-279b-4931-a820-c6c38ed779d8.svg",
+    "assets/lobby/gearOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e29eb263-7bf1-422e-8f2a-3b9d77a06760.svg",
+    "assets/lobby/gearOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ac5b0f05-e8ca-4d66-9d1d-24807b119ec8.svg",
+    "assets/lobby/help.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/63fc0692-80c3-4629-abba-fc8de379178c.svg",
+    "assets/lobby/house.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/80922dd1-6b06-4ffc-b056-627b136d7690.svg",
+    "assets/lobby/interfaceOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/360a2235-5036-4ca5-8936-5c6beb90f937.svg",
+    "assets/lobby/interfaceOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f52c78e1-d578-4fb2-87a6-bd4c91d3837b.svg",
+    "assets/lobby/movielaunch-kalananti.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2f8d04b7-664d-4cb2-ac99-a5cadaf35c14.png",
+    "assets/lobby/movielaunch.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6ac0ef2c-1a61-4ad5-af0d-43a58675cc69.svg",
+    "assets/lobby/newproject.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5090c66f-c98b-4626-8950-a898f6f0f6a4.png",
+    "assets/lobby/paintOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1ab6061d-b189-4911-b65d-41b621c98437.svg",
+    "assets/lobby/paintOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6cbda441-dffc-41ba-b091-c46f884553e8.svg",
+    "assets/lobby/pmask.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5dfdb6b4-ffc4-4d8c-ad60-03bdbf30eea5.png",
+    "assets/lobby/poster-kalananti.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f3464236-36b6-49fa-b2b2-27822060907a.png",
+    "assets/lobby/poster.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a514ead2-69c2-43fd-9ea0-ea6127770985.png",
+    "assets/lobby/project1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/49c497a5-e778-4234-aa9c-d091be3dbf60.png",
+    "assets/lobby/project2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1aac09bc-0997-4835-ae23-a91dd97ee377.png",
+    "assets/lobby/project3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/380e18c3-f2aa-4e07-85ec-1c39b988969c.png",
+    "assets/lobby/project4.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f2a1879b-2379-4c18-9bb5-2c300b1e9fd8.png",
+    "assets/lobby/projectmask.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/dacbad33-3800-4c8f-8183-2d00352b5a49.png",
+    "assets/lobby/scratchJrlogo.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f1b51f0f-c0c8-4d10-ba69-617d53945c34.svg",
+    "assets/lobby/woodframe.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a21a1ac2-db44-425c-b681-2f30574fcc2e.svg",
+    "assets/misc/Number-01.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1342930d-3359-4540-a479-0fb5b1b6f1fd.png",
+    "assets/misc/Text-01.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1fd0cb61-b80b-4652-9aad-eb4825ed50d4.png",
+    "assets/misc/pushbutton-01.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/47a74d67-7459-4eae-a90e-092f00cf28f6.svg",
+    "assets/misc/pushbutton.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7a0d1180-8d18-4b7a-85c0-d9b6539293ed.svg",
+    "assets/pagebkg.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/36593181-dd0c-4ffe-ae9e-ca0ed64897fb.png",
+    "assets/paint/cameraExit.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/240b22c0-166c-4b18-8699-465415b7a7c6.svg",
+    "assets/paint/cameraExitOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/027b53f4-a3e3-4888-b491-a917a8ab1cad.svg",
+    "assets/paint/cameraExitPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c749fd90-c573-4c8c-8a52-f0f0c2d071c8.svg",
+    "assets/paint/cameraFlip.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/98e0cf94-5714-4b20-ac67-1966f7561de7.svg",
+    "assets/paint/cameraFlipOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3191f328-2f9f-4485-b64d-1bdfea5aa1a2.svg",
+    "assets/paint/cameraFlipPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b924239c-ae5e-4645-b397-481d2ec3d8c1.svg",
+    "assets/paint/cameraSnap.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/86b3280c-3512-41c3-af10-7b982504d257.svg",
+    "assets/paint/cameraSnapOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/51503f1e-203a-4437-8f8d-aa4d74a62c40.svg",
+    "assets/paint/cameraSnapPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b55a2f09-3b0e-4c86-ab8b-33f62cc09932.svg",
+    "assets/paint/cancel.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3baeb1d3-820f-40f3-899b-dd9a62c72a98.svg",
+    "assets/paint/cancelPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/31b5ac31-1c1a-4bc6-b950-ca7999c91707.svg",
+    "assets/paint/ellipseOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e7805671-3ccb-45c5-a443-d9160383cab3.svg",
+    "assets/paint/ellipseOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/21d8988e-327d-4236-9a30-39eab4f684c2.svg",
+    "assets/paint/ok.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/71d6b0ed-fd34-494e-8183-186a0f4cce35.svg",
+    "assets/paint/okPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2b5cd91f-3e56-4a23-b555-0d51803ced88.svg",
+    "assets/paint/paintbrush.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a48e1911-7f50-482b-804f-0cfc2a39a45d.svg",
+    "assets/paint/paintbrushPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ebeb8347-10da-4f8a-ac3e-c2dbf28dc43d.svg",
+    "assets/paint/paintbucketOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/573315bd-b56e-4bf9-8def-9f48c4c0890d.svg",
+    "assets/paint/paintbucketOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e32f166e-0ac6-4288-801f-2edd857448fe.svg",
+    "assets/paint/pathOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1ca50526-ae01-41d8-9594-ad3877afca6f.svg",
+    "assets/paint/pathOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a7ce8d58-dbc6-4b15-8cba-d857769ca98e.svg",
+    "assets/paint/pensizeselect.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/24443b9e-7344-465a-a111-a2f8f3761342.svg",
+    "assets/paint/rectOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f5a5be16-b7c1-414b-82bf-641327137469.svg",
+    "assets/paint/rectOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7e96350e-a495-4877-8fc8-1fa3558e7397.svg",
+    "assets/paint/redoOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fab4f088-49bc-416e-9975-5b15daab8cd8.svg",
+    "assets/paint/redoOffPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5d2e51d0-5262-4349-8c8c-cd48bfe4afeb.svg",
+    "assets/paint/redoOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9656463a-39bc-4023-8018-9a7a4d261c9a.svg",
+    "assets/paint/redoOnPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4ea49f47-78c3-43d5-b445-57b7ee40b4ac.svg",
+    "assets/paint/rotateOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/77d111f0-0090-4475-9d9a-45d1fe8b90e9.svg",
+    "assets/paint/rotateOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/49d0d569-3bb1-4da2-8e28-879f533b20f4.svg",
+    "assets/paint/scissorsOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/eaf7744e-3136-461f-9db5-7ba470c70336.svg",
+    "assets/paint/scissorsOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a9f5459b-7d20-4364-954f-f4d3e8354fbc.svg",
+    "assets/paint/selectOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d862122e-3985-4623-bba2-9a25fb1d5d3d.svg",
+    "assets/paint/selectOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1c5736d9-018c-4b6b-99d0-c2ce4c9cdf61.svg",
+    "assets/paint/snapOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4b605af2-bbfa-4d1d-a76f-73ed1846b30d.svg",
+    "assets/paint/snapOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1d4864e6-3590-4908-b516-226f252c1565.svg",
+    "assets/paint/splash.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a6bec5f6-40e2-4ad9-917d-836ddc8e6d11.svg",
+    "assets/paint/splashshade.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/052e9156-6b04-4f3e-a3d3-ca865c40d568.svg",
+    "assets/paint/stamperOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a2cf7b73-ce5a-4e26-b731-26d71e8df32c.svg",
+    "assets/paint/stamperOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/627c7baf-0258-4b54-86c7-28484dedbd4d.svg",
+    "assets/paint/thumbOff.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/dcc6e426-b62a-4cae-bf5e-5812b11387bf.png",
+    "assets/paint/thumbOn.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/74773fd9-36ed-4b6d-8f4f-43fe1df7b452.png",
+    "assets/paint/triOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/88881775-90a1-45d5-b434-29f8311342dc.svg",
+    "assets/paint/triOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0c156b27-0a55-4bba-babb-c7ead3627e11.svg",
+    "assets/paint/undoOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2094edc8-2c3d-43e9-9259-45837b33fb2c.svg",
+    "assets/paint/undoOffPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6e91cb0b-ce54-486c-ae19-925b88199349.svg",
+    "assets/paint/undoOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5caa6cb1-4272-427f-b311-2ed9202858af.svg",
+    "assets/paint/undoOnPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4dd3b18c-3ff0-4113-ba3f-c430dfedaa89.svg",
+    "assets/pinfologo.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/18fb2a63-e0ea-4636-a314-ed22f9f33302.png",
+    "assets/start/bottom.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/224b36e8-16ad-47c3-8888-ff6b2e98824d.png",
+    "assets/start/helpOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/63367b6d-2bdc-431f-b16c-22c1e586cdd1.svg",
+    "assets/start/helpOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/febbfdbd-ef2e-41ad-a161-39ddcaaacfcf.svg",
+    "assets/start/homeIcon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c1ddb47a-412b-4ae1-9ce0-78e9d63074aa.svg",
+    "assets/start/houseOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d57d3f64-f0eb-40e9-b609-588c9e59e784.svg",
+    "assets/start/houseOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/63ba2f1e-9649-4a83-8e94-21e803d339b6.svg",
+    "assets/start/otherIcon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/21c6a232-dec0-474d-95cb-dc744c7ec098.svg",
+    "assets/start/rays.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e9a36e96-c536-476d-ad2e-45bbed92e95f.png",
+    "assets/start/schoolIcon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e8c3f377-f753-4dec-a0bd-4ef85e5ada4e.svg",
+    "assets/ui/PaintcanOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/cdb62afe-fbeb-4d14-b0a3-a30cff8b67e6.svg",
+    "assets/ui/PaintcanOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/611519a1-03ff-4506-a9dd-8fa00c945ca9.svg",
+    "assets/ui/WordSizeOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4bb2d955-33cd-4730-8a30-09851fe8d05c.svg",
+    "assets/ui/WordSizeOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/10144006-ded3-4f3b-a76e-d6c882c7ad1c.svg",
+    "assets/ui/addText.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7c04188b-7313-4560-8c44-04bb61c05903.svg",
+    "assets/ui/addTextPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ea70c4a0-4713-41ad-89b9-df875614029c.svg",
+    "assets/ui/airdrop-shadow.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/092124ae-dcc1-4cda-8b6b-f06c626c168b.svg",
+    "assets/ui/arrowdown.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b16201e0-5a6b-420a-93e7-ceb29045c383.png",
+    "assets/ui/arrowdown.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1d47cb5d-cadc-4835-8bde-d4b8587f45df.svg",
+    "assets/ui/arrowleft.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f4ac4e5f-0373-418a-947d-23627832e0b3.png",
+    "assets/ui/arrowleft.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f3876c4c-8cbb-42b1-8983-5ae95abb15eb.svg",
+    "assets/ui/arrowright.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2d493080-063e-4dbe-b16f-7301c5414700.png",
+    "assets/ui/arrowright.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/19bb059b-6a2c-40fc-b5e2-4b9c8729d9be.svg",
+    "assets/ui/arrowup.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d9658de5-2a4c-445d-a5f4-d3779e8d5059.png",
+    "assets/ui/arrowup.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5c35c7d1-35c0-47cb-acee-17e3b524401b.svg",
+    "assets/ui/backgrounds.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0d363f57-24dd-4fa3-a3bf-11986b8c82f7.png",
+    "assets/ui/canvasmask.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b4df2c37-56ac-4c4a-8997-2364adf72425.png",
+    "assets/ui/closeit.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f7266c07-1e09-4b7b-9040-152b5fcaf92a.svg",
+    "assets/ui/deletedown.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/eb5de531-78b8-4bfe-8569-795506ba09c9.svg",
+    "assets/ui/deleteup.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/64daa9fc-068f-4bb3-9be9-4d90ce1156d2.svg",
+    "assets/ui/email-shadow.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8750bd9e-f82b-4016-b0fc-789df4f40770.svg",
+    "assets/ui/fliplogo.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bec0c028-c6d7-40c2-8910-b399cde436c8.svg",
+    "assets/ui/fliplogo2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0cc44338-5f55-4c27-8b21-8f7ac5eb1eb5.svg",
+    "assets/ui/fliplogoPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/85b75460-5ebd-4468-a988-8089bfbcb70f.svg",
+    "assets/ui/fullOff2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5067f203-2d80-4c69-a614-73659d3a6f9d.svg",
+    "assets/ui/fullOn2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8279cdca-a4e7-4fa9-bbda-541a1b45fd8e.svg",
+    "assets/ui/go.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/90f89702-a186-41d7-9997-07d2abc38325.svg",
+    "assets/ui/goPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f6955242-d69f-411d-8e94-7e001918e0ea.svg",
+    "assets/ui/gridOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1255331a-a17e-45d5-8f31-1d63280cdfa0.svg",
+    "assets/ui/gridOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6ebe6c60-6319-41f0-99ce-b91bd8b513a1.svg",
+    "assets/ui/hilight.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a4c308c7-f2b4-4380-a901-fc4ccaabcfae.png",
+    "assets/ui/info.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2235da1e-97ef-40f5-a0cc-0d2d31be726c.svg",
+    "assets/ui/keydown.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/24ac364c-a847-48b8-8bc5-f08a46516ca1.svg",
+    "assets/ui/keyup.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/eaa61106-b3bc-4a2f-9a65-8f72dc71d793.svg",
+    "assets/ui/languageConfirm.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/77bf8066-3496-413b-b971-677ff8e01834.svg",
+    "assets/ui/loader.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/53d77af1-34b6-4f9c-b96d-487f443bae36.png",
+    "assets/ui/newpage.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0505f9a1-e05d-4b60-9415-30cb93517144.png",
+    "assets/ui/newsprite2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f4d4abe9-005a-4c66-bdaa-3167284733af.png",
+    "assets/ui/nextpage.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/67e92afe-ac06-4bb2-a168-48e88635b582.svg",
+    "assets/ui/nextpagePressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/99cfe3a4-cace-479c-b44d-ade2617e4d36.svg",
+    "assets/ui/numOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bc0a8eb6-7715-4296-9a11-93d2b913723e.svg",
+    "assets/ui/numOn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0d8755b4-11a4-4067-bd4d-bdab6dd6fb47.svg",
+    "assets/ui/pageCaret.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/363c5a5e-45bc-4b01-8606-fe099b274dbc.png",
+    "assets/ui/pageOff.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1273124c-ec0e-4871-9e43-d38901241fd8.png",
+    "assets/ui/pageOn.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/841d11ba-e3f9-45fb-8aaa-c23bdf6d955c.png",
+    "assets/ui/pageTarget.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b959fe03-ec20-43f6-9e30-df7b2bc2f33f.png",
+    "assets/ui/paintbrush.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a537feea-7b99-4ad4-9ce7-80b10db35ada.png",
+    "assets/ui/paintbrushPressed.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/58bbe671-19e8-435a-9246-fa9fe638883b.png",
+    "assets/ui/prevpage.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/cbdb86e5-874c-46c4-b45e-57f30106e51a.svg",
+    "assets/ui/prevpagePressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d74bf147-1f26-4334-92e4-f448c63d12c3.svg",
+    "assets/ui/recordslot.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9dd88a60-3d1b-43c0-b577-a02c216947e5.svg",
+    "assets/ui/resetAll.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/77d13e1f-8959-4f8b-9fa4-fefb3d8a1125.svg",
+    "assets/ui/resetAllPressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1e7ec7dc-4f3c-42e1-a402-0c41421c6959.svg",
+    "assets/ui/scene1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c2ed4c4d-ab4a-47e9-a73d-87c156450a58.svg",
+    "assets/ui/scenePressed1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6f62afe0-a65a-4bbd-bda2-9c405ea68ce5.svg",
+    "assets/ui/share-bow.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0e3aec79-a0b4-48e2-a8a8-1e89aae5f98d.svg",
+    "assets/ui/stop1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7c95c715-6938-44a9-b188-e936ace10b3b.svg",
+    "assets/ui/stopPressed1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c86f829f-c891-4bcf-a073-8f8fd5444210.svg",
+    "assets/ui/viewOff.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5632e5c5-8cf9-438f-8ead-12c8472df9c3.png",
+    "assets/ui/viewOffTarget.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ebdbb019-20ad-4dc9-a5e2-6fb014eb4c9b.png",
+    "assets/ui/viewOn.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9f7d6f7d-c653-4423-ba1c-b204b5197d52.png",
+    "assets/ui/viewOnTarget.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0a732c5a-4329-4067-9669-9623f9086072.png",
+    "assets/undo/redo.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2ce057b3-e4e9-4534-9692-7ef8aba7ee9d.svg",
+    "assets/undo/redoOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/80476a60-6d6d-4207-8ed1-d98002dc8e0e.svg",
+    "assets/undo/redopressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5315b40e-92c7-41b0-9135-1a810a9630c0.svg",
+    "assets/undo/undo.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1d3911ac-a897-4321-8a48-d8ef24218a1e.svg",
+    "assets/undo/undoOff.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7cf25c6a-0e19-4df0-a990-a60147af8c60.svg",
+    "assets/undo/undopressed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7e4ab834-2097-46a1-aee8-45d9323e6b4b.svg",
+    "inapp/images/down.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/55e074f1-1376-4cba-a00f-5dd43825920f.png",
+    "inapp/images/end.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a1bb1bb1-bd37-4f8b-be79-57d8cbd38b49.png",
+    "inapp/images/forever.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/af446ea4-0b2e-4800-84db-639b90d77386.png",
+    "inapp/images/gohome.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/99d9fe83-b829-4e0e-ab1b-5888fae844a2.png",
+    "inapp/images/grow.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5965292e-32c3-476d-af1b-7eca0930d15a.png",
+    "inapp/images/hide.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a265f0a8-64e3-4a32-baa6-0346e505e454.png",
+    "inapp/images/hop.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/05b2ed5c-2423-4d42-992a-6ab5c2d139e4.png",
+    "inapp/images/interface.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d3832895-9fe9-4fba-ae24-0c3a8e3bf5aa.png",
+    "inapp/images/keybackground.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/584d442c-f394-4ca7-8619-9c5645c10e27.png",
+    "inapp/images/left.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6fa4d3cc-8a66-4897-9043-d298ce00d911.png",
+    "inapp/images/messagereceive.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/64aa9c69-0f2f-47df-a7f3-fe4daff6941a.png",
+    "inapp/images/messagesend.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5d2ae8f4-65dc-45d4-86a8-7c06a52898c6.png",
+    "inapp/images/onbump.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/233c3ec0-3b34-4126-9a5e-f9c3ab39d82e.png",
+    "inapp/images/onflag.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a6cdd427-08db-4532-a521-e4a5a0e0a9c7.png",
+    "inapp/images/ontap.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/da35422c-193d-4d42-9196-5e46913bacaa.png",
+    "inapp/images/page.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/34748581-d97a-4391-b5ed-0b162788c2d4.png",
+    "inapp/images/paint.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fa3b4c03-2dfb-482f-9a37-3cc1433794be.png",
+    "inapp/images/playsound.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/653de393-616d-448e-9502-d12375b8e31e.png",
+    "inapp/images/pop.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/edc511b1-527d-49bf-8355-34c2bdad5daf.png",
+    "inapp/images/repeat.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/847ac98d-4c8e-481a-a51f-192d52a338e1.png",
+    "inapp/images/reset.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2124b34d-5bef-4adb-8f98-9e5dc04b2f1e.png",
+    "inapp/images/right.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ea7803e5-e94c-469a-98b5-7e55d4dcd2b3.png",
+    "inapp/images/say.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/66610b9e-f12f-4eef-b18f-9ee57e7e1b86.png",
+    "inapp/images/show.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d39b4145-cfee-48d6-af08-19d62cc38296.png",
+    "inapp/images/shrink.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/869e1b32-f7d4-477f-9fe6-c536a1f2cc3d.png",
+    "inapp/images/speed.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/855dee52-7abf-4ab3-85ea-3718f73df403.png",
+    "inapp/images/stop.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/924582dd-682b-4c41-9e85-0d4abfcdc559.png",
+    "inapp/images/turnleft.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4bf3954e-966f-4f7d-b243-7e6174408e7d.png",
+    "inapp/images/turnright.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c9582136-6cf7-4da9-8921-5347f7895ec7.png",
+    "inapp/images/up.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b3ad477e-86f9-4a21-861f-a3ccd546d794.png",
+    "inapp/images/wait.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6be0a60c-594d-41c6-8e4d-67a3868be3f2.png",
+    "pnglibrary/Aeroplane.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/01c59093-9c9c-44a4-953e-39e52bbb928b.png",
+    "pnglibrary/Apartment.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/92e94eb8-cdab-4e23-a63b-bf6cc92a92f1.png",
+    "pnglibrary/Apple.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/df8a0dec-6783-4614-ad66-adbd2167c4c4.png",
+    "pnglibrary/Arctic.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4073308c-d74e-4aad-9b2e-8f472cb91a5f.png",
+    "pnglibrary/Astronaut.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b6414f6c-0e33-4a50-9268-feb783a95371.png",
+    "pnglibrary/Baby.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fc545162-488b-47a8-ac81-fd7627ac98bd.png",
+    "pnglibrary/Ball.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8501f963-adc0-4cce-8c42-fe0fb82f778a.png",
+    "pnglibrary/Bank.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/384e3bf1-e0d3-4934-bc49-0422ba0cd3d2.png",
+    "pnglibrary/Barn.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0859efae-9197-497f-a118-4ced893ca9b2.png",
+    "pnglibrary/Basketball.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5c16d825-fe43-4ba4-99d1-b79f126d686e.png",
+    "pnglibrary/Bat.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fede55d0-b013-4a17-9c44-0fbfbfb956f1.png",
+    "pnglibrary/BeachDay.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/82626423-eeda-4f4a-a00e-c346431114ba.png",
+    "pnglibrary/BeachNight.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a4d1e9f6-9378-40c4-aaa3-1c64107d570a.png",
+    "pnglibrary/BeachSunrise.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bcdf12ad-4cb9-4f1c-8642-5fa60379c73e.png",
+    "pnglibrary/Bed.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5d42b05a-3038-470b-a81e-23c68103abea.png",
+    "pnglibrary/Bedroom.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/eef11d4e-a592-4677-9031-9661a69fd8f5.png",
+    "pnglibrary/Bike.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5a9516e2-431f-4e58-9bd3-4c02ae5152bb.png",
+    "pnglibrary/Bike2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e88e4b7a-3c72-48e4-8955-02a3af74511f.png",
+    "pnglibrary/Bird.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1efa9a16-3382-4ecd-9176-8b12d814f404.png",
+    "pnglibrary/Boat2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8c9b3586-ede2-4808-9128-8f6411f84bb5.png",
+    "pnglibrary/Boy.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1f34a464-f821-42b7-9e96-4fa9488d1be7.png",
+    "pnglibrary/Boy1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8077e484-36bb-436d-802b-32c25dc1ea41.png",
+    "pnglibrary/Boy2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/be97af02-b14c-4ad1-b6de-0346676e5738.png",
+    "pnglibrary/Boy3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2eb59db8-ecc2-4fd9-877c-20fa8540f51f.png",
+    "pnglibrary/Bus.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/aa8af230-6599-4fd2-b5cf-8bda0af438b1.png",
+    "pnglibrary/Butterfly.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f9134afe-4529-4928-a3cf-a9756f076c38.png",
+    "pnglibrary/Cactus.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c60b0de9-bfe1-4da8-9ab0-7bf66f5fc210.png",
+    "pnglibrary/Cake.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ac4faa46-5e27-4ce7-befc-4631fd2d6864.png",
+    "pnglibrary/Camel.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ecd6b294-ddc6-4306-a96b-bfe954c1ba64.png",
+    "pnglibrary/Car.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/90f37675-1991-4b50-90b9-2f0fe5d2d286.png",
+    "pnglibrary/Car1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0114780b-f917-42a3-ac98-7c7d9e4c2dd9.png",
+    "pnglibrary/Car2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/21ba0686-7793-445c-ab5d-7ccd82e169e2.png",
+    "pnglibrary/Castle.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b1b61346-2e9b-4e2d-a2af-563c2e62c853.png",
+    "pnglibrary/Chicken.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/009738ae-d92f-4c88-a622-ac148d6a0efe.png",
+    "pnglibrary/Child1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b6d8df87-2204-40aa-bb93-1256aabd5cdf.png",
+    "pnglibrary/City.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/25a2a445-bcb5-4083-a79c-8b5984270227.png",
+    "pnglibrary/Classroom.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6b7b77e1-6306-4df1-bf66-d3bcdb8607d6.png",
+    "pnglibrary/Cloud1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f450d4be-31ad-41f2-a6d8-bd4b0943af04.png",
+    "pnglibrary/Crab.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/39b3ae1d-0422-482c-b88d-3d70b1923fd4.png",
+    "pnglibrary/Creek.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bfebcf98-075c-46e7-a31c-1d3dc1354f82.png",
+    "pnglibrary/CrescentMoon.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a78768b0-e16c-4acb-92bf-77020735ea99.png",
+    "pnglibrary/Daffodil.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/495813c6-65f1-4787-9dde-144d7ee814c4.png",
+    "pnglibrary/Daisy1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0155bf5e-d8f8-46a5-b71f-196434c8e410.png",
+    "pnglibrary/Daisy2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e88f547e-e030-4a00-94d0-a34d9f417051.png",
+    "pnglibrary/Daisy3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/16395964-6948-40c9-ad53-46361ca9f02b.png",
+    "pnglibrary/Desert.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2987c9a2-9f35-4c84-98bc-52bb83e7037e.png",
+    "pnglibrary/Dog.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2905c867-ed70-494d-94e9-4c1abfef5072.png",
+    "pnglibrary/Dragon.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b458673c-2931-40aa-9a61-75087839040c.png",
+    "pnglibrary/Duck.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/12f8ed0e-2aeb-4402-87dd-b4a6a90aa845.png",
+    "pnglibrary/Earth.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e0049501-62be-4c83-8025-b795d34bd050.png",
+    "pnglibrary/Elephant.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/57cab391-2579-47d5-a557-ffea78f0b85b.png",
+    "pnglibrary/EmptyRoom.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/34841d53-c399-448d-98ca-5fecfce9a666.png",
+    "pnglibrary/Evergreen.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1366c9cb-5c07-4096-af9c-9bb21bce7b70.png",
+    "pnglibrary/Fairy.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a953ff8c-4f00-4064-a292-592de4ee3343.png",
+    "pnglibrary/Fall.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8d520eb5-76a0-43e8-bcd4-39ba516ab971.png",
+    "pnglibrary/Farm.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/175c435a-0d3c-4234-9dda-723489fccd08.png",
+    "pnglibrary/Farmer.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/96ef8209-1b90-4d98-8bc6-7fb4ef8c5498.png",
+    "pnglibrary/Farmer1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0b869a47-dcd0-4a45-b925-bf45bfd8dfbd.png",
+    "pnglibrary/Father.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5f0bbb95-87bf-418a-b54d-e480c26a100f.png",
+    "pnglibrary/Fence.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4f76b2be-daa0-4149-851a-e190e8cae8e8.png",
+    "pnglibrary/Fish1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8732532d-46cf-4323-9228-e7cf85655915.png",
+    "pnglibrary/Fish2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4f2d2fe7-6e2c-4972-97ef-8358ace196c9.png",
+    "pnglibrary/Flowers.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/55d646e2-04fa-46ac-8e85-7e4130696a87.png",
+    "pnglibrary/Fly.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/95618948-f561-42ed-8f95-4fdf660edbfa.png",
+    "pnglibrary/Fort.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ee4a4cb1-6a9f-4e83-89eb-cc5d3692f754.png",
+    "pnglibrary/Frog.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/99cf6106-c7d1-4d12-b299-fbbf6941959b.png",
+    "pnglibrary/Giraffe.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/df8e9524-9cb0-4c70-8943-885962c54e34.png",
+    "pnglibrary/Girl.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b5f908e8-d852-43aa-89ae-6e39839c544e.png",
+    "pnglibrary/Girl1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8efdd543-4988-4238-b56a-a2f4a8bc2e4c.png",
+    "pnglibrary/Girl2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0be6d7c3-8dd6-4005-8d4b-629d62f28387.png",
+    "pnglibrary/Girl3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/842750e9-b9ea-4418-8ec2-3023f8b5f1cf.png",
+    "pnglibrary/Grandfather.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1514c088-bf85-4420-8525-2f6c0c6c22be.png",
+    "pnglibrary/Grandmother.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/91e06cf1-4c67-407a-8438-dbe07eadce28.png",
+    "pnglibrary/Gym.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/71a1bbb2-8173-4441-8f68-c095e3996b90.png",
+    "pnglibrary/Gym2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a75a1cd3-5475-4be7-9178-affdc6a4daef.png",
+    "pnglibrary/Horse.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/97b97fe4-1dd0-4aea-b062-20617caa2a1b.png",
+    "pnglibrary/House.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/22bb156a-9d60-4acd-aa48-75dbfd5423a2.png",
+    "pnglibrary/House1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/86dc71c0-71d1-4766-a1d3-320e58f289e6.png",
+    "pnglibrary/House3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/77fe4747-8273-401a-8dd3-31225b9ac85d.png",
+    "pnglibrary/House4.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/cd5243ce-c9d9-4694-8350-da3c502e2f34.png",
+    "pnglibrary/Igloo.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f8e8fc3a-32ea-4f5c-95db-c3f28281b85b.png",
+    "pnglibrary/Inuit.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/13378137-0dc3-49a6-a2a5-aeb07953bb7c.png",
+    "pnglibrary/Jungle.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1d051ce1-ab2c-4e5a-9e10-7c104516fe6b.png",
+    "pnglibrary/KalanantiCharacter.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6d1e1c58-56a3-40ca-ad1a-0066e6c7892d.png",
+    "pnglibrary/Lake.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/af2d00df-c126-448b-8f8b-c8b200bf7b57.png",
+    "pnglibrary/Library.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bbf295f7-200a-4b99-ab63-7b62f85f93f1.png",
+    "pnglibrary/Lizard.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/dd7fdb2a-0430-4ba9-a904-9c0b87f4ab7a.png",
+    "pnglibrary/Mailbox.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/602435f0-0dbf-4ab7-ab63-ac190718bd9e.png",
+    "pnglibrary/Monkey.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9e4c7506-3bd6-4dee-9dc5-6d8445b31075.png",
+    "pnglibrary/Moon.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/63264d5c-9fb6-4349-aade-6724e6d7a4f4.png",
+    "pnglibrary/MoonBkg.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1a912496-e309-4d6e-ba0a-084aa1bb7406.png",
+    "pnglibrary/Mother.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/30937232-bd2d-4442-9862-9fc9b436ae22.png",
+    "pnglibrary/Mushroom.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5b9dd723-e450-4d9d-abdc-918552e9d65f.png",
+    "pnglibrary/NightTable.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/64bf4912-d523-40cb-b051-9c0e7421eb84.png",
+    "pnglibrary/Park.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3ac7ff51-9142-4989-8082-82028c27b6ca.png",
+    "pnglibrary/Pasture.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/da798fdc-851d-4d60-a771-fc16f186a024.png",
+    "pnglibrary/Peach.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/66a1d287-9aec-4621-8e5e-c6360bfb4d32.png",
+    "pnglibrary/Penguin.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e52f9f12-f5be-44c0-9bdf-d2f3a0f46b64.png",
+    "pnglibrary/Pig.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bce949b5-4c92-466b-beb3-b881c6324fcb.png",
+    "pnglibrary/Planet.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8de26ce7-45f1-4e74-9078-135be39da77c.png",
+    "pnglibrary/PolarBear.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/dcf2671a-1eb9-493a-a4f2-5696b1299814.png",
+    "pnglibrary/Rabbit.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/352fbc09-bac7-4631-b343-73374eef6fca.png",
+    "pnglibrary/Rancher.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/78de7790-eb42-44b8-9be9-ccd2738f32c7.png",
+    "pnglibrary/Rocket.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/adc780a8-ade4-486e-abb5-cc0ce7775b01.png",
+    "pnglibrary/Rowboat.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/371c2fc5-2a82-47a4-ae4a-1d31d5a673d1.png",
+    "pnglibrary/SailBoat.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/225cc621-7e66-4357-93cd-f64550949c2e.png",
+    "pnglibrary/Savannah.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ebae35ca-bebc-4a61-8e4c-6e704a3c9ca7.png",
+    "pnglibrary/School.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/68e22ead-9ff4-4a7f-9986-81528a96c8c3.png",
+    "pnglibrary/Scubadiver.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/80c9ae67-4423-4a63-b1cd-92a49da6b7b1.png",
+    "pnglibrary/Seahorse.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6947ec4b-2eb0-4a98-9368-be278dfec48a.png",
+    "pnglibrary/ShootingStar.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ed4c1937-5cdc-4f00-ba9f-0722431b5ae8.png",
+    "pnglibrary/Shop.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/165b6c62-8ddb-434a-8aa3-eb4f4351d137.png",
+    "pnglibrary/Snake.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/896a009c-324f-49b7-a5bc-f5d46ce59f7a.png",
+    "pnglibrary/SoccerNet.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0015c744-fe87-4e42-b58e-a450f30cd678.png",
+    "pnglibrary/Soccerball.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8f25bc81-e6d9-448e-8012-4c6110a15f62.png",
+    "pnglibrary/Space.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c7e9c472-f696-4500-9642-752954a12c3a.png",
+    "pnglibrary/Spring.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b2a647bd-53df-4078-8827-e3748aeac922.png",
+    "pnglibrary/Star.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/56262baf-980a-4a78-81e7-f57b851538e0.png",
+    "pnglibrary/Star2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/96e94e3f-b60d-45dc-bdba-dee3f4d3f346.png",
+    "pnglibrary/Star3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ff2a776e-8544-4826-820b-f72b2fd17294.png",
+    "pnglibrary/Starfish.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/156ce05d-ea50-4091-8d35-85a8371dd03b.png",
+    "pnglibrary/Stool.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e98b1e81-52c1-4212-903b-49f3a7f9e36c.png",
+    "pnglibrary/Suburbs.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ba1585fa-ac95-465b-b578-f3c31e71e660.png",
+    "pnglibrary/Summer.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e75e22ef-bf04-4e64-866b-a0930a545bd3.png",
+    "pnglibrary/Sun.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e87441b2-63e9-4de8-9d88-7cb07925bef8.png",
+    "pnglibrary/Table.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/95b3b0c0-d71e-4dbf-8ed2-d3a0959c7b8f.png",
+    "pnglibrary/Teen2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9791e2ab-e537-4df7-a547-f0e178a61461.png",
+    "pnglibrary/Teen3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/70665220-48d3-4c10-be79-9484944900f6.png",
+    "pnglibrary/TeenBoy1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/66ae36e8-f792-4b8e-b00b-2381f6fdde0b.png",
+    "pnglibrary/TeenBoy2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b3099a2e-e2eb-4cd7-93ed-5577a41aecd1.png",
+    "pnglibrary/TeenBoy3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b62488d9-1934-40da-86a7-5c2952378ebe.png",
+    "pnglibrary/TeenGirl1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b6d658a8-a075-4b26-9e3c-e21388cfef4c.png",
+    "pnglibrary/TeenGirl2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c03f2b79-cfc7-4abf-8b75-1d481b82df02.png",
+    "pnglibrary/TeenGirl3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5dc5ccc8-7e02-42ff-93b3-d8469735cd4b.png",
+    "pnglibrary/Theatre.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ea7293a4-3dc5-41f2-92c7-c2a45a11646c.png",
+    "pnglibrary/Thundercloud.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/81d5a36c-4bda-4f11-b846-f5b2b2224931.png",
+    "pnglibrary/Tornado.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3c3400f2-01e0-4164-931f-4838c402b7f3.png",
+    "pnglibrary/Tree1.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8d297e56-c953-4ed8-82c6-97c6ef6f6715.png",
+    "pnglibrary/Tree2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a52ab6cb-101b-4f87-acbc-585237ed1c16.png",
+    "pnglibrary/Tree3.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/32a70285-113c-4f60-b82a-7a7569a81e15.png",
+    "pnglibrary/Tree4.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a14e07ba-6e8d-4e32-9207-d9921179a5db.png",
+    "pnglibrary/Tulip2.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/44c6a733-f442-4381-af8c-081fbac1b8bf.png",
+    "pnglibrary/Underwater.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/836d8a6e-59fc-4c8d-bad4-54d7b12ff62d.png",
+    "pnglibrary/Weed.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/292f77e8-458f-4f17-aaf4-1237426a9a34.png",
+    "pnglibrary/Whale.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9955def9-888f-4bc9-9934-27f5f7171c3a.png",
+    "pnglibrary/Winter.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7a78080b-38bf-41e8-975f-d83379f6a26b.png",
+    "pnglibrary/Wizard.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0610f900-11a3-434b-bb07-6555c9eb663b.png",
+    "pnglibrary/Woods.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/005bab5c-17f0-4b06-a2d3-45f96b098161.png",
+    "pnglibrary/Zebra.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8ccfd122-36ad-40ca-9729-4d409cfa9b62.png",
+    "samples/58cdafe2c3944549c926c01bb7eebe9e.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e2df3702-c23b-4973-8e6b-1433e6ffddd0.svg",
+    "samples/63b6fade5e12e1abe9c97806a04984ad.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f10759e1-0a6f-4525-ac6f-4199f85ac2b2.svg",
+    "samples/67c1368fed520f7c8a39ef9329abfd49.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/396d8467-738b-4519-addd-cdeb27d19fab.svg",
+    "samples/8001bd1f3dbbe7f1c725a208e83bf6e2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/176c290d-2b98-4a97-b484-da7871c94432.svg",
+    "samples/AnimalRace.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e66c6a32-149e-4584-8b6a-9a1bb9dbc4fb.png",
+    "samples/AnimalRace_savannah.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/205da94e-06a4-46fc-a0ee-8cdd28d2264d.svg",
+    "samples/Bump.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6dcd258a-71a2-4c8b-9f50-a4ecf26b3c19.png",
+    "samples/CatonBat.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/30670d8f-5b2f-4950-a7ac-693e9345faba.png",
+    "samples/Dance.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7d67649d-181b-48b3-ae0a-d451a0c95318.png",
+    "samples/Farm.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0a4e4873-d672-45d6-81e3-4f38ee11e36b.png",
+    "samples/Friends.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/cf5ff688-745e-4b29-9dcd-9aef47438fbd.png",
+    "samples/JackBeNimble.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/cb9ba42d-c352-4ff9-a135-04eec33f3042.png",
+    "samples/QuickIntro.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/53ed5ac4-539f-4527-a8bb-f1c2f337b9dd.png",
+    "samples/Seasons.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8423f593-9ef3-4775-8085-da4c23c8b663.png",
+    "samples/Underthesea.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/49cb89b4-52be-4e8a-8061-f6053dc43837.png",
+    "samples/c69bf61cfb30ce8f68fe215356108a15.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ab0eb2e9-6821-41b5-bcd3-8da5238b1596.svg",
+    "samples/e975f53aff72b28d2cf9827e0e2ab442.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/42915643-fb28-41ea-bb0f-88526f1b1216.svg",
+    "samples/f63d8716c8262eb633b29c118966d782.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/13fd2f9d-4612-4bde-bbf9-f76aa9ac8986.svg",
+    "samples/f6ade8b1f67aa9fecee4c16a1547751d.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4e9a471a-f1c8-48e2-8be4-8e7f15c3619a.svg",
+    "samples/quickintro-left.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/851ff0a9-b03a-4f2a-a2ef-cf2af7395800.png",
+    "samples/quickintro-right.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/070e6134-76b1-4da1-a0d4-fb39919bbd02.png",
+    "svglibrary/Aeroplane.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e482973e-7ed0-4659-8465-c028f25ff86f.svg",
+    "svglibrary/Apartment.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/507a9765-2300-47c6-a819-1c76d3321bb8.svg",
+    "svglibrary/Apple.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ce98f26f-7649-495c-95f7-c7a999e86e04.svg",
+    "svglibrary/Arctic.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ab80c350-cd1c-4ea3-ab77-a2be0eb7b656.svg",
+    "svglibrary/Astronaut.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c109873a-0738-4c2a-b833-b7d139e239bf.svg",
+    "svglibrary/Baby.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a3aae1bf-252a-46bd-89e1-b4c25bdfad25.svg",
+    "svglibrary/Ball.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f13fc47a-3e57-47af-9816-34001f016496.svg",
+    "svglibrary/Bank.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/186e8d0e-c524-4fac-848e-906120a446fe.svg",
+    "svglibrary/Barn.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bdb8f14a-a0b4-45ed-920a-34ba3d5e3890.svg",
+    "svglibrary/Basketball.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6408644c-fb8d-462f-80b9-00b6fa22bc2f.svg",
+    "svglibrary/Bat.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/32e70c9b-f2c3-4515-8e0d-a55c01c73c24.svg",
+    "svglibrary/BeachDay.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/49fcc4e2-0ca1-47c6-b339-3299e9f6d07b.svg",
+    "svglibrary/BeachNight.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6bb9bbf8-4cb7-47c5-a9cf-d5facf7d9a18.svg",
+    "svglibrary/BeachSunrise.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/edd0e227-312c-42c2-acc3-1196f8ee9245.svg",
+    "svglibrary/Bed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3cd0a9ae-6847-44cf-bf22-317c67702f14.svg",
+    "svglibrary/Bedroom.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/583eb6b5-2ae3-4848-afc0-040e4b835804.svg",
+    "svglibrary/Bike.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/41d14248-46a4-4e11-abd5-cac6a50f0b20.svg",
+    "svglibrary/Bike2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c7dc41c4-8d16-4576-b2e0-3e97e7b7b964.svg",
+    "svglibrary/Bird.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c3067b50-5e36-4629-b91d-0b0597eaa9a7.svg",
+    "svglibrary/Boat2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/30f08cb5-4e3a-45b7-87f6-4df8d48de62c.svg",
+    "svglibrary/Boy.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c3b412d1-a4f1-424b-abf2-4de13220aa61.svg",
+    "svglibrary/Boy1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6c53e6a5-fc89-4058-b3cf-36853fc2281b.svg",
+    "svglibrary/Boy2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2cbe0c57-be6d-443a-8361-9d22de35d2c0.svg",
+    "svglibrary/Boy3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/501919c0-dc70-4373-b737-d68820f7ef6f.svg",
+    "svglibrary/Bus.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/34bb2fd1-b309-4c48-9b98-ad13ddb7ace5.svg",
+    "svglibrary/Butterfly.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1aa39a16-4411-46fc-9684-32ccb982f758.svg",
+    "svglibrary/Cactus.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c883c74c-7494-4ec1-ae18-952489c28a33.svg",
+    "svglibrary/Cake.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4b992cc6-d2aa-4b8e-a1ca-9e75ee9bf676.svg",
+    "svglibrary/Camel.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5c0f83c6-e53b-415d-9dde-efd492f3778e.svg",
+    "svglibrary/Car.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8c0c0057-dd11-4d0a-b140-0b30f7485ba4.svg",
+    "svglibrary/Car1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ce4c32d7-ebb8-41d4-b981-af26e11043e5.svg",
+    "svglibrary/Car2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fb49f816-ac8f-4fdf-89b6-e1135d5554de.svg",
+    "svglibrary/Castle.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/501153fb-0f9b-406e-a700-d916e7ab9f60.svg",
+    "svglibrary/Chicken.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/51e578d4-5779-4227-b1af-d38c596d14ff.svg",
+    "svglibrary/Child1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/68e792d9-4cf6-4c1a-b53d-8cf930b6d8a2.svg",
+    "svglibrary/City.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d48c7497-0dae-462d-a464-58022b7cabe4.svg",
+    "svglibrary/Classroom.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6209cf6e-fa56-4519-9fd3-f8249e1eb0a6.svg",
+    "svglibrary/Cloud1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c7b79902-b044-447f-bf92-b0dcbedfcd56.svg",
+    "svglibrary/Crab.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/76c3c00a-0f0d-42b5-bbda-472272161c4e.svg",
+    "svglibrary/Creek.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7bfcbf09-f304-4d4d-90b3-aa091b4cd734.svg",
+    "svglibrary/CrescentMoon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5c2ceba7-b27f-4fa8-a9f5-6e232bf46975.svg",
+    "svglibrary/Daffodil.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/96c43445-8e9f-4cf6-ae46-bc94b3e74c6d.svg",
+    "svglibrary/Daisy1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3ac0d8ee-bb4f-4f6a-a6f9-7a437c240631.svg",
+    "svglibrary/Daisy2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a82cfc7c-3a6e-4930-a89e-e68013eb7909.svg",
+    "svglibrary/Daisy3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/99cca875-0cde-4f2b-aa52-38257341ef45.svg",
+    "svglibrary/Desert.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/93e6b1f5-f8af-4167-b453-cc816bc30fbc.svg",
+    "svglibrary/Dog.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/313d7ffa-389e-427b-bc6a-c9d319790b3a.svg",
+    "svglibrary/Dragon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/71c2d008-1d5d-446d-8538-c885172e657a.svg",
+    "svglibrary/Duck.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/def03c12-3146-42c7-ad40-cc27909b4141.svg",
+    "svglibrary/Earth.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9c992077-51a0-4063-96bf-36f20ed2a6bf.svg",
+    "svglibrary/Elephant.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a4a20aeb-9d20-45ce-b69f-d7f350735976.svg",
+    "svglibrary/EmptyRoom.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/90ca3a43-5de6-4165-8f40-9a5d909a676c.svg",
+    "svglibrary/Evergreen.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0610cbbd-6aab-45ea-829e-5a0aac70641d.svg",
+    "svglibrary/Fairy.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ac17d9af-4ea5-484d-ba01-eb1ed4350389.svg",
+    "svglibrary/Fall.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/64eada86-a854-4a0c-a230-60881cf6b188.svg",
+    "svglibrary/Farm.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8296d588-92da-483a-9227-02e5fd445c6e.svg",
+    "svglibrary/Farmer.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0213fef4-aea5-45cd-be30-6feb89834a2c.svg",
+    "svglibrary/Farmer1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/82cd6df5-5f39-40aa-b56a-8194fd6ed9bf.svg",
+    "svglibrary/Father.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8c9c842e-343f-43b2-8741-9ace6bd63f1e.svg",
+    "svglibrary/Fence.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/136fe940-a024-4b05-a89f-a1ebe5ccd2bd.svg",
+    "svglibrary/Fish1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f7ee3fc2-c830-403e-bcf3-57d52f9eec9b.svg",
+    "svglibrary/Fish2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/0aa84297-60bc-42a6-9648-c44149de28de.svg",
+    "svglibrary/Flowers.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b403573f-9bed-4544-840a-64624d5f8d0f.svg",
+    "svglibrary/Fly.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8d639ada-8856-45b2-ab08-a6d5b3182408.svg",
+    "svglibrary/Fort.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5347cd1e-7ae4-48e1-8685-143f18662803.svg",
+    "svglibrary/Frog.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/993228d8-993b-459b-a189-4d589327a1b3.svg",
+    "svglibrary/Giraffe.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/92b21e0b-b9e4-4d2f-8b4a-f7b4dd36eec4.svg",
+    "svglibrary/Girl.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/09ebee89-865b-4a73-89af-f16f10e02d65.svg",
+    "svglibrary/Girl1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/4f47a4a9-65f1-4c2c-b045-6079f3223b76.svg",
+    "svglibrary/Girl2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/757d4a68-bfa0-455e-8476-13da698aee55.svg",
+    "svglibrary/Girl3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3bc4b041-b195-4209-b1b0-943b53a12554.svg",
+    "svglibrary/Grandfather.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c9a56fbb-4adc-40cd-a344-6bc387121910.svg",
+    "svglibrary/Grandmother.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/08efe6d2-d6f8-4692-8d5c-c55125e73f0e.svg",
+    "svglibrary/Gym.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fafb2436-fce3-4275-acde-6de7f4a51e79.svg",
+    "svglibrary/Gym2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7697fe1c-cf7b-42d2-8fa8-6d0b3e981faf.svg",
+    "svglibrary/Horse.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3fb54f81-613c-4e37-9c05-642b9fe186a3.svg",
+    "svglibrary/House.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/78c21fd2-2595-43c0-84b9-fbd3bc0b8887.svg",
+    "svglibrary/House1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/46f63d95-e710-4bd4-9a0f-b7396aca6a4c.svg",
+    "svglibrary/House3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b3789da5-0044-46bc-a7f7-a05652baa00a.svg",
+    "svglibrary/House4.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/3a4eabef-a563-4dbf-b4ac-f7383d802f10.svg",
+    "svglibrary/Igloo.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/dcb78e37-2004-4897-8009-cdc901df4e1d.svg",
+    "svglibrary/Inuit.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/288c276d-aaaa-4656-aec4-7ad3bb43e280.svg",
+    "svglibrary/Jungle.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/adf99ed9-c41f-41ca-9fe8-20ec3838a5ad.svg",
+    "svglibrary/KalanantiCharacter.png": "https://cdn-web-2.ruangguru.com/landing-pages/assets/05fc4f0e-3c62-4303-9717-1f79f4beae74.png",
+    "svglibrary/Lake.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/26af91ea-9bb0-42e6-aac2-49773c24b467.svg",
+    "svglibrary/Library.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bcc2b79e-863e-40b8-bc39-f882e0c57b8f.svg",
+    "svglibrary/Lizard.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/555b2a00-6852-4615-a500-c5d332cb137c.svg",
+    "svglibrary/Mailbox.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/2d934105-1165-47dd-8a2d-afa16e79b49b.svg",
+    "svglibrary/Monkey.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/54646033-e5f4-4b0d-86b7-71b41a5f2e5c.svg",
+    "svglibrary/Moon.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c7eae470-5fa3-484f-90f2-5359c24f0519.svg",
+    "svglibrary/MoonBkg.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/728d680a-4f1d-4550-8368-76fd5231d9a0.svg",
+    "svglibrary/Mother.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8ce16b87-36c0-412b-b623-f5aa5e062329.svg",
+    "svglibrary/Mushroom.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/88f50df9-9c58-4a5a-a501-36d3b44692cb.svg",
+    "svglibrary/NightTable.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/aef4cdbc-b132-4772-a785-f9ebd5f7c07b.svg",
+    "svglibrary/Park.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7f34f955-9d70-4efb-a1e4-4092ede9539a.svg",
+    "svglibrary/Pasture.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/20fe8241-de28-4976-a47b-0dff204b4a02.svg",
+    "svglibrary/Peach.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1c76d27e-ed7d-41b8-9bc6-84047bc92321.svg",
+    "svglibrary/Penguin.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/5be8629d-923b-45cf-827e-5c16747b7fbe.svg",
+    "svglibrary/Pig.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/6e4b01bf-1ea5-4a62-94ba-5e8ad342fb50.svg",
+    "svglibrary/Planet.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/215744e1-1126-4d30-8786-cf5a45bd1a11.svg",
+    "svglibrary/PolarBear.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1d651e65-d4bb-4972-9639-90e707f53a5c.svg",
+    "svglibrary/Rabbit.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e877422f-0261-4ea1-9969-88996c51c78b.svg",
+    "svglibrary/Rancher.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f579c8d4-eb18-4592-90ab-ba49fc2d3d16.svg",
+    "svglibrary/Rocket.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d9da8b18-2df8-4310-bdf6-de5c953741d6.svg",
+    "svglibrary/Rowboat.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c533a746-a48f-4d39-b774-852eb75c5cd3.svg",
+    "svglibrary/SailBoat.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f3459752-e190-4a98-8204-d87a5be62d9f.svg",
+    "svglibrary/Savannah.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/116863dd-e874-453c-a702-3f665f187507.svg",
+    "svglibrary/School.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/1fac2b03-68aa-4db2-9fd9-f4f69cf85b5f.svg",
+    "svglibrary/Scubadiver.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ab385077-ef0f-45f1-8302-193d948d73d1.svg",
+    "svglibrary/Seahorse.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9f3b458d-b073-4f71-a014-c757f9dd7d95.svg",
+    "svglibrary/ShootingStar.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/84f66241-9908-414d-947a-f53aa055ac69.svg",
+    "svglibrary/Shop.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/e25ec59f-ac2c-455d-9ffc-897098b5a51c.svg",
+    "svglibrary/Snake.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/938fadad-5677-48aa-937a-8d1cee36f9de.svg",
+    "svglibrary/SoccerNet.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f6bfba41-08ed-41d5-85ff-c9e83ebe9b12.svg",
+    "svglibrary/Soccerball.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fd456b3c-17b1-4a8a-ae31-61ec3e07052f.svg",
+    "svglibrary/Space.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7606ab57-e303-40a1-b685-c6c711e1b792.svg",
+    "svglibrary/Spring.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ca085009-f8bb-4a3f-a418-021c0d4a2b55.svg",
+    "svglibrary/Star.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ae2bdfb0-4088-4f9f-8538-080ab6259a5a.svg",
+    "svglibrary/Star2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/82f977df-d0cf-411d-a720-866764a1e93f.svg",
+    "svglibrary/Star3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/7b388117-ad1c-4bc2-9720-4dbdb95e084b.svg",
+    "svglibrary/Starfish.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d5071b0a-5f5b-41da-b3bb-8ae6fa3bf232.svg",
+    "svglibrary/Stool.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/33393990-9cc3-4a6f-aac6-655a2a4fbe43.svg",
+    "svglibrary/Suburbs.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/82391558-10cc-43dc-8a31-6214f6041c0e.svg",
+    "svglibrary/Summer.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/b23231a5-1d73-43b0-8383-23310153db56.svg",
+    "svglibrary/Sun.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f01020a9-ce5c-4ca7-bbe1-7df80c4930cf.svg",
+    "svglibrary/Table.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a159d446-a741-4597-a0da-6968f8fcc590.svg",
+    "svglibrary/Teen2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/d95bd32f-a9c0-4c93-9ccb-943a80e375b1.svg",
+    "svglibrary/Teen3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a09bc676-3f66-4b23-be50-7d75a0f0a50d.svg",
+    "svglibrary/TeenBoy1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/db0b3995-8642-4dcd-af3f-dccb3e2d8d6f.svg",
+    "svglibrary/TeenBoy2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/222fad62-4e90-447d-a4a8-7fc21754becf.svg",
+    "svglibrary/TeenBoy3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/63f7b147-edee-43e1-969e-27c4f4af8fe6.svg",
+    "svglibrary/TeenGirl1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/fc1a8643-3328-4f83-a3f7-d924a3dfc130.svg",
+    "svglibrary/TeenGirl2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f531548b-87b3-4f44-bba4-fa088b8e06ab.svg",
+    "svglibrary/TeenGirl3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c91dcbb1-44bc-4094-bea9-73f796267401.svg",
+    "svglibrary/Theatre.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f8212ce8-0193-4d7c-a509-6e7b4b33f92b.svg",
+    "svglibrary/Thundercloud.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/31acfc2e-e445-4603-92bb-3f159e67c448.svg",
+    "svglibrary/Tornado.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/8a45b13c-d4b4-4b5f-9542-a545561b07a3.svg",
+    "svglibrary/Tree1.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/91869046-fda3-4dd4-8b36-ded0957793f3.svg",
+    "svglibrary/Tree2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a88da13c-9217-4215-ba40-57939456294a.svg",
+    "svglibrary/Tree3.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a6daad9f-dddd-4fa8-84c3-499fabd4971c.svg",
+    "svglibrary/Tree4.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/9551deb9-d380-4cf3-929c-77ec3bdeb34b.svg",
+    "svglibrary/Tulip2.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c50a7b48-e22f-422a-9d1e-509a9d0ad91e.svg",
+    "svglibrary/Underwater.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/94b3c424-a715-46b1-9419-56c4c211d011.svg",
+    "svglibrary/Weed.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/a8ae74e3-f539-44e0-a53a-1ba91fc58170.svg",
+    "svglibrary/Whale.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/ab46cde4-2d30-46eb-871b-0591c3d778ee.svg",
+    "svglibrary/Winter.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/02f4eb9b-5c4e-4c11-8394-edec64569ead.svg",
+    "svglibrary/Wizard.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/bb70ae98-f96f-4aaf-82b4-f4caf33fd746.svg",
+    "svglibrary/Woods.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/f50d6fb8-d442-45ec-92e3-07761aaca8dc.svg",
+    "svglibrary/Zebra.svg": "https://cdn-web-2.ruangguru.com/landing-pages/assets/c1eff25d-bd01-4ec3-b71b-6896ea998450.svg"
+  };
+
+  // src/utils/CDN.js
+  var CDN = class {
+    static get map() {
+      return asset_cdn_map_default || {};
+    }
+    /**
+     * Resolves an asset path to its Ruangguru CDN URL, or falls back to the original local path.
+     * @param {string} path 
+     * @returns {string} Ruangguru CDN URL or original path
+     */
+    static resolve(path3) {
+      if (!path3 || typeof path3 !== "string") return path3;
+      if (path3.startsWith("http://") || path3.startsWith("https://") || path3.startsWith("data:") || path3.startsWith("blob:")) {
+        return path3;
+      }
+      let clean = path3.replace(/^(\.\.\/)+/, "").replace(/^(\.\/)+/, "");
+      if (asset_cdn_map_default && asset_cdn_map_default[clean]) {
+        return asset_cdn_map_default[clean];
+      }
+      if (clean.indexOf("/") < 0) {
+        if (clean.endsWith(".svg") && asset_cdn_map_default["svglibrary/" + clean]) {
+          return asset_cdn_map_default["svglibrary/" + clean];
+        }
+        if (clean.endsWith(".png") && asset_cdn_map_default["pnglibrary/" + clean]) {
+          return asset_cdn_map_default["pnglibrary/" + clean];
+        }
+        if (asset_cdn_map_default["svglibrary/" + clean]) {
+          return asset_cdn_map_default["svglibrary/" + clean];
+        }
+        if (asset_cdn_map_default["pnglibrary/" + clean]) {
+          return asset_cdn_map_default["pnglibrary/" + clean];
+        }
+      }
+      return path3;
+    }
+    /**
+     * Specialized helper for MediaLib Sprite, Background, and Thumbnail resolution.
+     * @param {string} md5 Filename / MD5
+     * @param {string} fallbackPrefix Optional folder prefix like 'svglibrary/' or 'pnglibrary/'
+     * @returns {string}
+     */
+    static getMediaUrl(md5, fallbackPrefix) {
+      if (!md5) return md5;
+      let clean = md5.replace(/^(\.\.\/)+/, "").replace(/^(\.\/)+/, "");
+      if (asset_cdn_map_default && asset_cdn_map_default[clean]) return asset_cdn_map_default[clean];
+      if (asset_cdn_map_default && asset_cdn_map_default["svglibrary/" + clean]) return asset_cdn_map_default["svglibrary/" + clean];
+      if (asset_cdn_map_default && asset_cdn_map_default["pnglibrary/" + clean]) return asset_cdn_map_default["pnglibrary/" + clean];
+      let prefix = fallbackPrefix || "svglibrary/";
+      if (asset_cdn_map_default && asset_cdn_map_default[prefix + clean]) return asset_cdn_map_default[prefix + clean];
+      return prefix + clean;
+    }
+  };
+
   // src/editor/blocks/BlockSpecs.js
   var loadCount = 0;
   var loadassets = {};
@@ -18919,7 +19604,7 @@ var global = window;
       if (window.Settings.edition != "PBS") {
         _BlockSpecs.projectThumb = _BlockSpecs.getImageFrom("assets/lobby/pmask");
       }
-      IO.requestFromServer("assets/balloon.svg", _BlockSpecs.setBalloon);
+      IO.requestFromServer(CDN.resolve("assets/balloon.svg"), _BlockSpecs.setBalloon);
       loadCount++;
     }
     static setBalloon(str) {
@@ -18958,14 +19643,26 @@ var global = window;
       _BlockSpecs.repeatS = _BlockSpecs.getImageFrom("assets/blocks/shadowRepeat");
     }
     static getImageFrom(url, ext) {
+      var localPath = url + (ext ? "." + ext : ".png");
+      var cdnUrl = CDN.resolve(localPath);
       var img = document.createElement("img");
-      img.src = url + (ext ? "." + ext : ".png");
+      img.src = cdnUrl;
       if (!img.complete) {
         loadassets[img.src] = img;
         loadCount++;
         img.onload = function() {
           delete loadassets[img.src];
           loadCount--;
+        };
+        img.onerror = function() {
+          if (img.src !== localPath) {
+            delete loadassets[img.src];
+            img.src = localPath;
+            loadassets[localPath] = img;
+          } else {
+            delete loadassets[img.src];
+            loadCount--;
+          }
         };
       }
       return img;
@@ -26706,6 +27403,9 @@ var global = window;
     static get keys() {
       return keys;
     }
+    static getUrl(md5, fallbackPrefix) {
+      return CDN.getMediaUrl(md5, fallbackPrefix || path);
+    }
     static loadMediaLib(root2, whenDone) {
       IO.requestFromServer(root2 + "media.json", (result2) => {
         let parsedResult = JSON.parse(result2);
@@ -26982,9 +27682,9 @@ var global = window;
       paintFrame.style.width = w + "px";
       paintFrame.style.height = h + "px";
       BlockSpecs.loadCount++;
-      IO.requestFromServer("assets/paint/splash.svg", _Paint.setSplash);
+      IO.requestFromServer(CDN.resolve("assets/paint/splash.svg"), _Paint.setSplash);
       BlockSpecs.loadCount++;
-      IO.requestFromServer("assets/paint/splashshade.svg", _Paint.setSplashShade);
+      IO.requestFromServer(CDN.resolve("assets/paint/splashshade.svg"), _Paint.setSplashShade);
     }
     static setSplash(str) {
       BlockSpecs.loadCount--;
@@ -27849,7 +28549,7 @@ var global = window;
       } else if (!MediaLib.keys[md5]) {
         iOS.getmedia(md5, nextStep);
       } else {
-        _Paint.getBkg(MediaLib.path + md5);
+        _Paint.getBkg(MediaLib.getUrl ? MediaLib.getUrl(md5) : MediaLib.path + md5);
       }
       function nextStep(base64) {
         var str = atob(base64);
@@ -27927,7 +28627,7 @@ var global = window;
       } else if (!MediaLib.keys[md5]) {
         iOS.getmedia(md5, nextStep);
       } else {
-        _Paint.loadChar(MediaLib.path + md5);
+        _Paint.loadChar(MediaLib.getUrl ? MediaLib.getUrl(md5) : MediaLib.path + md5);
       }
       function nextStep(base64) {
         var str = atob(base64);
@@ -29852,10 +30552,10 @@ var global = window;
       var cnv = this.blockshape;
       var ctx = this.blockshape.getContext("2d");
       ctx.clearRect(0, 0, cnv.width, cnv.height);
-      var me = this;
+      var me2 = this;
       if (!this.image.complete) {
         this.image.onload = function() {
-          me.drawBlockType();
+          me2.drawBlockType();
         };
       } else {
         this.drawBlockType();
@@ -29936,7 +30636,7 @@ var global = window;
       this.drawMyIcon(ctx, dx, dy);
     }
     drawMyIcon(ctx, dx, dy) {
-      var me = this;
+      var me2 = this;
       var icon = this.icon;
       if (!icon.complete) {
         icon.onload = function() {
@@ -29948,8 +30648,8 @@ var global = window;
             icon.height,
             dx,
             dy,
-            icon.width * me.scale * window.devicePixelRatio,
-            icon.height * me.scale * window.devicePixelRatio
+            icon.width * me2.scale * window.devicePixelRatio,
+            icon.height * me2.scale * window.devicePixelRatio
           );
         };
       } else {
@@ -29961,8 +30661,8 @@ var global = window;
           icon.height,
           dx,
           dy,
-          icon.width * me.scale * window.devicePixelRatio,
-          icon.height * me.scale * window.devicePixelRatio
+          icon.width * me2.scale * window.devicePixelRatio,
+          icon.height * me2.scale * window.devicePixelRatio
         );
       }
     }
@@ -30278,41 +30978,41 @@ var global = window;
       this.adown = newHTML("div", "bottomarrow", sc);
       newHTML("div", "halign up", this.aup);
       newHTML("div", "halign down", this.adown);
-      var me = this;
+      var me2 = this;
       if (isTablet) {
         this.aup.onmousedown = function(e) {
-          me.scrolldown(e);
+          me2.scrolldown(e);
         };
       } else {
         this.aup.onmousedown = function(e) {
-          me.scrolldown(e);
+          me2.scrolldown(e);
         };
       }
       if (isTablet) {
         this.adown.onmousedown = function(e) {
-          me.scrollup(e);
+          me2.scrollup(e);
         };
       } else {
         this.adown.onmousedown = function(e) {
-          me.scrollup(e);
+          me2.scrollup(e);
         };
       }
       if (isTablet) {
         this.aleft.onmousedown = function(e) {
-          me.scrollright(e);
+          me2.scrollright(e);
         };
       } else {
         this.aleft.onmousedown = function(e) {
-          me.scrollright(e);
+          me2.scrollright(e);
         };
       }
       if (isTablet) {
         this.aright.onmousedown = function(e) {
-          me.scrollleft(e);
+          me2.scrollleft(e);
         };
       } else {
         this.aright.onmousedown = function(e) {
-          me.scrollleft(e);
+          me2.scrollleft(e);
         };
       }
     }
@@ -31896,9 +32596,9 @@ var global = window;
       this.pagesdiv = newDiv(this.div, 0, 0, 480, 360, {
         position: "absolute"
       });
-      var me = this;
+      var me2 = this;
       this.div.onmousedown = function(evt) {
-        me.mouseDown(evt);
+        me2.mouseDown(evt);
       };
       this.div.owner = this;
       this.currentZoom = 1;
@@ -32251,12 +32951,12 @@ var global = window;
       return pt;
     }
     setEvents() {
-      var me = this;
+      var me2 = this;
       window.onmousemove = function(evt) {
-        me.mouseMove(evt);
+        me2.mouseMove(evt);
       };
       window.onmouseup = function(evt) {
-        me.mouseUp(evt);
+        me2.mouseUp(evt);
       };
     }
     startShaking(b) {
@@ -32786,7 +33486,15 @@ var global = window;
       img.style.top = Math.floor((h - scale * tb.h) / 2 + 9 * scaleMultiplier) + "px";
       img.style.position = "relative";
       var pngPath = MediaLib.path.replace("svg", "png");
-      img.src = pngPath + IO.getFilename(md5) + ".png";
+      var localSrc = pngPath + IO.getFilename(md5) + ".png";
+      var cdnSrc = CDN.resolve("pnglibrary/" + IO.getFilename(md5) + ".png");
+      img.src = cdnSrc;
+      img.onerror = function() {
+        if (img.src !== localSrc) {
+          img.onerror = null;
+          img.src = localSrc;
+        }
+      };
       tb.onmousedown = function(evt) {
         fcn(evt, tb);
       };
@@ -33158,7 +33866,7 @@ var global = window;
         downloadProject.id = "infoboxDownloadProject";
         downloadProject.textContent = "DOWNLOAD PROJECT (.SJR)";
         var downloadProjectLoader = newHTML("img", "infoboxShareLoading", webButtons);
-        downloadProjectLoader.src = "./assets/ui/loader.png";
+        downloadProjectLoader.src = CDN.resolve("assets/ui/loader.png");
         downloadProject.onmousedown = function(e) {
           _UI.infoDoShare(e, nameField, downloadProjectLoader, 0);
         };
@@ -33193,7 +33901,7 @@ var global = window;
           gn("deviceName").textContent = name2;
         });
         var shareLoadingGif = newHTML("img", "infoboxShareLoading", shareButtons);
-        shareLoadingGif.src = "./assets/ui/loader.png";
+        shareLoadingGif.src = CDN.resolve("assets/ui/loader.png");
         shareEmail.onmousedown = function(e) {
           _UI.parentalGate(e, function(e2) {
             _UI.infoDoShare(e2, nameField, shareLoadingGif, 0);
@@ -34251,11 +34959,11 @@ var global = window;
       }
     }
     snapBlock(drag) {
-      var me = drag[0];
-      var last = me.findLast();
-      var res2 = this.findClosest(this.available(0, me, drag), me);
-      if (this.isValid(me, res2, 0)) {
-        this.snapToDock(res2, me, 0, drag);
+      var me2 = drag[0];
+      var last = me2.findLast();
+      var res2 = this.findClosest(this.available(0, me2, drag), me2);
+      if (this.isValid(me2, res2, 0)) {
+        this.snapToDock(res2, me2, 0, drag);
         return;
       }
       res2 = this.findClosest(this.available(last.cShape ? 2 : 1, last, drag), last);
@@ -34265,27 +34973,27 @@ var global = window;
       this.snapToDock(res2, last, last.cShape ? 2 : 1, drag);
     }
     snapCshape(drag) {
-      var me = drag[0];
-      var last = me.findLast();
-      var res2 = this.findClosest(this.available(0, me, drag), me);
-      if (this.isValid(me, res2, 0)) {
-        this.snapToDock(res2, me, 0, drag);
+      var me2 = drag[0];
+      var last = me2.findLast();
+      var res2 = this.findClosest(this.available(0, me2, drag), me2);
+      if (this.isValid(me2, res2, 0)) {
+        this.snapToDock(res2, me2, 0, drag);
         return;
       }
-      var allowInside = me.isCaret ? this.dragList[0].inside == null : me.inside == null;
+      var allowInside = me2.isCaret ? this.dragList[0].inside == null : me2.inside == null;
       if (allowInside) {
-        res2 = this.findClosest(this.available(1, me, drag), me);
-        if (this.isValid(me, res2, 1)) {
-          this.snapToDock(res2, me, 1, drag);
+        res2 = this.findClosest(this.available(1, me2, drag), me2);
+        if (this.isValid(me2, res2, 1)) {
+          this.snapToDock(res2, me2, 1, drag);
           return;
         }
       }
       res2 = this.findClosest(this.available(2, last, drag), last);
-      if (this.isValid(me, res2, 2)) {
+      if (this.isValid(me2, res2, 2)) {
         this.snapToDock(res2, last, 2, drag);
       }
     }
-    isValid(me, res2, myn) {
+    isValid(me2, res2, myn) {
       if (res2 == null) {
         return false;
       }
@@ -34294,22 +35002,22 @@ var global = window;
       if (res2[2] > 30) {
         return false;
       }
-      if (me.cShape && myn == 1 && you.anEnd) {
+      if (me2.cShape && myn == 1 && you.anEnd) {
         return false;
       }
-      if (me.anEnd && you.next != null) {
+      if (me2.anEnd && you.next != null) {
         return false;
       }
-      if (me.findFirst().aStart && you.prev != null) {
+      if (me2.findFirst().aStart && you.prev != null) {
         return false;
       }
-      if (myn == 0 && me.findLast().anEnd && (you.blocktype == "repeat" && yourn == 1 || this.insideCShape(you))) {
+      if (myn == 0 && me2.findLast().anEnd && (you.blocktype == "repeat" && yourn == 1 || this.insideCShape(you))) {
         return false;
       }
-      if (me.findLast().anEnd && you.next != null) {
+      if (me2.findLast().anEnd && you.next != null) {
         return false;
       }
-      if (me.findLast().anEnd && you.findLast().anEnd) {
+      if (me2.findLast().anEnd && you.findLast().anEnd) {
         return false;
       }
       return true;
@@ -34328,32 +35036,32 @@ var global = window;
       }
       return false;
     }
-    snapToDock(choice, me, place2, drag) {
+    snapToDock(choice, me2, place2, drag) {
       if (choice == null) {
         return;
       }
-      if (me.blocktype.indexOf("caret") < 0) {
+      if (me2.blocktype.indexOf("caret") < 0) {
         ScratchJr.storyStart("Scripts.snapToDock");
         ScratchAudio.sndFX("snap.wav");
       }
       var you = choice[0];
       var yourn = choice[1];
       var bestxy;
-      if (me.cShape && place2 == 1) {
-        var res2 = this.getDockDxDy(you, yourn, me, place2);
+      if (me2.cShape && place2 == 1) {
+        var res2 = this.getDockDxDy(you, yourn, me2, place2);
         bestxy = [res2[0], res2[1]];
       } else {
-        bestxy = this.getDockDxDy(you, yourn, me, place2);
+        bestxy = this.getDockDxDy(you, yourn, me2, place2);
       }
-      if (me.isCaret) {
-        me.div.style.visibility = "visible";
+      if (me2.isCaret) {
+        me2.div.style.visibility = "visible";
       }
       for (var i2 = 0; i2 < drag.length; i2++) {
         drag[i2].moveBlock(drag[i2].div.left + bestxy[0], drag[i2].div.top + bestxy[1]);
       }
-      me.connectBlock(place2, choice[0], choice[1]);
+      me2.connectBlock(place2, choice[0], choice[1]);
     }
-    available(myn, me, drag) {
+    available(myn, me2, drag) {
       var thisxy = null;
       var res2 = [];
       var you = null;
@@ -34363,7 +35071,7 @@ var global = window;
         if (you == null) {
           continue;
         }
-        if (you == me) {
+        if (you == me2) {
           continue;
         }
         if (you.isCaret) {
@@ -34378,7 +35086,7 @@ var global = window;
         if (drag.indexOf(you) == -1) {
           var yourdocks = you.resolveDocks();
           for (var yourn = 0; yourn < yourdocks.length; yourn++) {
-            thisxy = this.getDockDxDy(you, yourn, me, myn);
+            thisxy = this.getDockDxDy(you, yourn, me2, myn);
             if (thisxy != null) {
               res2.push([you, yourn, this.magnitude(thisxy)]);
             }
@@ -34465,9 +35173,9 @@ var global = window;
       b.redrawRepeat();
       b.moveBlock(b.div.left, b.div.top + (oldh - b.vrubberband) * b.scale);
     }
-    adjustPos(me, myn, you, yourn) {
-      var bestxy = this.getDockDxDy(you, yourn, me, myn);
-      me.moveBlock(me.div.left + bestxy[0], me.div.top + bestxy[1]);
+    adjustPos(me2, myn, you, yourn) {
+      var bestxy = this.getDockDxDy(you, yourn, me2, myn);
+      me2.moveBlock(me2.div.left + bestxy[0], me2.div.top + bestxy[1]);
     }
     adjustCheight(b) {
       var old = b;
@@ -34802,12 +35510,12 @@ var global = window;
       var sprites2 = JSON.parse(page.sprites);
       sprites2.push(this.id);
       page.sprites = JSON.stringify(sprites2);
-      var me = this;
+      var me2 = this;
       page.div.appendChild(this.div);
       this.div.style.visibility = "hidden";
       this.getAsset(gotImage);
       function gotImage(dataurl) {
-        me.setCostume(dataurl, fcn);
+        me2.setCostume(dataurl, fcn);
       }
     }
     getAsset(whenDone) {
@@ -34816,7 +35524,7 @@ var global = window;
       var isRasterAsset = md5.toLowerCase().endsWith(".png");
       if (isRasterAsset) {
         if (MediaLib.keys && MediaLib.keys[md5]) {
-          whenDone(MediaLib.path + md5);
+          whenDone(MediaLib.getUrl ? MediaLib.getUrl(md5) : MediaLib.path + md5);
           return;
         }
         if (md5.indexOf("/") > -1 || md5.indexOf("data:") === 0) {
@@ -34826,6 +35534,8 @@ var global = window;
         iOS.getmedia(md5, function(base64) {
           if (base64 && base64.length > 0) {
             whenDone("data:image/png;base64," + base64);
+          } else if (MediaLib.getUrl) {
+            whenDone(MediaLib.getUrl("KalanantiCharacter.png"));
           } else if (MediaLib.path) {
             whenDone(MediaLib.path + "KalanantiCharacter.png");
           } else {
@@ -34834,8 +35544,9 @@ var global = window;
         });
         return;
       }
-      var url = MediaLib.keys[md5] ? MediaLib.path + md5 : md5.indexOf("/") < 0 ? iOS.path ? iOS.path + md5 : md5 : md5;
-      md5 = MediaLib.keys[md5] ? MediaLib.path + md5 : md5;
+      var resolvedUrl = MediaLib.keys && MediaLib.keys[md5] ? MediaLib.getUrl ? MediaLib.getUrl(md5) : MediaLib.path + md5 : md5.indexOf("/") < 0 ? iOS.path ? iOS.path + md5 : md5 : md5;
+      var url = resolvedUrl;
+      md5 = resolvedUrl;
       if (md5.indexOf("/") > -1) {
         IO.requestFromServer(md5, doNext);
       } else {
@@ -34888,7 +35599,7 @@ var global = window;
         if (loadedDone) return;
         console.warn("Could not load sprite image for", sprite.md5, "falling back to default");
         if (img.src.indexOf("KalanantiCharacter.png") < 0) {
-          img.src = (MediaLib.path || "pnglibrary/") + "KalanantiCharacter.png";
+          img.src = MediaLib.getUrl ? MediaLib.getUrl("KalanantiCharacter.png") : (MediaLib.path || "pnglibrary/") + "KalanantiCharacter.png";
         } else {
           onLoaded();
         }
@@ -35608,25 +36319,25 @@ var global = window;
       this.oldvalue = this.str;
       var ti = document.forms.activetextbox.typing;
       gn("textbox").style.visibility = "visible";
-      var me = this;
+      var me2 = this;
       ti.onblur = function() {
-        me.unfocusText();
+        me2.unfocusText();
       };
       ti.onkeypress = function(evt) {
-        me.handleWrite(evt);
+        me2.handleWrite(evt);
       };
       ti.onkeyup = function(evt) {
-        me.handleKeyUp(evt);
+        me2.handleKeyUp(evt);
       };
       ti.onsubmit = function() {
-        me.unfocusText();
+        me2.unfocusText();
       };
       if (isAndroid) {
         setTimeout(function() {
           ti.focus();
         }, 500);
         ScratchJr.onBackButtonCallback.push(function() {
-          me.unfocusText();
+          me2.unfocusText();
         });
       } else {
         if (isTablet) {
@@ -36063,12 +36774,12 @@ var global = window;
       if (!name2) {
         return;
       }
-      var me = this;
-      var url = MediaLib.keys[name2] ? MediaLib.path + name2 : name2.indexOf("/") < 0 ? iOS.path + name2 : name2;
-      var md5 = MediaLib.keys[name2] ? MediaLib.path + name2 : name2;
+      var resolvedName = MediaLib.keys && MediaLib.keys[name2] ? MediaLib.getUrl ? MediaLib.getUrl(name2) : MediaLib.path + name2 : name2.indexOf("/") < 0 ? iOS.path + name2 : name2;
+      var url = resolvedName;
+      var md5 = resolvedName;
       if (md5.substr(md5.length - 3) == "png") {
         if (MediaLib.keys && MediaLib.keys[name2]) {
-          this.setBackgroundImage(MediaLib.path + name2, fcn);
+          this.setBackgroundImage(MediaLib.getUrl ? MediaLib.getUrl(name2) : MediaLib.path + name2, fcn);
         } else if (name2.indexOf("/") > -1 || name2.indexOf("data:") === 0) {
           this.setBackgroundImage(name2, fcn);
         } else {
@@ -36169,20 +36880,20 @@ var global = window;
       }
     }
     redoChangeBkg(data) {
-      var me = this;
+      var me2 = this;
       var md5 = data[this.id].md5 ? data[this.id].md5 : "none";
-      this.setBackground(md5, me.updateThumb);
+      this.setBackground(md5, me2.updateThumb);
     }
     //////////////////////////////////////
     // page thumbnail
     /////////////////////////////////////
     updateThumb(page) {
-      var me = page ? page : ScratchJr.stage.currentPage;
-      if (!me.thumbnail) {
+      var me2 = page ? page : ScratchJr.stage.currentPage;
+      if (!me2.thumbnail) {
         return;
       }
-      var c = me.thumbnail.childNodes[0].childNodes[0];
-      me.setPageThumb(c);
+      var c = me2.thumbnail.childNodes[0].childNodes[0];
+      me2.setPageThumb(c);
     }
     pageThumbnail(p) {
       var tb = newHTML("div", "pagethumb", p);
@@ -36383,8 +37094,8 @@ var global = window;
     createCat() {
       var sprAttr = UI.mascotData(ScratchJr.stage.currentPage);
       Project.mediaCount++;
-      var me = this;
-      return new Sprite(sprAttr, me.pageAdded);
+      var me2 = this;
+      return new Sprite(sprAttr, me2.pageAdded);
     }
     update(spr) {
       if (spr) {
@@ -36408,32 +37119,32 @@ var global = window;
       Thumbs.updatePages();
     }
     updateBkg() {
-      var me = ScratchJr.stage.currentPage;
+      var me2 = ScratchJr.stage.currentPage;
       ScratchJr.storyStart("Page.prototype.updateBkg");
       Undo.record({
         action: "changebkg",
-        where: me.id,
-        who: me.id
+        where: me2.id,
+        who: me2.id
       });
       Thumbs.updatePages();
     }
     spriteAdded(spr) {
-      var me = spr.div.parentNode.owner;
-      me.setCurrentSprite(spr);
-      me.update(spr);
+      var me2 = spr.div.parentNode.owner;
+      me2.setCurrentSprite(spr);
+      me2.update(spr);
       UI.spriteInView(spr);
       ScratchJr.onHold = false;
     }
     pageAdded(spr) {
-      var me = spr.div.parentNode.owner;
+      var me2 = spr.div.parentNode.owner;
       Project.mediaCount--;
-      me.setCurrentSprite(spr);
+      me2.setCurrentSprite(spr);
       ScratchJr.storyStart("Page.prototype.pageAdded");
       if (ScratchJr.stage.pages.length > 1) {
         Undo.record({
           action: "addpage",
-          where: me.id,
-          who: me.id
+          where: me2.id,
+          who: me2.id
         });
       }
       Thumbs.updateSprites();
@@ -36475,10 +37186,10 @@ var global = window;
       }
       sprite.md5 = md5;
       sprite.name = cid;
-      var me = this;
+      var me2 = this;
       sprite.getAsset(gotImage);
       function gotImage(dataurl) {
-        sprite.setCostume(dataurl, me.spriteAdded);
+        sprite.setCostume(dataurl, me2.spriteAdded);
       }
     }
     modifySpriteName(cid, sid) {
@@ -36813,9 +37524,9 @@ var global = window;
       var c = newHTML("div", "empty", tb);
       var img;
       if (window.Settings.edition == "PBS") {
-        img = newImage(c, "assets/ui/newpage.svg");
+        img = newImage(c, CDN.resolve("assets/ui/newpage.svg"));
       } else {
-        img = newImage(c, "assets/ui/newpage.png", {
+        img = newImage(c, CDN.resolve("assets/ui/newpage.png"), {
           position: "absolute"
         });
       }
@@ -37963,7 +38674,7 @@ var global = window;
       _ScratchJr.log("starting the app");
       BlockSpecs.initBlocks();
       Project.loadIcon = document.createElement("img");
-      Project.loadIcon.src = "assets/branding/kalananti-loading-icon-v3.png";
+      Project.loadIcon.src = CDN.resolve("assets/branding/kalananti-loading-icon-v3.png");
       _ScratchJr.log("blocks init", _ScratchJr.getTime(), "sec", BlockSpecs.loadCount);
       currentProject = urlvars.pmd5;
       editmode = urlvars.mode;
@@ -41444,7 +42155,7 @@ var global = window;
     }
     var videoObj = gn("myVideo");
     if (videoObj) {
-      videoObj.poster = "assets/lobby/poster-kalananti.png?v=20260906-explainer";
+      videoObj.poster = CDN.resolve("assets/lobby/poster-kalananti.png");
       if (isiOS) {
         videoObj.src = "assets/lobby/intro.mp4";
       } else {

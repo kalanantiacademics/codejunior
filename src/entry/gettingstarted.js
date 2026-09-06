@@ -1,6 +1,7 @@
 import ScratchAudio from '../utils/ScratchAudio';
 import {gn, isiOS, getUrlVars} from '../utils/lib';
 import Motion from '../utils/Motion';
+import CDN from '../utils/CDN';
 
 let place;
 
@@ -19,7 +20,7 @@ export function gettingStartedMain () { // eslint-disable-line import/prefer-def
 
     var videoObj = gn('myVideo');
     if (videoObj) {
-        videoObj.poster = 'assets/lobby/poster-kalananti.png?v=20260906-explainer';
+        videoObj.poster = CDN.resolve('assets/lobby/poster-kalananti.png');
         if (isiOS) {
             videoObj.src = 'assets/lobby/intro.mp4';
         } else {

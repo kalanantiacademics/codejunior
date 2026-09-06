@@ -1,5 +1,6 @@
 import IO from './IO';
 import Localization from '../utils/Localization';
+import CDN from '../utils/CDN';
 
 let path;
 let samples;
@@ -31,6 +32,10 @@ export default class MediaLib {
 
     static get keys () {
         return keys;
+    }
+
+    static getUrl (md5, fallbackPrefix) {
+        return CDN.getMediaUrl(md5, fallbackPrefix || path);
     }
 
     static loadMediaLib (root, whenDone) {

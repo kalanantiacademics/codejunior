@@ -3,7 +3,7 @@
 .libframe {
     position: absolute;
     z-index: 10000;
-    background: url('../assets/libbkg.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/7c7b4df2-5910-4519-a063-65010cc87009.png");
     background-size: 100%;
     display: none;
    
@@ -33,7 +33,7 @@
     overflow: hidden;
     text-shadow: none;
     z-index: 11000;
-    background: url('../assets/pagebkg.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/36593181-dd0c-4ffe-ae9e-ca0ed64897fb.png");
     background-size: 100%;
     -webkit-box-shadow: 0px ${1 * scaleMultiplier}px ${3 * scaleMultiplier}px rgba(166, 168, 171, 1);
     border: 0px solid #fff;
@@ -100,7 +100,7 @@
     margin: ${css_vh(0.00)} ${css_vh(0.91)} ${css_vh(0.00)};
     width: ${css_vh(8.46)};
     height: ${css_vh(8.46)};
-    background: url('../assets/paint/paintbrush.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/a48e1911-7f50-482b-804f-0cfc2a39a45d.svg");
     background-size: ${css_vh(8.46)} ${css_vh(8.46)};
     background-size: 100%;
     -webkit-tap-highlight-color: transparent;
@@ -112,7 +112,7 @@
     margin: ${css_vh(0.00)} ${css_vh(0.91)} ${css_vh(0.00)};
     width: ${css_vh(8.46)};
     height: ${css_vh(8.46)};
-    background: url('../assets/paint/ok.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/71d6b0ed-fd34-494e-8183-186a0f4cce35.svg");
     background-size: 100%;
     -webkit-tap-highlight-color: transparent;
 }
@@ -123,21 +123,21 @@
     margin: ${css_vh(0.00)} ${css_vh(0.91)} ${css_vh(0.00)};
     width: ${css_vh(8.46)};
     height: ${css_vh(8.46)};
-    background: url('../assets/paint/cancel.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/3baeb1d3-820f-40f3-899b-dd9a62c72a98.svg");
     background-size: 100.5%; /* webview pixelates the image unless we do this */
     -webkit-tap-highlight-color: transparent;
 }
 
 .okicon:active {
-     background: url('../assets/paint/okPressed.svg');
+     background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2b5cd91f-3e56-4a23-b555-0d51803ced88.svg");
      background-size: 100%;
 }
 .cancelicon:active {
-     background: url('../assets/paint/cancelPressed.svg');
+     background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/31b5ac31-1c1a-4bc6-b950-ca7999c91707.svg");
      background-size: 100.5%; /* webview pixelates the image unless we do this */
 }
 .painticon:active {
-     background: url('../assets/paint/paintbrushPressed.svg');
+     background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/ebeb8347-10da-4f8a-ac3e-c2dbf28dc43d.svg");
      background-size: 100%;
 }
 
@@ -185,11 +185,11 @@ hr.bigdivide{
 }
 
 .assetbox.off {
-    background: url('../assets/paint/thumbOff.png') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/dcc6e426-b62a-4cae-bf5e-5812b11387bf.png") no-repeat center top;
     background-size: 100%;
 }
 
 .assetbox.on {
-    background: url('../assets/paint/thumbOn.png') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/74773fd9-36ed-4b6d-8f4f-43fe1df7b452.png") no-repeat center top;
     background-size: 100%;
 }

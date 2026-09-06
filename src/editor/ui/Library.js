@@ -9,6 +9,7 @@ import Localization from '../../utils/Localization';
 import ScratchAudio from '../../utils/ScratchAudio';
 import {gn, newHTML, scaleMultiplier,
     getDocumentWidth, getDocumentHeight, setProps, newCanvas, frame} from '../../utils/lib';
+import CDN from '../../utils/CDN';
 
 let selectedOne;
 let nativeJr = true;
@@ -256,7 +257,15 @@ export default class Library {
 
         // Cached downsized-thumbnails are in pnglibrary
         var pngPath = MediaLib.path.replace('svg', 'png');
-        img.src = pngPath + IO.getFilename(md5) + '.png';
+        var localSrc = pngPath + IO.getFilename(md5) + '.png';
+        var cdnSrc = CDN.resolve('pnglibrary/' + IO.getFilename(md5) + '.png');
+        img.src = cdnSrc;
+        img.onerror = function () {
+            if (img.src !== localSrc) {
+                img.onerror = null;
+                img.src = localSrc;
+            }
+        };
 
         tb.onmousedown = function (evt) {
             fcn(evt, tb);

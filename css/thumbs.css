@@ -28,23 +28,23 @@
 }
 
 .aproject.empty {
-    background:  url('../assets/lobby/newproject.png');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/5090c66f-c98b-4626-8950-a898f6f0f6a4.png");
     background-size: 100%;
 }
 .aproject.p1 {
-    background:  url('../assets/lobby/project1.png');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/49c497a5-e778-4234-aa9c-d091be3dbf60.png");
     background-size: 100%;
 }
 .aproject.p2 {
-    background:  url('../assets/lobby/project2.png');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1aac09bc-0997-4835-ae23-a91dd97ee377.png");
     background-size: 100%;
 }
 .aproject.p3 {
-    background:  url('../assets/lobby/project3.png');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/380e18c3-f2aa-4e07-85ec-1c39b988969c.png");
     background-size: 100%;
 }
 .aproject.p4 {
-    background:  url('../assets/lobby/project4.png');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/f2a1879b-2379-4c18-9bb5-2c300b1e9fd8.png");
     background-size: 100%;
 }
 
@@ -104,7 +104,7 @@
     width: 100%;
     height: 100%;
     outline: 1px solid transparent;
-    background:  url('../assets/lobby/woodframe.svg') no-repeat;
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/a21a1ac2-db44-425c-b681-2f30574fcc2e.svg") no-repeat;
 	background-size: auto 100%;
     background-position-x: center;
     background-position-y: center;
@@ -119,7 +119,7 @@
     width: 100%;
     height: 100%;
     outline: 1px solid transparent;
-    background:  url('../assets/lobby/woodframe.svg') no-repeat;
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/a21a1ac2-db44-425c-b681-2f30574fcc2e.svg") no-repeat;
     background-size: auto 89%;
     background-position-x: center;
     background-position-y: center;
@@ -151,7 +151,7 @@
     visibility: hidden;
     width: ${css_vh(5.86)};
     height: ${css_vh(5.73)};
-    background:  url('../assets/ui/closeit.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/f7266c07-1e09-4b7b-9040-152b5fcaf92a.svg");
     background-size: 101%;
 }
 
@@ -162,7 +162,7 @@
     z-index: 5;
     width: ${css_vw(5.47)};
     height: ${css_vh(6.51)};
-    background: url('../assets/ui/share-bow.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/0e3aec79-a0b4-48e2-a8a8-1e89aae5f98d.svg");
     background-size: 101%;
     visibility: hidden;
 }

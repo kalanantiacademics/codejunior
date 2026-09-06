@@ -1,7 +1,7 @@
 .paintframe {
     position: absolute;
     z-index: 10000;
-    background: url('../assets/pagebkg.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/36593181-dd0c-4ffe-ae9e-ca0ed64897fb.png");
     background-size: 100%;
     display: none;
     width: ${css_vw(100)};
@@ -78,14 +78,14 @@ spriteform.off {visibility: hidden; };
     padding: ${css_vh(0.00)};
     width: ${css_vh(8.46)};
     height: ${css_vh(8.46)};
-    background: url('../assets/paint/ok.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/71d6b0ed-fd34-494e-8183-186a0f4cce35.svg");
     background-size: 100%;
     -webkit-user-select: none;
     z-index: 1000;
 }
 
 .paintdone:active {
-    background: url('../assets/paint/okPressed.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2b5cd91f-3e56-4a23-b555-0d51803ced88.svg");
     background-size: 100%;
 }
 
@@ -120,12 +120,12 @@ spriteform.off {visibility: hidden; };
     width: ${css_vh(10.29)};
     height: ${css_vh(10.29)};
     margin: ${css_vh(0.65)};
-    background: url('../assets/paint/cameraFlip.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/98e0cf94-5714-4b20-ac67-1966f7561de7.svg");
     background-size: 100%;
 }
 
 .flipcamera:active {
-    background: url('../assets/paint/cameraFlipPressed.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/b924239c-ae5e-4645-b397-481d2ec3d8c1.svg");
     background-size: 100%;
 }
 
@@ -136,12 +136,12 @@ spriteform.off {visibility: hidden; };
     width: ${css_vh(10.29)};
     height: ${css_vh(10.29)};
     margin: ${css_vh(0.65)};
-    background: url('../assets/paint/cameraExit.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/240b22c0-166c-4b18-8699-465415b7a7c6.svg");
     background-size: 100%;
 }
 
 .cameraclose:active {
-    background: url('../assets/paint/cameraExitOn.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/027b53f4-a3e3-4888-b491-a917a8ab1cad.svg");
     background-size: 100%; }
 
 .snapshot-container {
@@ -158,12 +158,12 @@ spriteform.off {visibility: hidden; };
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    background: url('../assets/paint/cameraSnap.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/86b3280c-3512-41c3-af10-7b982504d257.svg");
     background-size: 100%;
 }
 
 .snapshot:active {
-    background: url('../assets/paint/cameraExitOn.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/027b53f4-a3e3-4888-b491-a917a8ab1cad.svg");
     background-size: 100%;
 }
 
@@ -192,7 +192,7 @@ spriteform.off {visibility: hidden; };
     position: relative;
     width: ${css_vh(8.46)};
     height: ${css_vh(8.33)};
-    background: url('../assets/paint/undoOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2094edc8-2c3d-43e9-9259-45837b33fb2c.svg");
     background-size: 100%;
     -webkit-user-select: none;
 }
@@ -201,48 +201,48 @@ spriteform.off {visibility: hidden; };
     position: relative;
     width: ${css_vh(8.46)};
     height: ${css_vh(8.33)};
-    background: url('../assets/paint/redoOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/fab4f088-49bc-416e-9975-5b15daab8cd8.svg");
     background-size: 100%;
     -webkit-user-select: none;
 }
 
 .undo.on {
-    background: url('../assets/paint/undoOn.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/5caa6cb1-4272-427f-b311-2ed9202858af.svg");
     background-size: 100%;
 }
 
 .undo.off {
-    background: url('../assets/paint/undoOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2094edc8-2c3d-43e9-9259-45837b33fb2c.svg");
     background-size: 100%;
 }
 
 .redo.on {
-    background: url('../assets/paint/redoOn.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/9656463a-39bc-4023-8018-9a7a4d261c9a.svg");
     background-size: 100%;
 }
 
 .redo.off {
-    background: url('../assets/paint/redoOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/fab4f088-49bc-416e-9975-5b15daab8cd8.svg");
     background-size: 100%;
 }
 
 .undo.on:active {
-    background: url('../assets/paint/undoOnPressed.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/4dd3b18c-3ff0-4113-ba3f-c430dfedaa89.svg");
     background-size: 100%;
 }
 
 .undo.off:active {
-    background: url('../assets/paint/undoOffPressed.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/6e91cb0b-ce54-486c-ae19-925b88199349.svg");
     background-size: 100%;
 }
 
 .redo.on:active {
-    background: url('../assets/paint/redoOnPressed.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/4ea49f47-78c3-43d5-b445-57b7ee40b4ac.svg");
     background-size: 100%;
 }
 
 .redo.off:active {
-    background: url('../assets/paint/redoOffPressed.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/5d2e51d0-5262-4349-8c8c-cd48bfe4afeb.svg");
     background-size: 100%;
 }
 
@@ -357,84 +357,84 @@ spriteform.off {visibility: hidden; };
 }
 
 *.tool.path.on {
-    background: url('../assets/paint/pathOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/a7ce8d58-dbc6-4b15-8cba-d857769ca98e.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.path.off {
-    background: url('../assets/paint/pathOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1ca50526-ae01-41d8-9594-ad3877afca6f.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.tri.on {
-    background: url('../assets/paint/triOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/0c156b27-0a55-4bba-babb-c7ead3627e11.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.tri.off {
-    background: url('../assets/paint/triOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/88881775-90a1-45d5-b434-29f8311342dc.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.rect.on {
-    background: url('../assets/paint/rectOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/7e96350e-a495-4877-8fc8-1fa3558e7397.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.rect.off {
-    background: url('../assets/paint/rectOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/f5a5be16-b7c1-414b-82bf-641327137469.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.ellipse.on {
-    background: url('../assets/paint/ellipseOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/21d8988e-327d-4236-9a30-39eab4f684c2.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.ellipse.off {
-    background: url('../assets/paint/ellipseOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/e7805671-3ccb-45c5-a443-d9160383cab3.svg") no-repeat center top;
     background-size: 100%;
 }
 
 *.tool.paintbucket.off {
-    background: url('../assets/paint/paintbucketOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/573315bd-b56e-4bf9-8def-9f48c4c0890d.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.paintbucket.on {
-    background: url('../assets/paint/paintbucketOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/e32f166e-0ac6-4288-801f-2edd857448fe.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.select.on {
-    background: url('../assets/paint/selectOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1c5736d9-018c-4b6b-99d0-c2ce4c9cdf61.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.select.off {
-    background: url('../assets/paint/selectOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/d862122e-3985-4623-bba2-9a25fb1d5d3d.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.rotate.on {
-    background: url('../assets/paint/rotateOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/49d0d569-3bb1-4da2-8e28-879f533b20f4.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.rotate.off {
-    background: url('../assets/paint/rotateOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/77d111f0-0090-4475-9d9a-45d1fe8b90e9.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.stamper.on {
-    background: url('../assets/paint/stamperOn.svg')no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/627c7baf-0258-4b54-86c7-28484dedbd4d.svg")no-repeat center top;
     background-size: 100%;
 }
 *.tool.stamper.off {
-    background: url('../assets/paint/stamperOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/a2cf7b73-ce5a-4e26-b731-26d71e8df32c.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.scissors.off {
-    background: url('../assets/paint/scissorsOff.svg')no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/eaf7744e-3136-461f-9db5-7ba470c70336.svg")no-repeat center top;
     background-size: 100%;
 }
 *.tool.scissors.on {
-    background: url('../assets/paint/scissorsOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/a9f5459b-7d20-4364-954f-f4d3e8354fbc.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.camera.off {
-    background: url('../assets/paint/snapOff.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/4b605af2-bbfa-4d1d-a76f-73ed1846b30d.svg") no-repeat center top;
     background-size: 100%;
 }
 *.tool.camera.on {
-    background: url('../assets/paint/snapOn.svg') no-repeat center top;
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1d4864e6-3590-4908-b516-226f252c1565.svg") no-repeat center top;
     background-size: 100%;
 }
 
@@ -459,7 +459,7 @@ spriteform.off {visibility: hidden; };
 *.paintpalette .pensizeholder.off {background: none;}
 
 *.paintpalette .pensizeholder.on {
-    background:  url('../assets/paint/pensizeselect.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/24443b9e-7344-465a-a111-a2f8f3761342.svg");
     background-size: 100%;
 }
 

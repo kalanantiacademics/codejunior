@@ -17,6 +17,7 @@ import Events from '../utils/Events';
 import Transform from './Transform';
 import Vector from '../geom/Vector';
 import {gn, newHTML, setCanvasSize, isTablet, getIdFor, isAndroid, setProps, hitRect, frame} from '../utils/lib';
+import CDN from '../utils/CDN';
 
 // Originally several files (Paint.js, PaintIO.js, PaintLayout.js)
 // were all contributing utility functions to the Paint object.
@@ -146,9 +147,9 @@ export default class Paint {
         paintFrame.style.width = w + 'px';
         paintFrame.style.height = h + 'px';
         BlockSpecs.loadCount++;
-        IO.requestFromServer('assets/paint/splash.svg', Paint.setSplash);
+        IO.requestFromServer(CDN.resolve('assets/paint/splash.svg'), Paint.setSplash);
         BlockSpecs.loadCount++;
-        IO.requestFromServer('assets/paint/splashshade.svg', Paint.setSplashShade);
+        IO.requestFromServer(CDN.resolve('assets/paint/splashshade.svg'), Paint.setSplashShade);
     }
 
     static setSplash (str) {
@@ -1089,7 +1090,7 @@ export default class Paint {
             iOS.getmedia(md5, nextStep);
         } else {
             // Load library asset
-            Paint.getBkg(MediaLib.path + md5);
+            Paint.getBkg(MediaLib.getUrl ? MediaLib.getUrl(md5) : MediaLib.path + md5);
         }
         function nextStep (base64) {
             var str = atob(base64);
@@ -1176,7 +1177,7 @@ export default class Paint {
             iOS.getmedia(md5, nextStep);
         } else {
             // Load library asset
-            Paint.loadChar(MediaLib.path + md5);
+            Paint.loadChar(MediaLib.getUrl ? MediaLib.getUrl(md5) : MediaLib.path + md5);
         }
         function nextStep (base64) {
             var str = atob(base64);

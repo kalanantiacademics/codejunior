@@ -8,14 +8,14 @@
     left: ${css_vh(4.95)};
     width: ${css_vh(8.33)};
     height: ${css_vh(8.33)};
-    background:  url('../assets/ui/fullOff2.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/5067f203-2d80-4c69-a614-73659d3a6f9d.svg");
     background-size: 100%;
 }
 
 .fullscreen.presentationmode#full {
     left: 0px;
     top: 0px;
-    background:  url('../assets/ui/fullOn2.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/8279cdca-a4e7-4fa9-bbda-541a1b45fd8e.svg");
     background-size: 100%;
 }
 
@@ -29,8 +29,8 @@
     height: ${css_vh(8.33)};
 }
 
-.gridToggle.off {background:  url('../assets/ui/gridOn.svg'); background-size: 100%; }
-.gridToggle.on {background:  url('../assets/ui/gridOff.svg'); background-size: 100%; }
+.gridToggle.off {background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/6ebe6c60-6319-41f0-99ce-b91bd8b513a1.svg"); background-size: 100%; }
+.gridToggle.on {background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1255331a-a17e-45d5-8f31-1d63280cdfa0.svg"); background-size: 100%; }
 
 .addText {
     position: absolute;
@@ -41,12 +41,12 @@
 
     width: ${css_vh(8.33)};
     height: ${css_vh(8.33)};
-    background:  url('../assets/ui/addText.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/7c04188b-7313-4560-8c44-04bb61c05903.svg");
     background-size: 100.5%; /* webview pixelates the image unless we do this */
 }
 
 .addText:active {
-    background:  url('../assets/ui/addTextPressed.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/ea70c4a0-4713-41ad-89b9-df875614029c.svg");
     background-size: 100.5%; /* webview pixelates the image unless we do this */
 }
 
@@ -59,11 +59,11 @@
 
     width: ${css_vh(8.33)};
     height: ${css_vh(8.33)};
-    background:  url('../assets/ui/scene1.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/c2ed4c4d-ab4a-47e9-a73d-87c156450a58.svg");
     background-size: 100%;
 }
 
-.changeBkg:active {background:  url('../assets/ui/scenePressed1.svg'); background-size: 100%; }
+.changeBkg:active {background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/6f62afe0-a65a-4bbd-bda2-9c405ea68ce5.svg"); background-size: 100%; }
 
 
 .resetall {
@@ -72,14 +72,14 @@
     padding: 0px;
     top: ${css_vh(0.65)};
     left: ${css_vh(53.13)};
-    background:  url('../assets/ui/resetAll.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/77d13e1f-8959-4f8b-9fa4-fefb3d8a1125.svg");
     background-size: 100.5%; /* webview pixelates the image unless we do this */
     width: ${css_vh(8.33)};
     height: ${css_vh(8.33)};
 }
 
 .resetall:active {
-    background:  url('../assets/ui/resetAllPressed.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/1e7ec7dc-4f3c-42e1-a402-0c41421c6959.svg");
     background-size: 100.5%; /* webview pixelates the image unless we do this */
 }
 
@@ -102,17 +102,17 @@
     left: ${css_vh(61.72)};
     width: ${css_vh(8.33)};
     height: ${css_vh(8.33)};
-    background:  url('../assets/ui/go.svg');
+    background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/90f89702-a186-41d7-9997-07d2abc38325.svg");
     background-size: 100%;
 }
 
-.go.on {background:  url('../assets/ui/go.svg'); background-size: 100%; }
+.go.on {background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/90f89702-a186-41d7-9997-07d2abc38325.svg"); background-size: 100%; }
 
-.go.off:active {background:  url('../assets/ui/goPressed.svg'); background-size: 100%; }
+.go.off:active {background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/f6955242-d69f-411d-8e94-7e001918e0ea.svg"); background-size: 100%; }
 
-.go.off {background:  url('../assets/ui/stop1.svg'); background-size: 100%; }
+.go.off {background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/7c95c715-6938-44a9-b188-e936ace10b3b.svg"); background-size: 100%; }
 
-.go.on:active {background:  url('../assets/ui/stopPressed1.svg'); background-size: 100%; }
+.go.on:active {background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/c86f829f-c891-4bcf-a073-8f8fd5444210.svg"); background-size: 100%; }
 
 .go.on.presentationmode, .go.off.presentationmode {
     position: absolute;
@@ -230,8 +230,8 @@
     height: ${css_vh(8.59)};
 }
 
-.fontsizeText.off {	background:  url('../assets/ui/WordSizeOff.svg'); background-size: 102%; }
-.fontsizeText.on {	background:  url('../assets/ui/WordSizeOn.svg'); background-size: 102%; }
+.fontsizeText.off {	background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/4bb2d955-33cd-4730-8a30-09851fe8d05c.svg"); background-size: 102%; }
+.fontsizeText.on {	background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/10144006-ded3-4f3b-a76e-d6c882c7ad1c.svg"); background-size: 102%; }
 
 .changecolorText {
     position: absolute;
@@ -242,8 +242,8 @@
     height: ${css_vh(8.59)};
 }
 
-.changecolorText.off {	background:  url('../assets/ui/PaintcanOff.svg'); background-size: 103%; }
-.changecolorText.on {	background:  url('../assets/ui/PaintcanOn.svg'); background-size: 103%; }
+.changecolorText.off {	background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/cdb62afe-fbeb-4d14-b0a3-a30cff8b67e6.svg"); background-size: 103%; }
+.changecolorText.on {	background:  url("https://cdn-web-2.ruangguru.com/landing-pages/assets/611519a1-03ff-4506-a9dd-8fa00c945ca9.svg"); background-size: 103%; }
 
 .textuisize {
     display: inline-block;
@@ -368,12 +368,12 @@
     width: ${css_vh(6.51)};
     height: ${css_vh(6.51)};
     z-index: 10;
-    background: url('../assets/ui/nextpage.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/67e92afe-ac06-4bb2-a168-48e88635b582.svg");
     background-size: 100%;
     -webkit-user-select: none;
 }
 
-.nextpage:active {background: url('../assets/ui/nextpagePressed.svg'); background-size: 100%; }
+.nextpage:active {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/99cfe3a4-cace-479c-b44d-ade2617e4d36.svg"); background-size: 100%; }
 
 .nextpage.on {display: block;}
 
@@ -387,12 +387,12 @@
     width: ${css_vh(6.51)};
     height: ${css_vh(6.51)};
     z-index: 10;
-    background: url('../assets/ui/prevpage.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/cbdb86e5-874c-46c4-b45e-57f30106e51a.svg");
     background-size: 100%;
     -webkit-user-select: none;
 }
 
-.prevpage:active {background: url('../assets/ui/prevpagePressed.svg'); background-size: 100%; }
+.prevpage:active {background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/d74bf147-1f26-4334-92e4-f448c63d12c3.svg"); background-size: 100%; }
 
 .prevpage.on {display: block;}
 

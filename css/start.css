@@ -30,7 +30,7 @@ div.frame {
     height: clamp(180px, 42vw, 360px);
     z-index: 10;
     transform: translate(-50%, -50%);
-    background: url('../assets/branding/kalananti-loading-icon-v3.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/ac169ef9-d276-4db6-a4f0-fefd78908e73.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -41,7 +41,7 @@ div.frame {
     bottom: 0px;
     width: 100%;
  height: 400px;
-    background: url('../assets/start/bottom.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/224b36e8-16ad-47c3-8888-ff6b2e98824d.png");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -77,7 +77,7 @@ div.frame {
     margin: 0px;
     height: 16%;
     z-index: 10;
-    background: url('../assets/branding/codejunior-long-latest.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/2927ff8c-7b13-4193-af3d-22e00c8c64e8.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: auto 100%;
@@ -90,7 +90,7 @@ div.frame {
     margin: 0px;
     width: 100%;
     height: 26%;
-    background: url('../assets/branding/splash-purple.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/129010f1-65b7-4257-b51b-c79ba53ddcbc.png");
     background-repeat: no-repeat;
     background-size: auto 100%;
 }
@@ -106,7 +106,7 @@ div.frame {
     width: 100%;
     height: 34%;
     z-index: 2;
-    background: url('../assets/branding/splash-red.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/c56a8e99-d43f-44d7-9015-f279384766ed.png");
     background-repeat: no-repeat;
     background-size: auto 100%;
 }
@@ -121,7 +121,7 @@ div.frame {
     margin: 0px;
     width: 100%;
     height: 23%;
-    background: url('../assets/branding/splash-blue.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/7b4c5895-bb57-4537-9071-f07c569baf86.png");
     background-repeat: no-repeat;
     background-size: auto 100%;
     z-index: 21;
@@ -139,7 +139,7 @@ div.frame {
     height: 22%;
     min-width: 150px;
     min-height: 150px;
-    background: url('../assets/start/helpOn.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/febbfdbd-ef2e-41ad-a161-39ddcaaacfcf.svg");
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position-x: center;
@@ -148,7 +148,7 @@ div.frame {
 }
 
 .gettings:active {
-    background: url('../assets/start/helpOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/63367b6d-2bdc-431f-b16c-22c1e586cdd1.svg");
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position-x: center;
@@ -164,7 +164,7 @@ div.frame {
     position: absolute;
     top: 10px;
     right: 25px;
-    background: url('../assets/lobby/gearOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/e29eb263-7bf1-422e-8f2a-3b9d77a06760.svg");
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position-x: center;
@@ -183,7 +183,7 @@ div.frame {
     height: 22%;
     min-width: 150px;
     min-height: 150px;
-    background: url('../assets/start/houseOn.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/63ba2f1e-9649-4a83-8e94-21e803d339b6.svg");
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position-x: center;
@@ -195,7 +195,7 @@ div.frame {
 .startcode.show {display: block;}
 
 .startcode:active {
-    background: url('../assets/start/houseOff.svg');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/d57d3f64-f0eb-40e9-b609-588c9e59e784.svg");
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position-x: center;
@@ -209,7 +209,7 @@ div.frame {
     width: 100%;
     margin: 0px;
     height: 160%;
-    background: url('../assets/start/rays.png');
+    background: url("https://cdn-web-2.ruangguru.com/landing-pages/assets/e9a36e96-c536-476d-ad2e-45bbed92e95f.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: auto 100%;
