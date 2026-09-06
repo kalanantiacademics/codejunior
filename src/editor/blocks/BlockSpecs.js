@@ -120,6 +120,7 @@ export default class BlockSpecs {
         var localPath = url + (ext ? '.' + ext : '.png');
         var cdnUrl = CDN.resolve(localPath);
         var img = document.createElement('img');
+        img.crossOrigin = 'anonymous';
         img.src = cdnUrl;
         if (!img.complete) {
             loadassets[img.src] = img;

@@ -112,6 +112,7 @@ export default class Page {
         if (name == 'undefined') {
             return;
         }
+        var me = this;
         this.clearBackground();
         this.md5 = undefined;
         if (name == 'none') {
@@ -196,6 +197,7 @@ export default class Page {
 
     setBackgroundImage (url, fcn) {
         var img = document.createElement('img');
+        img.crossOrigin = 'anonymous';
         img.src = url;
         this.bkg.originalImg = img.cloneNode(false);
         this.bkg.appendChild(img);

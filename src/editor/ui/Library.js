@@ -259,11 +259,13 @@ export default class Library {
         var pngPath = MediaLib.path.replace('svg', 'png');
         var localSrc = pngPath + IO.getFilename(md5) + '.png';
         var cdnSrc = CDN.resolve('pnglibrary/' + IO.getFilename(md5) + '.png');
-        img.src = cdnSrc;
+        img.loading = 'lazy';
+        img.src = localSrc;
+        var fallbackTried = false;
         img.onerror = function () {
-            if (img.src !== localSrc) {
-                img.onerror = null;
-                img.src = localSrc;
+            if (!fallbackTried && cdnSrc && cdnSrc !== localSrc) {
+                fallbackTried = true;
+                img.src = cdnSrc;
             }
         };
 

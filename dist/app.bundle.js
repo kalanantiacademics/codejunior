@@ -5607,11 +5607,11 @@ var global = window;
          * Pretty print the workers chain.
          */
         toString: function() {
-          var me2 = "Worker " + this.name;
+          var me = "Worker " + this.name;
           if (this.previous) {
-            return this.previous + " -> " + me2;
+            return this.previous + " -> " + me;
           } else {
-            return me2;
+            return me;
           }
         }
       };
@@ -14631,8 +14631,8 @@ var global = window;
               return this;
             };
             matrixproto.invert = function() {
-              var me2 = this, x = me2.a * me2.d - me2.b * me2.c;
-              return new Matrix2(me2.d / x, -me2.b / x, -me2.c / x, me2.a / x, (me2.c * me2.f - me2.d * me2.e) / x, (me2.b * me2.e - me2.a * me2.f) / x);
+              var me = this, x = me.a * me.d - me.b * me.c;
+              return new Matrix2(me.d / x, -me.b / x, -me.c / x, me.a / x, (me.c * me.f - me.d * me.e) / x, (me.b * me.e - me.a * me.f) / x);
             };
             matrixproto.clone = function() {
               return new Matrix2(this.a, this.b, this.c, this.d, this.e, this.f);
@@ -19651,6 +19651,7 @@ var global = window;
       var localPath = url + (ext ? "." + ext : ".png");
       var cdnUrl = CDN.resolve(localPath);
       var img = document.createElement("img");
+      img.crossOrigin = "anonymous";
       img.src = cdnUrl;
       if (!img.complete) {
         loadassets[img.src] = img;
@@ -30557,10 +30558,10 @@ var global = window;
       var cnv = this.blockshape;
       var ctx = this.blockshape.getContext("2d");
       ctx.clearRect(0, 0, cnv.width, cnv.height);
-      var me2 = this;
+      var me = this;
       if (!this.image.complete) {
         this.image.onload = function() {
-          me2.drawBlockType();
+          me.drawBlockType();
         };
       } else {
         this.drawBlockType();
@@ -30641,7 +30642,7 @@ var global = window;
       this.drawMyIcon(ctx, dx, dy);
     }
     drawMyIcon(ctx, dx, dy) {
-      var me2 = this;
+      var me = this;
       var icon = this.icon;
       if (!icon.complete) {
         icon.onload = function() {
@@ -30653,8 +30654,8 @@ var global = window;
             icon.height,
             dx,
             dy,
-            icon.width * me2.scale * window.devicePixelRatio,
-            icon.height * me2.scale * window.devicePixelRatio
+            icon.width * me.scale * window.devicePixelRatio,
+            icon.height * me.scale * window.devicePixelRatio
           );
         };
       } else {
@@ -30666,8 +30667,8 @@ var global = window;
           icon.height,
           dx,
           dy,
-          icon.width * me2.scale * window.devicePixelRatio,
-          icon.height * me2.scale * window.devicePixelRatio
+          icon.width * me.scale * window.devicePixelRatio,
+          icon.height * me.scale * window.devicePixelRatio
         );
       }
     }
@@ -30983,41 +30984,41 @@ var global = window;
       this.adown = newHTML("div", "bottomarrow", sc);
       newHTML("div", "halign up", this.aup);
       newHTML("div", "halign down", this.adown);
-      var me2 = this;
+      var me = this;
       if (isTablet) {
         this.aup.onmousedown = function(e) {
-          me2.scrolldown(e);
+          me.scrolldown(e);
         };
       } else {
         this.aup.onmousedown = function(e) {
-          me2.scrolldown(e);
+          me.scrolldown(e);
         };
       }
       if (isTablet) {
         this.adown.onmousedown = function(e) {
-          me2.scrollup(e);
+          me.scrollup(e);
         };
       } else {
         this.adown.onmousedown = function(e) {
-          me2.scrollup(e);
+          me.scrollup(e);
         };
       }
       if (isTablet) {
         this.aleft.onmousedown = function(e) {
-          me2.scrollright(e);
+          me.scrollright(e);
         };
       } else {
         this.aleft.onmousedown = function(e) {
-          me2.scrollright(e);
+          me.scrollright(e);
         };
       }
       if (isTablet) {
         this.aright.onmousedown = function(e) {
-          me2.scrollleft(e);
+          me.scrollleft(e);
         };
       } else {
         this.aright.onmousedown = function(e) {
-          me2.scrollleft(e);
+          me.scrollleft(e);
         };
       }
     }
@@ -32601,9 +32602,9 @@ var global = window;
       this.pagesdiv = newDiv(this.div, 0, 0, 480, 360, {
         position: "absolute"
       });
-      var me2 = this;
+      var me = this;
       this.div.onmousedown = function(evt) {
-        me2.mouseDown(evt);
+        me.mouseDown(evt);
       };
       this.div.owner = this;
       this.currentZoom = 1;
@@ -32956,12 +32957,12 @@ var global = window;
       return pt;
     }
     setEvents() {
-      var me2 = this;
+      var me = this;
       window.onmousemove = function(evt) {
-        me2.mouseMove(evt);
+        me.mouseMove(evt);
       };
       window.onmouseup = function(evt) {
-        me2.mouseUp(evt);
+        me.mouseUp(evt);
       };
     }
     startShaking(b) {
@@ -33493,11 +33494,13 @@ var global = window;
       var pngPath = MediaLib.path.replace("svg", "png");
       var localSrc = pngPath + IO.getFilename(md5) + ".png";
       var cdnSrc = CDN.resolve("pnglibrary/" + IO.getFilename(md5) + ".png");
-      img.src = cdnSrc;
+      img.loading = "lazy";
+      img.src = localSrc;
+      var fallbackTried = false;
       img.onerror = function() {
-        if (img.src !== localSrc) {
-          img.onerror = null;
-          img.src = localSrc;
+        if (!fallbackTried && cdnSrc && cdnSrc !== localSrc) {
+          fallbackTried = true;
+          img.src = cdnSrc;
         }
       };
       tb.onmousedown = function(evt) {
@@ -34964,11 +34967,11 @@ var global = window;
       }
     }
     snapBlock(drag) {
-      var me2 = drag[0];
-      var last = me2.findLast();
-      var res2 = this.findClosest(this.available(0, me2, drag), me2);
-      if (this.isValid(me2, res2, 0)) {
-        this.snapToDock(res2, me2, 0, drag);
+      var me = drag[0];
+      var last = me.findLast();
+      var res2 = this.findClosest(this.available(0, me, drag), me);
+      if (this.isValid(me, res2, 0)) {
+        this.snapToDock(res2, me, 0, drag);
         return;
       }
       res2 = this.findClosest(this.available(last.cShape ? 2 : 1, last, drag), last);
@@ -34978,27 +34981,27 @@ var global = window;
       this.snapToDock(res2, last, last.cShape ? 2 : 1, drag);
     }
     snapCshape(drag) {
-      var me2 = drag[0];
-      var last = me2.findLast();
-      var res2 = this.findClosest(this.available(0, me2, drag), me2);
-      if (this.isValid(me2, res2, 0)) {
-        this.snapToDock(res2, me2, 0, drag);
+      var me = drag[0];
+      var last = me.findLast();
+      var res2 = this.findClosest(this.available(0, me, drag), me);
+      if (this.isValid(me, res2, 0)) {
+        this.snapToDock(res2, me, 0, drag);
         return;
       }
-      var allowInside = me2.isCaret ? this.dragList[0].inside == null : me2.inside == null;
+      var allowInside = me.isCaret ? this.dragList[0].inside == null : me.inside == null;
       if (allowInside) {
-        res2 = this.findClosest(this.available(1, me2, drag), me2);
-        if (this.isValid(me2, res2, 1)) {
-          this.snapToDock(res2, me2, 1, drag);
+        res2 = this.findClosest(this.available(1, me, drag), me);
+        if (this.isValid(me, res2, 1)) {
+          this.snapToDock(res2, me, 1, drag);
           return;
         }
       }
       res2 = this.findClosest(this.available(2, last, drag), last);
-      if (this.isValid(me2, res2, 2)) {
+      if (this.isValid(me, res2, 2)) {
         this.snapToDock(res2, last, 2, drag);
       }
     }
-    isValid(me2, res2, myn) {
+    isValid(me, res2, myn) {
       if (res2 == null) {
         return false;
       }
@@ -35007,22 +35010,22 @@ var global = window;
       if (res2[2] > 30) {
         return false;
       }
-      if (me2.cShape && myn == 1 && you.anEnd) {
+      if (me.cShape && myn == 1 && you.anEnd) {
         return false;
       }
-      if (me2.anEnd && you.next != null) {
+      if (me.anEnd && you.next != null) {
         return false;
       }
-      if (me2.findFirst().aStart && you.prev != null) {
+      if (me.findFirst().aStart && you.prev != null) {
         return false;
       }
-      if (myn == 0 && me2.findLast().anEnd && (you.blocktype == "repeat" && yourn == 1 || this.insideCShape(you))) {
+      if (myn == 0 && me.findLast().anEnd && (you.blocktype == "repeat" && yourn == 1 || this.insideCShape(you))) {
         return false;
       }
-      if (me2.findLast().anEnd && you.next != null) {
+      if (me.findLast().anEnd && you.next != null) {
         return false;
       }
-      if (me2.findLast().anEnd && you.findLast().anEnd) {
+      if (me.findLast().anEnd && you.findLast().anEnd) {
         return false;
       }
       return true;
@@ -35041,32 +35044,32 @@ var global = window;
       }
       return false;
     }
-    snapToDock(choice, me2, place2, drag) {
+    snapToDock(choice, me, place2, drag) {
       if (choice == null) {
         return;
       }
-      if (me2.blocktype.indexOf("caret") < 0) {
+      if (me.blocktype.indexOf("caret") < 0) {
         ScratchJr.storyStart("Scripts.snapToDock");
         ScratchAudio.sndFX("snap.wav");
       }
       var you = choice[0];
       var yourn = choice[1];
       var bestxy;
-      if (me2.cShape && place2 == 1) {
-        var res2 = this.getDockDxDy(you, yourn, me2, place2);
+      if (me.cShape && place2 == 1) {
+        var res2 = this.getDockDxDy(you, yourn, me, place2);
         bestxy = [res2[0], res2[1]];
       } else {
-        bestxy = this.getDockDxDy(you, yourn, me2, place2);
+        bestxy = this.getDockDxDy(you, yourn, me, place2);
       }
-      if (me2.isCaret) {
-        me2.div.style.visibility = "visible";
+      if (me.isCaret) {
+        me.div.style.visibility = "visible";
       }
       for (var i2 = 0; i2 < drag.length; i2++) {
         drag[i2].moveBlock(drag[i2].div.left + bestxy[0], drag[i2].div.top + bestxy[1]);
       }
-      me2.connectBlock(place2, choice[0], choice[1]);
+      me.connectBlock(place2, choice[0], choice[1]);
     }
-    available(myn, me2, drag) {
+    available(myn, me, drag) {
       var thisxy = null;
       var res2 = [];
       var you = null;
@@ -35076,7 +35079,7 @@ var global = window;
         if (you == null) {
           continue;
         }
-        if (you == me2) {
+        if (you == me) {
           continue;
         }
         if (you.isCaret) {
@@ -35091,7 +35094,7 @@ var global = window;
         if (drag.indexOf(you) == -1) {
           var yourdocks = you.resolveDocks();
           for (var yourn = 0; yourn < yourdocks.length; yourn++) {
-            thisxy = this.getDockDxDy(you, yourn, me2, myn);
+            thisxy = this.getDockDxDy(you, yourn, me, myn);
             if (thisxy != null) {
               res2.push([you, yourn, this.magnitude(thisxy)]);
             }
@@ -35178,9 +35181,9 @@ var global = window;
       b.redrawRepeat();
       b.moveBlock(b.div.left, b.div.top + (oldh - b.vrubberband) * b.scale);
     }
-    adjustPos(me2, myn, you, yourn) {
-      var bestxy = this.getDockDxDy(you, yourn, me2, myn);
-      me2.moveBlock(me2.div.left + bestxy[0], me2.div.top + bestxy[1]);
+    adjustPos(me, myn, you, yourn) {
+      var bestxy = this.getDockDxDy(you, yourn, me, myn);
+      me.moveBlock(me.div.left + bestxy[0], me.div.top + bestxy[1]);
     }
     adjustCheight(b) {
       var old = b;
@@ -35515,12 +35518,12 @@ var global = window;
       var sprites2 = JSON.parse(page.sprites);
       sprites2.push(this.id);
       page.sprites = JSON.stringify(sprites2);
-      var me2 = this;
+      var me = this;
       page.div.appendChild(this.div);
       this.div.style.visibility = "hidden";
       this.getAsset(gotImage);
       function gotImage(dataurl) {
-        me2.setCostume(dataurl, fcn);
+        me.setCostume(dataurl, fcn);
       }
     }
     getAsset(whenDone) {
@@ -35583,6 +35586,7 @@ var global = window;
     }
     setCostume(dataurl, fcn) {
       var img = document.createElement("img");
+      img.crossOrigin = "anonymous";
       img.src = dataurl;
       this.img = img;
       this.originalImg = img.cloneNode(false);
@@ -36324,25 +36328,25 @@ var global = window;
       this.oldvalue = this.str;
       var ti = document.forms.activetextbox.typing;
       gn("textbox").style.visibility = "visible";
-      var me2 = this;
+      var me = this;
       ti.onblur = function() {
-        me2.unfocusText();
+        me.unfocusText();
       };
       ti.onkeypress = function(evt) {
-        me2.handleWrite(evt);
+        me.handleWrite(evt);
       };
       ti.onkeyup = function(evt) {
-        me2.handleKeyUp(evt);
+        me.handleKeyUp(evt);
       };
       ti.onsubmit = function() {
-        me2.unfocusText();
+        me.unfocusText();
       };
       if (isAndroid) {
         setTimeout(function() {
           ti.focus();
         }, 500);
         ScratchJr.onBackButtonCallback.push(function() {
-          me2.unfocusText();
+          me.unfocusText();
         });
       } else {
         if (isTablet) {
@@ -36767,6 +36771,7 @@ var global = window;
       if (name2 == "undefined") {
         return;
       }
+      var me = this;
       this.clearBackground();
       this.md5 = void 0;
       if (name2 == "none") {
@@ -36847,6 +36852,7 @@ var global = window;
     }
     setBackgroundImage(url, fcn) {
       var img = document.createElement("img");
+      img.crossOrigin = "anonymous";
       img.src = url;
       this.bkg.originalImg = img.cloneNode(false);
       this.bkg.appendChild(img);
@@ -36885,20 +36891,20 @@ var global = window;
       }
     }
     redoChangeBkg(data) {
-      var me2 = this;
+      var me = this;
       var md5 = data[this.id].md5 ? data[this.id].md5 : "none";
-      this.setBackground(md5, me2.updateThumb);
+      this.setBackground(md5, me.updateThumb);
     }
     //////////////////////////////////////
     // page thumbnail
     /////////////////////////////////////
     updateThumb(page) {
-      var me2 = page ? page : ScratchJr.stage.currentPage;
-      if (!me2.thumbnail) {
+      var me = page ? page : ScratchJr.stage.currentPage;
+      if (!me.thumbnail) {
         return;
       }
-      var c = me2.thumbnail.childNodes[0].childNodes[0];
-      me2.setPageThumb(c);
+      var c = me.thumbnail.childNodes[0].childNodes[0];
+      me.setPageThumb(c);
     }
     pageThumbnail(p) {
       var tb = newHTML("div", "pagethumb", p);
@@ -37099,8 +37105,8 @@ var global = window;
     createCat() {
       var sprAttr = UI.mascotData(ScratchJr.stage.currentPage);
       Project.mediaCount++;
-      var me2 = this;
-      return new Sprite(sprAttr, me2.pageAdded);
+      var me = this;
+      return new Sprite(sprAttr, me.pageAdded);
     }
     update(spr) {
       if (spr) {
@@ -37124,32 +37130,32 @@ var global = window;
       Thumbs.updatePages();
     }
     updateBkg() {
-      var me2 = ScratchJr.stage.currentPage;
+      var me = ScratchJr.stage.currentPage;
       ScratchJr.storyStart("Page.prototype.updateBkg");
       Undo.record({
         action: "changebkg",
-        where: me2.id,
-        who: me2.id
+        where: me.id,
+        who: me.id
       });
       Thumbs.updatePages();
     }
     spriteAdded(spr) {
-      var me2 = spr.div.parentNode.owner;
-      me2.setCurrentSprite(spr);
-      me2.update(spr);
+      var me = spr.div.parentNode.owner;
+      me.setCurrentSprite(spr);
+      me.update(spr);
       UI.spriteInView(spr);
       ScratchJr.onHold = false;
     }
     pageAdded(spr) {
-      var me2 = spr.div.parentNode.owner;
+      var me = spr.div.parentNode.owner;
       Project.mediaCount--;
-      me2.setCurrentSprite(spr);
+      me.setCurrentSprite(spr);
       ScratchJr.storyStart("Page.prototype.pageAdded");
       if (ScratchJr.stage.pages.length > 1) {
         Undo.record({
           action: "addpage",
-          where: me2.id,
-          who: me2.id
+          where: me.id,
+          who: me.id
         });
       }
       Thumbs.updateSprites();
@@ -37191,10 +37197,10 @@ var global = window;
       }
       sprite.md5 = md5;
       sprite.name = cid;
-      var me2 = this;
+      var me = this;
       sprite.getAsset(gotImage);
       function gotImage(dataurl) {
-        sprite.setCostume(dataurl, me2.spriteAdded);
+        sprite.setCostume(dataurl, me.spriteAdded);
       }
     }
     modifySpriteName(cid, sid) {
@@ -39888,10 +39894,18 @@ var global = window;
       } else {
         var pcnv;
         if (md5.substr(md5.length - 3) == "png") {
-          var bgimg = page.div.firstElementChild.firstElementChild;
-          pcnv = _Project.drawPNGInCanvas(bgimg, 480, 360);
-        } else {
+          var bgimg = page.div && page.div.firstElementChild && page.div.firstElementChild.firstElementChild;
+          if (bgimg) {
+            pcnv = _Project.drawPNGInCanvas(bgimg, 480, 360);
+          } else {
+            pcnv = document.createElement("canvas");
+            setCanvasSize(pcnv, 480, 360);
+          }
+        } else if (page.svg) {
           pcnv = _Project.drawSVGinCanvas(page.svg, 480, 360);
+        } else {
+          pcnv = document.createElement("canvas");
+          setCanvasSize(pcnv, 480, 360);
         }
         ctx.drawImage(pcnv, 0, 0, 480, 360, 0, 0, w, h);
         _Project.drawSprites(page, scale, c, w, h, fcn);
@@ -39901,13 +39915,18 @@ var global = window;
       var srccnv = document.createElement("canvas");
       setCanvasSize(srccnv, w, h);
       var ctx = srccnv.getContext("2d");
-      ctx.drawImage(png, 0, 0, w, h);
+      if (png) {
+        ctx.drawImage(png, 0, 0, w, h);
+      }
       return srccnv;
     }
     static drawSVGinCanvas(extxml, w, h) {
       var srccnv = document.createElement("canvas");
       setCanvasSize(srccnv, w, h);
       var ctx = srccnv.getContext("2d");
+      if (!extxml || !extxml.childElementCount) {
+        return srccnv;
+      }
       for (var i2 = 0; i2 < extxml.childElementCount; i2++) {
         SVG2Canvas.drawLayer(extxml.childNodes[i2], ctx, SVG2Canvas.drawLayer);
       }
@@ -39927,7 +39946,15 @@ var global = window;
       function doNext(n) {
         if (!(n < page.div.childElementCount)) {
           _Project.maskBorders(c.getContext("2d"), w, h);
-          fcn(c.toDataURL("image/png"));
+          try {
+            fcn(c.toDataURL("image/png"));
+          } catch (e) {
+            console.warn("Failed to export canvas thumbnail (possibly tainted):", e);
+            var fallbackC = document.createElement("canvas");
+            fallbackC.width = w || 1;
+            fallbackC.height = h || 1;
+            fcn(fallbackC.toDataURL("image/png"));
+          }
         } else {
           var spr = page.div.childNodes[n].owner;
           if (!spr || !spr.shown) {

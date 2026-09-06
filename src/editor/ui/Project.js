@@ -574,10 +574,18 @@ export default class Project {
         } else {
             var pcnv;
             if (md5.substr(md5.length - 3) == 'png') {
-                var bgimg = page.div.firstElementChild.firstElementChild;
-                pcnv = Project.drawPNGInCanvas(bgimg, 480, 360);
-            } else {
+                var bgimg = page.div && page.div.firstElementChild && page.div.firstElementChild.firstElementChild;
+                if (bgimg) {
+                    pcnv = Project.drawPNGInCanvas(bgimg, 480, 360);
+                } else {
+                    pcnv = document.createElement('canvas');
+                    setCanvasSize(pcnv, 480, 360);
+                }
+            } else if (page.svg) {
                 pcnv = Project.drawSVGinCanvas(page.svg, 480, 360);
+            } else {
+                pcnv = document.createElement('canvas');
+                setCanvasSize(pcnv, 480, 360);
             }
             ctx.drawImage(pcnv, 0, 0, 480, 360, 0, 0, w, h);
             Project.drawSprites(page, scale, c, w, h, fcn);
@@ -587,7 +595,9 @@ export default class Project {
         var srccnv = document.createElement('canvas');
         setCanvasSize(srccnv, w, h);
         var ctx = srccnv.getContext('2d');
-        ctx.drawImage(png, 0, 0, w, h);
+        if (png) {
+            ctx.drawImage(png, 0, 0, w, h);
+        }
         return srccnv;
     }
 
@@ -595,6 +605,9 @@ export default class Project {
         var srccnv = document.createElement('canvas');
         setCanvasSize(srccnv, w, h);
         var ctx = srccnv.getContext('2d');
+        if (!extxml || !extxml.childElementCount) {
+            return srccnv;
+        }
         for (var i = 0; i < extxml.childElementCount; i++) {
             SVG2Canvas.drawLayer(extxml.childNodes[i], ctx, SVG2Canvas.drawLayer);
         }
@@ -616,7 +629,15 @@ export default class Project {
         function doNext (n) {
             if (!(n < page.div.childElementCount)) {
                 Project.maskBorders(c.getContext('2d'), w, h);
-                fcn(c.toDataURL('image/png'));
+                try {
+                    fcn(c.toDataURL('image/png'));
+                } catch (e) {
+                    console.warn('Failed to export canvas thumbnail (possibly tainted):', e);
+                    var fallbackC = document.createElement('canvas');
+                    fallbackC.width = w || 1;
+                    fallbackC.height = h || 1;
+                    fcn(fallbackC.toDataURL('image/png'));
+                }
             } else {
                 var spr = page.div.childNodes[n].owner;
                 if (!spr || !spr.shown) {
