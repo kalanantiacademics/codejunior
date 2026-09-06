@@ -77,8 +77,13 @@ export function preprocessAndLoadCss (baseUrl, url) {
 	}
 
     var cssData = preprocessAndLoad(url);
-    cssData = cssData.replace(/url\('/g, 'url(\'' + baseUrl + '/');
-    cssData = cssData.replace(/url\(([^'])/g, 'url(' + baseUrl + '/$1');
+    cssData = cssData.replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, function (match, quote, path) {
+        var trimmed = path.trim();
+        if (/^(?:https?:|\/\/|data:|blob:)/i.test(trimmed)) {
+            return 'url(' + (quote || "'") + trimmed + (quote || "'") + ')';
+        }
+        return 'url(' + (quote || "'") + baseUrl + '/' + trimmed + (quote || "'") + ')';
+    });
 
     const head = document.head;
     let style = document.createElement('style');
