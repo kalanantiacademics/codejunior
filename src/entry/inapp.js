@@ -64,6 +64,7 @@ export function inappInterfaceGuide () {
     var switchHelp = function (e) {
         var button = e.target.closest ? e.target.closest('.interface-button') : null;
         if (button && guideRoot.contains(button)) {
+            if (button.classList.contains('interface-button-selected')) return;
             var target = button.querySelector('.interface-button-text');
             var descriptionId = parseInt(target.textContent, 10) - 1;
             if (!interfaceDescriptions[descriptionId]) return;
@@ -77,10 +78,13 @@ export function inappInterfaceGuide () {
                 selectedButton.classList.remove('interface-button-selected');
             });
             button.classList.add('interface-button-selected');
-            window.parent.ScratchAudio.sndFXWithVolume('keydown.wav', 0.3);
+            if (window.parent && window.parent.ScratchAudio) {
+                window.parent.ScratchAudio.sndFXWithVolume('keydown.wav', 0.3);
+            }
         }
     };
-    guideRoot.onmousedown = switchHelp;
+    guideRoot.addEventListener('mousedown', switchHelp);
+    guideRoot.addEventListener('click', switchHelp);
 }
 
 export function inappPaintEditorGuide () {
@@ -121,6 +125,7 @@ export function inappPaintEditorGuide () {
     var switchHelp = function (e) {
         var button = e.target.closest ? e.target.closest('.paint-button') : null;
         if (button && guideRoot.contains(button)) {
+            if (button.classList.contains('paint-button-selected')) return;
             var target = button.querySelector('.paint-button-text');
             var descriptionId = parseInt(target.textContent, 10) - 1;
             if (!paintDescriptions[descriptionId]) return;
@@ -134,10 +139,13 @@ export function inappPaintEditorGuide () {
                 selectedButton.classList.remove('paint-button-selected');
             });
             button.classList.add('paint-button-selected');
-            window.parent.ScratchAudio.sndFXWithVolume('keydown.wav', 0.3);
+            if (window.parent && window.parent.ScratchAudio) {
+                window.parent.ScratchAudio.sndFXWithVolume('keydown.wav', 0.3);
+            }
         }
     };
-    guideRoot.onmousedown = switchHelp;
+    guideRoot.addEventListener('mousedown', switchHelp);
+    guideRoot.addEventListener('click', switchHelp);
 }
 
 export function inappBlocksGuide () {

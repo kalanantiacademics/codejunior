@@ -129,29 +129,58 @@ export default class Page {
         var md5 = (MediaLib.keys[name]) ? MediaLib.path + name : name;
 
         if (md5.substr(md5.length - 3) == 'png') {
-            this.setBackgroundImage(url, fcn);
+            if (MediaLib.keys && MediaLib.keys[name]) {
+                this.setBackgroundImage(MediaLib.path + name, fcn);
+            } else if (name.indexOf('/') > -1 || name.indexOf('data:') === 0) {
+                this.setBackgroundImage(name, fcn);
+            } else {
+                var self = this;
+                iOS.getmedia(name, function (base64) {
+                    if (base64 && base64.length > 0) {
+                        self.setBackgroundImage('data:image/png;base64,' + base64, fcn);
+                    } else if (fcn) {
+                        fcn();
+                    }
+                });
+            }
             this.svg = null;
             return;
         }
 
         if (md5.indexOf('/') > -1) {
-            IO.requestFromServer(md5, doNext);
+            IO.requestFromServer(md5, doNext, function () {
+                if (fcn) fcn();
+            });
         } else {
             iOS.getmedia(md5, nextStep);
         }
         function nextStep (base64) {
-            doNext(atob(base64));
+            if (!base64) {
+                if (fcn) fcn();
+                return;
+            }
+            try {
+                doNext(atob(base64));
+            } catch (err) {
+                console.error('Error decoding background SVG', err);
+                if (fcn) fcn();
+            }
         }
         function doNext (str) {
-            str = str.replace(/>\s*</g, '><');
-            me.setSVG(str);
-            if ((str.indexOf('xlink:href') < 0) && iOS.path) {
-                me.setBackgroundImage(url, fcn); // does not have embedded images
-            } else {
-                var base64 = IO.getImageDataURL(me.md5, btoa(str));
-                IO.getImagesInSVG(str, function () {
-                    me.setBackgroundImage(base64, fcn);
-                });
+            try {
+                str = str.replace(/>\s*</g, '><');
+                me.setSVG(str);
+                if ((str.indexOf('xlink:href') < 0) && iOS.path) {
+                    me.setBackgroundImage(url, fcn); // does not have embedded images
+                } else {
+                    var base64 = IO.getImageDataURL(me.md5, btoa(str));
+                    IO.getImagesInSVG(str, function () {
+                        me.setBackgroundImage(base64, fcn);
+                    });
+                }
+            } catch (err) {
+                console.error('Error processing background SVG', err);
+                if (fcn) fcn();
             }
         }
     }
@@ -178,22 +207,24 @@ export default class Page {
             height: '100%'
         });
         this.bkg.img = img;
-        if (!img.complete) {
-            img.onload = function () {
-                if (gn('backdrop').className == 'modal-backdrop fade in') {
-                    Project.setProgress(Project.getMediaLoadRatio(70));
-                }
-                if (fcn) {
-                    fcn();
-                }
-            };
-        } else {
-            if (gn('backdrop').className == 'modal-backdrop fade in') {
+        var finished = false;
+        var onComplete = function () {
+            if (finished) return;
+            finished = true;
+            if (gn('backdrop') && gn('backdrop').className == 'modal-backdrop fade in') {
                 Project.setProgress(Project.getMediaLoadRatio(70));
             }
             if (fcn) {
                 fcn();
             }
+        };
+        img.onload = onComplete;
+        img.onerror = function () {
+            console.warn('Could not load background image:', url);
+            onComplete();
+        };
+        if (img.complete && img.naturalWidth > 0) {
+            onComplete();
         }
     }
 

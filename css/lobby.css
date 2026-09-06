@@ -604,8 +604,10 @@ div.htmlcontents.settings > div.localizationselect.backupaction {
 }
 
 .inappSubpage {
-	width:100vw;
-	height:80vw;
+    width: 100%;
+    max-width: 1020px;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .htmlcontents {
@@ -668,17 +670,23 @@ div.htmlcontents.settings > div.localizationselect.backupaction {
     top: ${css_vh(10.42)};
 }
 
+.htmlsubpagecontents.scrolled {
+    box-sizing: border-box;
+    padding-top: ${css_vh(10.42)};
+    padding-bottom: 140px;
+}
+
 .htmlsubpagecontents.guide-scroll {
     position: relative;
     box-sizing: border-box;
     min-height: 100%;
     padding-top: ${css_vh(10.42)};
-    padding-bottom: ${css_vh(18)};
+    padding-bottom: 140px;
 }
 
 .htmlsubpagecontents.guide-scroll > .inappSubpage {
-    height: max(80vw, 980px);
-    min-height: 980px;
+    height: auto;
+    min-height: 850px;
 }
 
 

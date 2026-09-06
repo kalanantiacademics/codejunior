@@ -78,14 +78,31 @@ export default class Sprite {
         var md5 = this.md5;
         var spr = this;
         var isRasterAsset = md5.toLowerCase().endsWith('.png');
-        var url = (MediaLib.keys[md5]) ? MediaLib.path + md5 : (md5.indexOf('/') < 0) ? iOS.path + md5 : md5;
-        md5 = (MediaLib.keys[md5]) ? MediaLib.path + md5 : md5;
         if (isRasterAsset) {
-            // Raster costumes are already browser-loadable URLs and must not be
-            // parsed as SVG documents.
-            whenDone(url);
+            // If it's a built-in media library key (e.g. KalanantiCharacter.png)
+            if (MediaLib.keys && MediaLib.keys[md5]) {
+                whenDone(MediaLib.path + md5);
+                return;
+            }
+            // If it's a direct URL or path (e.g. starts with http or pnglibrary/ or data:)
+            if (md5.indexOf('/') > -1 || md5.indexOf('data:') === 0) {
+                whenDone(md5);
+                return;
+            }
+            // Otherwise, it's stored in the database (e.g. from imported .sjr: KalanantiCharacter-kalananti.png)
+            iOS.getmedia(md5, function (base64) {
+                if (base64 && base64.length > 0) {
+                    whenDone('data:image/png;base64,' + base64);
+                } else if (MediaLib.path) {
+                    whenDone(MediaLib.path + 'KalanantiCharacter.png');
+                } else {
+                    whenDone('pnglibrary/KalanantiCharacter.png');
+                }
+            });
             return;
         }
+        var url = (MediaLib.keys[md5]) ? MediaLib.path + md5 : (md5.indexOf('/') < 0) ? (iOS.path ? iOS.path + md5 : md5) : md5;
+        md5 = (MediaLib.keys[md5]) ? MediaLib.path + md5 : md5;
         if (md5.indexOf('/') > -1) {
             IO.requestFromServer(md5, doNext);
         } else {
@@ -130,23 +147,38 @@ export default class Sprite {
         });
         this.div.appendChild(img);
         var sprite = this;
+        var loadedDone = false;
         var onLoaded = function () {
+            if (loadedDone) return;
+            loadedDone = true;
             sprite.originalImg = img.cloneNode(false);
             sprite.displaySprite(fcn);
         };
-        if (!img.complete) {
-            img.onload = onLoaded;
-        } else {
+        var onFailed = function () {
+            if (loadedDone) return;
+            console.warn('Could not load sprite image for', sprite.md5, 'falling back to default');
+            if (img.src.indexOf('KalanantiCharacter.png') < 0) {
+                img.src = (MediaLib.path || 'pnglibrary/') + 'KalanantiCharacter.png';
+            } else {
+                onLoaded();
+            }
+        };
+        img.onload = onLoaded;
+        img.onerror = onFailed;
+        if (img.complete && img.naturalWidth > 0) {
             onLoaded();
         }
     }
 
     displaySprite (whenDone) {
-        if (!this.svg && MediaLib.keys[this.md5]) {
+        if (!this.svg && MediaLib.keys && MediaLib.keys[this.md5]) {
             // Use the media manifest dimensions for raster costumes so a large
             // source PNG keeps the same logical size as the other characters.
             this.img.width = Number(MediaLib.keys[this.md5].width);
             this.img.height = Number(MediaLib.keys[this.md5].height);
+        } else if (!this.svg && this.w && this.h) {
+            this.img.width = Number(this.w);
+            this.img.height = Number(this.h);
         }
         var w = this.img.width;
         var h = this.img.height;

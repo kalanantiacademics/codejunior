@@ -83,12 +83,30 @@ export default class Project {
         ScratchJr.log('all UI assets recieved - procced to call server', ScratchJr.getTime(), 'sec');
         Project.setProgress(20);
         UI.layout();
+        if (!ScratchJr.currentProject) {
+            console.warn('No project specified in URL');
+            Project.dataRecieved('[]');
+            return;
+        }
         IO.getObject(ScratchJr.currentProject, Project.dataRecieved);
     }
 
     static dataRecieved (str) {
         ScratchJr.log('got project metadata', ScratchJr.getTime(), 'sec');
-        var data = JSON.parse(str)[0];
+        var list = [];
+        try {
+            list = typeof str === 'string' ? JSON.parse(str) : str;
+        } catch (e) {
+            console.error('Error parsing project data', e);
+        }
+        var data = list && list.length > 0 ? list[0] : null;
+        if (!data) {
+            console.warn('Project not found in database:', ScratchJr.currentProject);
+            Project.setProgress(100);
+            Project.liftCurtain();
+            Alert.open(frame, gn('flip'), 'Project could not be found or loaded.', '#ff0000');
+            return;
+        }
         metadata = IO.parseProjectData(data);
         mediaCount = -1;
         if (metadata.json) {
@@ -203,7 +221,12 @@ export default class Project {
         if (mediaCount <= 0) {
             Project.getStarted(whenDone);
         } else {
+            var waitStartTime = Date.now();
             interval = window.setInterval(function () {
+                if (Date.now() - waitStartTime > 5000) {
+                    console.warn('Project media load timed out after 5s, forcing curtain lift');
+                    mediaCount = 0;
+                }
                 Project.loadTask(whenDone);
             }, 32);
         }

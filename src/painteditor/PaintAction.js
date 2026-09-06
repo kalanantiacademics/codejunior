@@ -1118,21 +1118,42 @@ export default class PaintAction {
     }
 
     static getScreenPt (evt) {
-        var pt = Events.getTargetPoint(evt);
-        return PaintAction.zoomPt(pt);
+        if (!evt) return {x: 0, y: 0};
+        var x;
+        var y;
+        if (evt.touches && evt.touches.length > 0) {
+            x = evt.touches[0].clientX != null ? evt.touches[0].clientX : evt.touches[0].pageX;
+            y = evt.touches[0].clientY != null ? evt.touches[0].clientY : evt.touches[0].pageY;
+        } else if (evt.changedTouches && evt.changedTouches.length > 0) {
+            x = evt.changedTouches[0].clientX != null ? evt.changedTouches[0].clientX : evt.changedTouches[0].pageX;
+            y = evt.changedTouches[0].clientY != null ? evt.changedTouches[0].clientY : evt.changedTouches[0].pageY;
+        } else if (evt.clientX !== undefined && evt.clientY !== undefined) {
+            x = evt.clientX;
+            y = evt.clientY;
+        } else if (typeof evt.x === 'number' && typeof evt.y === 'number') {
+            return PaintAction.zoomPt(evt);
+        }
+
+        if (x === undefined || y === undefined) {
+            var pt = Events.getTargetPoint(evt);
+            return PaintAction.zoomPt(pt);
+        }
+        return PaintAction.zoomPt({x: x, y: y});
     }
 
     static zoomPt (pt) {
         var mc = gn('maincanvas');
-        if (!mc) {
+        if (!mc || !Paint.root || !Paint.root.getScreenCTM) {
             return pt;
         }
         var pt2 = Paint.root.createSVGPoint();
         pt2.x = pt.x;
         pt2.y = pt.y;
-        var globalPoint = pt2.matrixTransform(Paint.root.getScreenCTM().inverse());
-        globalPoint.x = globalPoint.x / Paint.currentZoom;
-        globalPoint.y = globalPoint.y / Paint.currentZoom;
+        var ctm = Paint.root.getScreenCTM();
+        if (!ctm) {
+            return pt;
+        }
+        var globalPoint = pt2.matrixTransform(ctm.inverse());
         return globalPoint;
     }
 }

@@ -231,6 +231,10 @@ export default class IO {
     }
 
     static getObject (md5, fcn) {
+        if (!md5) {
+            fcn('[]');
+            return;
+        }
         if (md5.indexOf('/') > -1) {
             var gotit = function (str) {
                 fcn(str);

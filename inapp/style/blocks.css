@@ -6,8 +6,12 @@ html {
 
 #inappBlocksGuide {
     background: #F7F6EE;
-     margin-top: 102px;
+    margin-top: 16px;
     margin-bottom: 100px;
+    width: 100%;
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #inappBlocksGuide .block-category-header {
@@ -29,9 +33,10 @@ html {
 }
 
 #inappBlocksGuide .guide-page-intro {
-    margin: ${css_vh(3)} auto ${css_vh(1)};
+    margin: 16px auto 20px;
     padding: 14px 20px;
-    width: min(800px, calc(100vw - 48px));
+    width: 800px;
+    max-width: 96%;
     box-sizing: border-box;
     border: 1px solid #b9dff0;
     border-radius: 14px;

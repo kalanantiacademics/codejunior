@@ -274,11 +274,11 @@ export default class Events {
         var y;
         if (isTablet) {
             if (e.touches && (e.touches.length > 0)) {
-                x = e.touches[0].pageX;
-                y = e.touches[0].pageY;
-            } else if (e.changedTouches) {
-                x = e.changedTouches[0].pageX;
-                y = e.changedTouches[0].pageY;
+                x = e.touches[0].clientX != null ? e.touches[0].clientX : e.touches[0].pageX;
+                y = e.touches[0].clientY != null ? e.touches[0].clientY : e.touches[0].pageY;
+            } else if (e.changedTouches && (e.changedTouches.length > 0)) {
+                x = e.changedTouches[0].clientX != null ? e.changedTouches[0].clientX : e.changedTouches[0].pageX;
+                y = e.changedTouches[0].clientY != null ? e.changedTouches[0].clientY : e.changedTouches[0].pageY;
             }
         } else {
             x = e.clientX;

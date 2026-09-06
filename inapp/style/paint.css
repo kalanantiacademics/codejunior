@@ -6,40 +6,48 @@ html {
 }
 
 #inappPaintEditorGuide {
-   	margin-top: 102px;
-    padding: ${css_vh(2)} ${css_vw(6.05)} ${css_vh(2)};
+    margin-top: 16px;
+    padding: 10px 16px 140px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 
 #inappPaintEditorGuide .scaledView {
-	transform: translate(-200px,-50px) scale(.7);
-	z-index: 1000;
+    position: relative;
+    width: 840px;
+    margin: 48px auto 0;
+    transform: scale(.75);
+    transform-origin: top center;
+    z-index: 5;
+    height: 570px;
 }
 
 #inappPaintEditorGuide  #content {
-    width: ${css_vh(164)};
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    position: relative;
 }
 
 #inappPaintEditorGuide  #content-buffer {
-    color: #808080;
-    margin-left: ${css_vh(14.31)};
-    height: ${css_vh(7.24)};
-    font-size: ${css_vh(2.30)};
+    display: none;
 }
 
 #inappPaintEditorGuide .paint-button {
     font-family: Roboto, arial, sans-serif;
     border-radius: 50%;
     position: absolute;
-    border: 1px solid #808080;
+    border: 2px solid #808080;
     width: ${css_vh(5.26)};
     height: ${css_vh(5.26)};
     text-align: center;
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     transition: border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
+    z-index: 50;
+    pointer-events: auto;
+    background: #ffffff;
 }
 
 #inappPaintEditorGuide .paint-dot {
@@ -394,10 +402,11 @@ html {
 }
 
 #inappPaintEditorGuide #paint-key {
-    position: absolute;
-    top: 374px;
+    position: relative;
+    top: auto;
     width: 800px;
-    max-width: calc(100vw - 48px);
+    max-width: 96%;
+    margin: 16px auto 40px;
     min-height: 132px;
     box-sizing: border-box;
     padding: 16px 24px 20px;
@@ -406,6 +415,9 @@ html {
     border: 1px solid #d8d8d8;
     border-radius: 16px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+    text-align: left;
+    transition: opacity .22s ease, transform .22s ease;
+    z-index: 10;
 }
 
 #inappPaintEditorGuide .guide-info-label {

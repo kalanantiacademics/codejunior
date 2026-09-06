@@ -19903,11 +19903,11 @@ var global = window;
       var y;
       if (isTablet) {
         if (e.touches && e.touches.length > 0) {
-          x = e.touches[0].pageX;
-          y = e.touches[0].pageY;
-        } else if (e.changedTouches) {
-          x = e.changedTouches[0].pageX;
-          y = e.changedTouches[0].pageY;
+          x = e.touches[0].clientX != null ? e.touches[0].clientX : e.touches[0].pageX;
+          y = e.touches[0].clientY != null ? e.touches[0].clientY : e.touches[0].pageY;
+        } else if (e.changedTouches && e.changedTouches.length > 0) {
+          x = e.changedTouches[0].clientX != null ? e.changedTouches[0].clientX : e.changedTouches[0].pageX;
+          y = e.changedTouches[0].clientY != null ? e.changedTouches[0].clientY : e.changedTouches[0].pageY;
         }
       } else {
         x = e.clientX;
@@ -20948,20 +20948,40 @@ var global = window;
       return mt;
     }
     static getScreenPt(evt) {
-      var pt = Events.getTargetPoint(evt);
-      return _PaintAction.zoomPt(pt);
+      if (!evt) return { x: 0, y: 0 };
+      var x;
+      var y;
+      if (evt.touches && evt.touches.length > 0) {
+        x = evt.touches[0].clientX != null ? evt.touches[0].clientX : evt.touches[0].pageX;
+        y = evt.touches[0].clientY != null ? evt.touches[0].clientY : evt.touches[0].pageY;
+      } else if (evt.changedTouches && evt.changedTouches.length > 0) {
+        x = evt.changedTouches[0].clientX != null ? evt.changedTouches[0].clientX : evt.changedTouches[0].pageX;
+        y = evt.changedTouches[0].clientY != null ? evt.changedTouches[0].clientY : evt.changedTouches[0].pageY;
+      } else if (evt.clientX !== void 0 && evt.clientY !== void 0) {
+        x = evt.clientX;
+        y = evt.clientY;
+      } else if (typeof evt.x === "number" && typeof evt.y === "number") {
+        return _PaintAction.zoomPt(evt);
+      }
+      if (x === void 0 || y === void 0) {
+        var pt = Events.getTargetPoint(evt);
+        return _PaintAction.zoomPt(pt);
+      }
+      return _PaintAction.zoomPt({ x, y });
     }
     static zoomPt(pt) {
       var mc = gn("maincanvas");
-      if (!mc) {
+      if (!mc || !Paint.root || !Paint.root.getScreenCTM) {
         return pt;
       }
       var pt2 = Paint.root.createSVGPoint();
       pt2.x = pt.x;
       pt2.y = pt.y;
-      var globalPoint = pt2.matrixTransform(Paint.root.getScreenCTM().inverse());
-      globalPoint.x = globalPoint.x / Paint.currentZoom;
-      globalPoint.y = globalPoint.y / Paint.currentZoom;
+      var ctm = Paint.root.getScreenCTM();
+      if (!ctm) {
+        return pt;
+      }
+      var globalPoint = pt2.matrixTransform(ctm.inverse());
       return globalPoint;
     }
   };
@@ -34794,12 +34814,28 @@ var global = window;
       var md5 = this.md5;
       var spr = this;
       var isRasterAsset = md5.toLowerCase().endsWith(".png");
-      var url = MediaLib.keys[md5] ? MediaLib.path + md5 : md5.indexOf("/") < 0 ? iOS.path + md5 : md5;
-      md5 = MediaLib.keys[md5] ? MediaLib.path + md5 : md5;
       if (isRasterAsset) {
-        whenDone(url);
+        if (MediaLib.keys && MediaLib.keys[md5]) {
+          whenDone(MediaLib.path + md5);
+          return;
+        }
+        if (md5.indexOf("/") > -1 || md5.indexOf("data:") === 0) {
+          whenDone(md5);
+          return;
+        }
+        iOS.getmedia(md5, function(base64) {
+          if (base64 && base64.length > 0) {
+            whenDone("data:image/png;base64," + base64);
+          } else if (MediaLib.path) {
+            whenDone(MediaLib.path + "KalanantiCharacter.png");
+          } else {
+            whenDone("pnglibrary/KalanantiCharacter.png");
+          }
+        });
         return;
       }
+      var url = MediaLib.keys[md5] ? MediaLib.path + md5 : md5.indexOf("/") < 0 ? iOS.path ? iOS.path + md5 : md5 : md5;
+      md5 = MediaLib.keys[md5] ? MediaLib.path + md5 : md5;
       if (md5.indexOf("/") > -1) {
         IO.requestFromServer(md5, doNext);
       } else {
@@ -34841,20 +34877,35 @@ var global = window;
       });
       this.div.appendChild(img);
       var sprite = this;
+      var loadedDone = false;
       var onLoaded = function() {
+        if (loadedDone) return;
+        loadedDone = true;
         sprite.originalImg = img.cloneNode(false);
         sprite.displaySprite(fcn);
       };
-      if (!img.complete) {
-        img.onload = onLoaded;
-      } else {
+      var onFailed = function() {
+        if (loadedDone) return;
+        console.warn("Could not load sprite image for", sprite.md5, "falling back to default");
+        if (img.src.indexOf("KalanantiCharacter.png") < 0) {
+          img.src = (MediaLib.path || "pnglibrary/") + "KalanantiCharacter.png";
+        } else {
+          onLoaded();
+        }
+      };
+      img.onload = onLoaded;
+      img.onerror = onFailed;
+      if (img.complete && img.naturalWidth > 0) {
         onLoaded();
       }
     }
     displaySprite(whenDone) {
-      if (!this.svg && MediaLib.keys[this.md5]) {
+      if (!this.svg && MediaLib.keys && MediaLib.keys[this.md5]) {
         this.img.width = Number(MediaLib.keys[this.md5].width);
         this.img.height = Number(MediaLib.keys[this.md5].height);
+      } else if (!this.svg && this.w && this.h) {
+        this.img.width = Number(this.w);
+        this.img.height = Number(this.h);
       }
       var w = this.img.width;
       var h = this.img.height;
@@ -36016,28 +36067,57 @@ var global = window;
       var url = MediaLib.keys[name2] ? MediaLib.path + name2 : name2.indexOf("/") < 0 ? iOS.path + name2 : name2;
       var md5 = MediaLib.keys[name2] ? MediaLib.path + name2 : name2;
       if (md5.substr(md5.length - 3) == "png") {
-        this.setBackgroundImage(url, fcn);
+        if (MediaLib.keys && MediaLib.keys[name2]) {
+          this.setBackgroundImage(MediaLib.path + name2, fcn);
+        } else if (name2.indexOf("/") > -1 || name2.indexOf("data:") === 0) {
+          this.setBackgroundImage(name2, fcn);
+        } else {
+          var self2 = this;
+          iOS.getmedia(name2, function(base64) {
+            if (base64 && base64.length > 0) {
+              self2.setBackgroundImage("data:image/png;base64," + base64, fcn);
+            } else if (fcn) {
+              fcn();
+            }
+          });
+        }
         this.svg = null;
         return;
       }
       if (md5.indexOf("/") > -1) {
-        IO.requestFromServer(md5, doNext);
+        IO.requestFromServer(md5, doNext, function() {
+          if (fcn) fcn();
+        });
       } else {
         iOS.getmedia(md5, nextStep);
       }
       function nextStep(base64) {
-        doNext(atob(base64));
+        if (!base64) {
+          if (fcn) fcn();
+          return;
+        }
+        try {
+          doNext(atob(base64));
+        } catch (err) {
+          console.error("Error decoding background SVG", err);
+          if (fcn) fcn();
+        }
       }
       function doNext(str) {
-        str = str.replace(/>\s*</g, "><");
-        me.setSVG(str);
-        if (str.indexOf("xlink:href") < 0 && iOS.path) {
-          me.setBackgroundImage(url, fcn);
-        } else {
-          var base64 = IO.getImageDataURL(me.md5, btoa(str));
-          IO.getImagesInSVG(str, function() {
-            me.setBackgroundImage(base64, fcn);
-          });
+        try {
+          str = str.replace(/>\s*</g, "><");
+          me.setSVG(str);
+          if (str.indexOf("xlink:href") < 0 && iOS.path) {
+            me.setBackgroundImage(url, fcn);
+          } else {
+            var base64 = IO.getImageDataURL(me.md5, btoa(str));
+            IO.getImagesInSVG(str, function() {
+              me.setBackgroundImage(base64, fcn);
+            });
+          }
+        } catch (err) {
+          console.error("Error processing background SVG", err);
+          if (fcn) fcn();
         }
       }
     }
@@ -36062,22 +36142,24 @@ var global = window;
         height: "100%"
       });
       this.bkg.img = img;
-      if (!img.complete) {
-        img.onload = function() {
-          if (gn("backdrop").className == "modal-backdrop fade in") {
-            Project.setProgress(Project.getMediaLoadRatio(70));
-          }
-          if (fcn) {
-            fcn();
-          }
-        };
-      } else {
-        if (gn("backdrop").className == "modal-backdrop fade in") {
+      var finished = false;
+      var onComplete = function() {
+        if (finished) return;
+        finished = true;
+        if (gn("backdrop") && gn("backdrop").className == "modal-backdrop fade in") {
           Project.setProgress(Project.getMediaLoadRatio(70));
         }
         if (fcn) {
           fcn();
         }
+      };
+      img.onload = onComplete;
+      img.onerror = function() {
+        console.warn("Could not load background image:", url);
+        onComplete();
+      };
+      if (img.complete && img.naturalWidth > 0) {
+        onComplete();
       }
     }
     setPageSprites(showstate) {
@@ -38644,11 +38726,29 @@ var global = window;
       ScratchJr.log("all UI assets recieved - procced to call server", ScratchJr.getTime(), "sec");
       _Project.setProgress(20);
       UI.layout();
+      if (!ScratchJr.currentProject) {
+        console.warn("No project specified in URL");
+        _Project.dataRecieved("[]");
+        return;
+      }
       IO.getObject(ScratchJr.currentProject, _Project.dataRecieved);
     }
     static dataRecieved(str) {
       ScratchJr.log("got project metadata", ScratchJr.getTime(), "sec");
-      var data = JSON.parse(str)[0];
+      var list = [];
+      try {
+        list = typeof str === "string" ? JSON.parse(str) : str;
+      } catch (e) {
+        console.error("Error parsing project data", e);
+      }
+      var data = list && list.length > 0 ? list[0] : null;
+      if (!data) {
+        console.warn("Project not found in database:", ScratchJr.currentProject);
+        _Project.setProgress(100);
+        _Project.liftCurtain();
+        Alert.open(frame, gn("flip"), "Project could not be found or loaded.", "#ff0000");
+        return;
+      }
       metadata = IO.parseProjectData(data);
       mediaCount = -1;
       if (metadata.json) {
@@ -38753,7 +38853,12 @@ var global = window;
       if (mediaCount <= 0) {
         _Project.getStarted(whenDone);
       } else {
+        var waitStartTime = Date.now();
         interval2 = window.setInterval(function() {
+          if (Date.now() - waitStartTime > 5e3) {
+            console.warn("Project media load timed out after 5s, forcing curtain lift");
+            mediaCount = 0;
+          }
           _Project.loadTask(whenDone);
         }, 32);
       }
@@ -40555,6 +40660,10 @@ var global = window;
       return header + data;
     }
     static getObject(md5, fcn) {
+      if (!md5) {
+        fcn("[]");
+        return;
+      }
       if (md5.indexOf("/") > -1) {
         var gotit = function(str) {
           fcn(str);
@@ -41420,6 +41529,7 @@ var global = window;
     var switchHelp = function(e) {
       var button = e.target.closest ? e.target.closest(".interface-button") : null;
       if (button && guideRoot.contains(button)) {
+        if (button.classList.contains("interface-button-selected")) return;
         var target3 = button.querySelector(".interface-button-text");
         var descriptionId = parseInt(target3.textContent, 10) - 1;
         if (!interfaceDescriptions[descriptionId]) return;
@@ -41435,10 +41545,13 @@ var global = window;
           selectedButton.classList.remove("interface-button-selected");
         });
         button.classList.add("interface-button-selected");
-        window.parent.ScratchAudio.sndFXWithVolume("keydown.wav", 0.3);
+        if (window.parent && window.parent.ScratchAudio) {
+          window.parent.ScratchAudio.sndFXWithVolume("keydown.wav", 0.3);
+        }
       }
     };
-    guideRoot.onmousedown = switchHelp;
+    guideRoot.addEventListener("mousedown", switchHelp);
+    guideRoot.addEventListener("click", switchHelp);
   }
   function inappPaintEditorGuide() {
     var guideRoot = gn("inappPaintEditorGuide");
@@ -41473,6 +41586,7 @@ var global = window;
     var switchHelp = function(e) {
       var button = e.target.closest ? e.target.closest(".paint-button") : null;
       if (button && guideRoot.contains(button)) {
+        if (button.classList.contains("paint-button-selected")) return;
         var target3 = button.querySelector(".paint-button-text");
         var descriptionId = parseInt(target3.textContent, 10) - 1;
         if (!paintDescriptions[descriptionId]) return;
@@ -41488,10 +41602,13 @@ var global = window;
           selectedButton.classList.remove("paint-button-selected");
         });
         button.classList.add("paint-button-selected");
-        window.parent.ScratchAudio.sndFXWithVolume("keydown.wav", 0.3);
+        if (window.parent && window.parent.ScratchAudio) {
+          window.parent.ScratchAudio.sndFXWithVolume("keydown.wav", 0.3);
+        }
       }
     };
-    guideRoot.onmousedown = switchHelp;
+    guideRoot.addEventListener("mousedown", switchHelp);
+    guideRoot.addEventListener("click", switchHelp);
   }
   function inappBlocksGuide() {
     gn("yellow-block-category-header").textContent = Localization.localize("BLOCKS_TRIGGERING_BLOCKS");
